@@ -98,23 +98,12 @@ export default {
       },
       tooltip: {
       },
-      legend: { //图例组件，颜色和名字
-        left: '0',
-        bottom: '0',
-        itemWidth: 12,
-        itemHeight: 12,
-        data: ['吊销注销', '到期注销', '申请注销'],
-        textStyle: {
-          fontStyle: 'normal',
-          fontSize: 14,
-          color: '#7bb9dc'
-        }
-      },
       series: [{
-        name: '吊销注销',
+        name: '办公室',
         type: 'pie',
-        radius: ['43%', '50%'],
-        center: ['15%', '50%'],
+        radius: ['70%', '78%'],
+        center: ['15%', '53%'],
+        avoidLabelOverlap: false,
         color: '#00AFAA',
         label: {
           normal: {
@@ -123,11 +112,15 @@ export default {
         },
         data: [{
           value: 32,
-          name: '吊销注销数',
+          name: '已租',
+          itemStyle: {
+            color: '#00AFAA'
+          },
           label: {
             normal: {
               formatter: '{d} %',
               textStyle: {
+                color: '#00AFAA',
                 fontSize: 18
               }
             },
@@ -135,13 +128,21 @@ export default {
           },
           tooltip: {
             trigger: 'item',
-            formatter: "{a} {b} {c}"
+            formatter: "{a}{b}：{c}"
           }
         }, {
           value: 68,
+          name: '待租',
+          label: {
+            show: false
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a}{b}：{c}"
+          },
           itemStyle: {
             normal: {
-              color: '#3D414D'
+              color: '#3D414D',
             },
             emphasis: {
               color: '#3D414D'
@@ -149,10 +150,11 @@ export default {
           },
         }]
       }, {
-        name: '到期注销',
+        name: '移动工位',
         type: 'pie',
-        radius: ['43%', '50%'],
-        center: ['45%', '50%'],
+        radius: ['70%', '78%'],
+        center: ['45%', '53%'],
+        avoidLabelOverlap: false,
         color: '#FFB408',
         label: {
           normal: {
@@ -160,22 +162,34 @@ export default {
           }
         },
         data: [{
-          value: 54,
-          name: '到期注销数',
+          value: 74,
+          name: '已租',
+          itemStyle: {
+            color: '#FFB408'
+          },
           label: {
             normal: {
               formatter: '{d} %',
               textStyle: {
+                color: '#FFB408',
                 fontSize: 18
               }
             }
           },
           tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>计算公式:占比率=({b}/注销总数)*100%<br/> 到期注销数 : {c}"
+            formatter: "{a}{b}：{c}"
           }
         }, {
-          value: 46,
+          value: 26,
+          name: '待租',
+          label: {
+            show: false
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a}{b}：{c}"
+          },
           itemStyle: {
             normal: {
               color: '#3D414D'
@@ -186,10 +200,11 @@ export default {
           },
         }]
       }, {
-        name: '申请注销',
+        name: '固定工位',
         type: 'pie',
-        radius: ['43%', '50%'],
-        center: ['75%', '50%'],
+        radius: ['70%', '78%'],
+        center: ['75%', '53%'],
+        avoidLabelOverlap: false,
         color: '#FF4B4E',
         label: {
           normal: {
@@ -198,7 +213,10 @@ export default {
         },
         data: [{
           value: 18,
-          name: '申请注销数',
+          name: '已租',
+          itemStyle: {
+            color: '#FF4B4E'
+          },
           label: {
             normal: {
               formatter: '{d} %',
@@ -209,10 +227,18 @@ export default {
           },
           tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>计算公式:占比率=({b}/注销总数)*100%<br/> 申请注销数 : {c}"
+            formatter: "{a}{b}：{c}"
           }
         }, {
           value: 82,
+          name: '待租',
+          label: {
+            show: false
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a}{b}：{c}"
+          },
           itemStyle: {
             normal: {
               color: '#3D414D'
@@ -324,7 +350,7 @@ export default {
 
     .main {
       width: 400px;
-      height: 180px;
+      height: 120px;
     }
   }
 }

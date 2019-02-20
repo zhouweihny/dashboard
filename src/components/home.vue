@@ -1,17 +1,17 @@
 <template>
   <div class="mainpage" id="mainpage">
     <!-- 顶部中间标题 -->
-    <dashTit></dashTit>
+    <!-- <dashTit></dashTit> -->
     <!-- 中间内容区 -->
     <div class="J_main" id="J_main">
+      <h3 class="J_roomrent_tit">房间租赁数据</h3>
       <div class="item J_roomrent">
-        <!-- 房间租赁信息 -->
         <roomrent></roomrent>
       </div>
 
       <div class="item J_workorder">
         <!-- 工单信息 -->
-        <workorder></workorder>
+        <!-- <workorder></workorder> -->
       </div>
     </div>
   </div>
@@ -74,13 +74,22 @@ a {
     position: absolute;
 
     &.J_roomrent {
-      left: 0;
-      top: 50px;
+      left: 87px;
+      top: 220px;
+      width: 780px;
+      height: 190px;
     }
     &.J_workorder {
       left: 540px;
       top: 50px;
     }
+  }
+  .J_roomrent_tit {
+    position: absolute;
+    top: 110px;
+    left: 388px;
+    font-size: 26px;
+    color: #7bb9dc;
   }
 }
 </style>

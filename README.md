@@ -17,3 +17,8 @@
 	+ cnpm install --save-dev sass-loader style-loader css-loader sass-resources-loader
 	+ cnpm install echarts vue-echarts
 	+ npm run dev
+
+### 已安装过依赖，想第二次运行项目
+
+> * 1，cd dashboard（项目所在位置）
+> * 2，npm run dev

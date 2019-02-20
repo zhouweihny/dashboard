@@ -1,0 +1,86 @@
+<template>
+  <div class="mainpage" id="mainpage">
+    <!-- 顶部中间标题 -->
+    <dashTit></dashTit>
+    <!-- 中间内容区 -->
+    <div class="J_main" id="J_main">
+      <div class="item J_roomrent">
+        <!-- 房间租赁信息 -->
+        <roomrent></roomrent>
+      </div>
+
+      <div class="item J_workorder">
+        <!-- 工单信息 -->
+        <workorder></workorder>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+
+import page1 from '@/components/page1'
+import dashTit from '@/components/dashTit'
+import roomrent from '@/components/roomrent'
+import workorder from '@/components/workorder'
+
+export default {
+  name: 'home',
+  components: {
+    dashTit,
+    roomrent,
+    workorder,
+    page1
+  },
+  data () {
+    return {
+      title: '优糖星创园监控中心'
+    }
+  },
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>
+<style scoped lang="scss">
+.mainpage {
+  background: url(../../static/bj.jpg) left top no-repeat;
+  // width: 1920px;
+  // height: 1080px;
+  // width: 5760px;
+  // height: 3240px;
+  width: 3450px;
+  height: 1940px;
+  display: inline-block;
+}
+
+.J_main {
+  .item {
+    position: absolute;
+
+    &.J_roomrent {
+      left: 0;
+      top: 50px;
+    }
+    &.J_workorder {
+      left: 540px;
+      top: 50px;
+    }
+  }
+}
+</style>

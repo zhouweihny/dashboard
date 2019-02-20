@@ -1,0 +1,39 @@
+$base_colo: #333;
+$base_colo_high: #ff0000;
+$base_zpx: 15px;
+
+.fn-hide {
+	display: none;
+}
+/* 清理浮动 */
+.fn-clear:after {
+  visibility:hidden;
+  display:block;
+  font-size:0;
+  content:" ";
+  clear:both;
+  height:0;
+}
+.fn-clear {
+  zoom:1; /* for IE6 IE7 */
+}
+.m-t {
+	margin-top: $base_zpx;
+}
+.m-b {
+	margin-bottom: $base_zpx;
+}
+.m-l {
+	margin-left: $base_zpx;
+}
+.m-r {
+	margin-right: $base_zpx;
+}
+
+* {
+  box-sizing: border-box;
+}
+html { font-size: 62.5% }
+@media only screen and(min-width: 481px) { html { font-size: 94%!important } }
+@media only screen and(min-width: 561px) { html { font-size: 109%!important } }
+@media only screen and(min-width: 641px) { html { font-size: 125%!important }}

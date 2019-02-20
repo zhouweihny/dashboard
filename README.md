@@ -10,7 +10,6 @@
     + npm install cnpm -g --registry=https://registry.npm.taobao.org
     + npm config set registry https://registry.npm.taobao.org
     + //可能需要关闭命令工具并重新打开
-    
 > * 2，如果已安装过node，以上可直接跳过
     + cd dashboard（项目所在位置）
 		+ cnpm install

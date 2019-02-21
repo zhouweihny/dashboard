@@ -81,6 +81,9 @@ a {
   width: 3450px;
   height: 1940px;
   display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .J_main {

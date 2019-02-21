@@ -1,5 +1,13 @@
 <template>
-  <div class="lines">
+  <div class="workorder">
+    <div class="zui-flex tit">
+      <div>
+        工单数量 <span>500</span>
+      </div>
+      <div>
+        待处理数量 <span>200</span>
+      </div>
+    </div>
     <div class="main"></div>
   </div>
 </template>
@@ -40,12 +48,11 @@ export default {
     }
 
     // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(document.querySelector('.lines .main'));
+    this.myChart = echarts.init(document.querySelector('.workorder .main'));
     this.myChart.setOption({
       title: {
         show: false
       },
-      backgroundColor: '#0f375f',
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -138,34 +145,53 @@ export default {
         data: lineData
       }]
     });
-    this.zinit();
   },
   methods: {
-    zinit() {
-      this.legendArr = this.myChart.getOption().series
-      this.legendArr.forEach((data) => {
-        data.selected = true;
-      })
-      // this.$root.charts.push(this.myChart)
-      window.addEventListener('resize', function() {
-        this.myChart.resize()
-      }.bind(this))
-    }
+    
   }
 }
 
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.lines {
-  border: 1px solid #ddd;
-  width: 520px;
-  height: 520px;
-  padding: 10px;
+.workorder {
+  .tit {
+    position: absolute;
+    top: -80px;
+    left: 0;
+    justify-content: flex-start;
+    & > div {
+      position: relative;
+      padding-left: 20px;
+      font-size: 17px;
+      color: #7bb9dc;
+      &:nth-child(1) {
+        margin-right: 50px;
+      }
+      &:before {
+        position: absolute;
+        left: 0;
+        top: 9px;
+        content: "";
+        width: 13px;
+        height: 13px;
+        border-radius: 13px;
+        background: #8FD3FA;
+      }
+
+      span {
+        color: #5BEAFB;
+        font-size: 26px;
+        display: inline-block;
+        vertical-align: baseline;
+        margin-left: 15px;
+      }
+    }
+  }
 
   .main {
-    width: 500px;
-    height: 500px;
+    width: 806px;
+    height: 330px;
   }
 }
 

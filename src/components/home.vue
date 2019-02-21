@@ -19,9 +19,9 @@
         <monthroomrent></monthroomrent>
       </div>
 
+      <h3 class="J_workorder_tit">月工单数量（维修、保洁、其他）</h3>
       <div class="item J_workorder">
-        <!-- 工单信息 -->
-        <!-- <workorder></workorder> -->
+        <workorder></workorder>
       </div>
     </div>
   </div>
@@ -106,8 +106,10 @@ a {
       height: 300px;
     }
     &.J_workorder {
-      left: 540px;
-      top: 50px;
+      left: 94px;
+      top: 1504px;
+      width: 766px;
+      height: 300px;
     }
   }
   .J_roomrent_tit {
@@ -128,6 +130,13 @@ a {
     position: absolute;
     top: 869px;
     left: 388px;
+    font-size: 21px;
+    color: #fff;
+  }
+  .J_workorder_tit {
+    position: absolute;
+    top: 1488px;
+    left: 330px;
     font-size: 21px;
     color: #fff;
   }

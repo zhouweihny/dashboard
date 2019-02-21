@@ -53,6 +53,20 @@
         </div>
       </div>
       <div class="main"></div>
+      <div class="zui-flex ztit">
+        <div class="fn-center">
+          <p>办公室租用率</p>
+          <p><em></em>共30间，余15</p>
+        </div>
+        <div class="fn-center">
+          <p>移动办公租用率</p>
+          <p><em></em>共30间，余15</p>
+        </div>
+        <div class="fn-center">
+          <p>固定工位租用率</p>
+          <p><em></em>共30间，余15</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -93,11 +107,10 @@ export default {
     // 基于准备好的dom，初始化echarts实例
     this.myChart = echarts.init(document.querySelector('.J_roomrent .main'));
     this.myChart.setOption({
-      title:{
-        
+      title: {
+
       },
-      tooltip: {
-      },
+      tooltip: {},
       series: [{
         name: '办公室',
         type: 'pie',
@@ -153,7 +166,7 @@ export default {
         name: '移动工位',
         type: 'pie',
         radius: ['70%', '78%'],
-        center: ['45%', '53%'],
+        center: ['49%', '53%'],
         avoidLabelOverlap: false,
         color: '#FFB408',
         label: {
@@ -203,7 +216,7 @@ export default {
         name: '固定工位',
         type: 'pie',
         radius: ['70%', '78%'],
-        center: ['75%', '53%'],
+        center: ['82%', '53%'],
         avoidLabelOverlap: false,
         color: '#FF4B4E',
         label: {
@@ -261,6 +274,8 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+$base_colo: #7bb9dc;
+
 .cwrap {
 
   .left {
@@ -283,7 +298,7 @@ export default {
         padding-left: 20px;
         height: 60px;
         font-size: 17px;
-        color: #7bb9dc;
+        color: $base_colo;
         justify-content: space-between;
         align-items: baseline;
 
@@ -320,7 +335,7 @@ export default {
       height: 30px;
       line-height: 30px;
       font-size: 17px;
-      color: #7bb9dc;
+      color: $base_colo;
       justify-content: space-around;
 
       .rent {
@@ -350,7 +365,42 @@ export default {
 
     .main {
       width: 400px;
-      height: 120px;
+      height: 105px;
+    }
+
+    .ztit {
+      justify-content: space-around;
+      align-items: center;
+      font-size: 14px;
+      color: $base_colo;
+      margin-left: -10px;
+
+      & > div {
+        p {
+          height: 22px;
+          line-height: 22px;
+
+          &:nth-child(2) {
+            position: relative;
+            em {
+              font-style: normal;
+              display: inline-block;
+              vertical-align: middle;
+              width: 10px;
+              height: 10px;
+              border-radius: 10px;
+              background: #00AFAA;
+              margin-right: 5px;
+            }
+          }
+        }
+        &:nth-child(2) p em {
+          background: #FFB408;
+        }
+        &:nth-child(3) p em {
+          background: #FF4B4E;
+        }
+      }
     }
   }
 }

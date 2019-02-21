@@ -14,6 +14,11 @@
         <yearroomrent></yearroomrent>
       </div>
 
+      <h3 class="J_monthroomrent_tit">房间收入月柱状图</h3>
+      <div class="item J_monthroomrent">
+        <monthroomrent></monthroomrent>
+      </div>
+
       <div class="item J_workorder">
         <!-- 工单信息 -->
         <!-- <workorder></workorder> -->
@@ -28,6 +33,7 @@ import page1 from '@/components/page1'
 import dashTit from '@/components/dashTit'
 import roomrent from '@/components/roomrent'
 import yearroomrent from '@/components/yearroomrent'
+import monthroomrent from '@/components/monthroomrent'
 import workorder from '@/components/workorder'
 
 export default {
@@ -36,6 +42,7 @@ export default {
     dashTit,
     roomrent,
     yearroomrent,
+    monthroomrent,
     workorder,
     page1
   },
@@ -92,6 +99,12 @@ a {
       width: 766px;
       height: 300px;
     }
+    &.J_monthroomrent {
+      left: 94px;
+      top: 914px;
+      width: 766px;
+      height: 300px;
+    }
     &.J_workorder {
       left: 540px;
       top: 50px;
@@ -108,6 +121,13 @@ a {
     position: absolute;
     top: 452px;
     left: 335px;
+    font-size: 21px;
+    color: #fff;
+  }
+  .J_monthroomrent_tit {
+    position: absolute;
+    top: 869px;
+    left: 388px;
     font-size: 21px;
     color: #fff;
   }

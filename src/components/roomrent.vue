@@ -99,8 +99,8 @@ export default {
     var lineData = [];
     var barData = [];
     for (var i = 0; i < 12; i++) {
-      var b = Math.random() * 200;
-      var d = Math.random() * 200;
+      var b = parseInt(Math.random() * 200, 10);
+      var d = parseInt(Math.random() * 200, 10);
       barData.push(b)
       lineData.push(d + b);
     }

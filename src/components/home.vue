@@ -9,6 +9,11 @@
         <roomrent></roomrent>
       </div>
 
+      <h3 class="J_yearroomrent_tit">月房间签单/续租/退租（近年）</h3>
+      <div class="item J_yearroomrent">
+        <yearroomrent></yearroomrent>
+      </div>
+
       <div class="item J_workorder">
         <!-- 工单信息 -->
         <!-- <workorder></workorder> -->
@@ -22,6 +27,7 @@
 import page1 from '@/components/page1'
 import dashTit from '@/components/dashTit'
 import roomrent from '@/components/roomrent'
+import yearroomrent from '@/components/yearroomrent'
 import workorder from '@/components/workorder'
 
 export default {
@@ -29,6 +35,7 @@ export default {
   components: {
     dashTit,
     roomrent,
+    yearroomrent,
     workorder,
     page1
   },
@@ -79,6 +86,12 @@ a {
       width: 780px;
       height: 190px;
     }
+    &.J_yearroomrent {
+      left: 94px;
+      top: 494px;
+      width: 766px;
+      height: 300px;
+    }
     &.J_workorder {
       left: 540px;
       top: 50px;
@@ -90,6 +103,13 @@ a {
     left: 388px;
     font-size: 26px;
     color: #7bb9dc;
+  }
+  .J_yearroomrent_tit {
+    position: absolute;
+    top: 452px;
+    left: 335px;
+    font-size: 21px;
+    color: #fff;
   }
 }
 </style>

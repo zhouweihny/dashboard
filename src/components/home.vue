@@ -1,7 +1,14 @@
 <template>
   <div class="mainpage" id="mainpage">
-    <!-- 顶部中间标题 -->
-    <!-- <dashTit></dashTit> -->
+    <div class="zui-flex J_weather">
+      <div>2019年02月16日</div>
+      <div>6℃ ~ 11℃</div>
+      <div>雨</div>
+    </div>
+    <div class="zui-flex J_parkNum">
+      <div>车辆在园：100</div>
+      <div>剩余车位：20</div>
+    </div>
     <!-- 中间内容区 -->
     <div class="J_main" id="J_main">
       <h3 class="J_roomrent_tit">房间租赁数据</h3>
@@ -14,11 +21,20 @@
         <yearroomrent></yearroomrent>
       </div>
 
-      <div class="item J_workorder">
-        <!-- 工单信息 -->
-        <!-- <workorder></workorder> -->
+      <h3 class="J_monthroomrent_tit">房间收入月柱状图</h3>
+      <div class="item J_monthroomrent">
+        <monthroomrent></monthroomrent>
       </div>
-      
+
+      <h3 class="J_workorder_tit">月工单数量（维修、保洁、其他）</h3>
+      <div class="item J_workorder">
+        <workorder></workorder>
+      </div>
+
+      <div class="item J_zdevice">
+        <zdevice></zdevice>
+      </div>
+
       <h3 class="J_clientdata_tit">客户数据</h3>
       <div class="item J_clientdata">
         <clientdata></clientdata>
@@ -50,11 +66,14 @@ import page1 from '@/components/page1'
 import dashTit from '@/components/dashTit'
 import roomrent from '@/components/roomrent'
 import yearroomrent from '@/components/yearroomrent'
+import monthroomrent from '@/components/monthroomrent'
 import workorder from '@/components/workorder'
+import zdevice from '@/components/zdevice'
 import clientdata from '@/components/clientdata'
 import crewcase from '@/components/crewcase'
 import meetingroomdata from '@/components/meetingroomdata'
 import servequalitydata from '@/components/servequalitydata'
+
 
 export default {
   name: 'home',
@@ -62,7 +81,9 @@ export default {
     dashTit,
     roomrent,
     yearroomrent,
+    monthroomrent,
     workorder,
+    zdevice,
     page1,
     clientdata,
     crewcase,
@@ -96,6 +117,7 @@ a {
 </style>
 <style scoped lang="scss">
 $base_colo: #7bb9dc;
+
 .mainpage {
   background: url(../../static/bj.jpg) left top no-repeat;
  /* // width: 1920px;
@@ -105,6 +127,28 @@ $base_colo: #7bb9dc;
   width: 3450px;
   height: 1940px;
   display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.J_weather, .J_parkNum {
+  height: 50px;
+  line-height: 50px;
+  position: absolute;
+  top: 80px;
+  justify-content: space-around;
+  align-items: center;
+  color: $base_colo;
+  font-size: 30px;
+}
+.J_weather {
+  width: 500px;
+  left: 840px;
+}
+.J_parkNum {
+  width: 460px;
+  left: 2100px;
 }
 
 .J_main {
@@ -124,9 +168,23 @@ $base_colo: #7bb9dc;
       width: 766px;
       height: 300px;
     }
+    &.J_monthroomrent {
+      left: 94px;
+      top: 914px;
+      width: 766px;
+      height: 300px;
+    }
     &.J_workorder {
-      left: 540px;
-      top: 50px;
+      left: 94px;
+      top: 1504px;
+      width: 766px;
+      height: 300px;
+    }
+    &.J_zdevice {
+      left: 985px;
+      top: 290px;
+      width: 1500px;
+      height: 640px;
     }
     &.J_clientdata{
       right: 80px;
@@ -165,6 +223,22 @@ $base_colo: #7bb9dc;
     font-size: 21px;
     color: #fff;
   }
+
+  .J_monthroomrent_tit {
+    position: absolute;
+    top: 869px;
+    left: 388px;
+    font-size: 21px;
+    color: #fff;
+  }
+  .J_workorder_tit {
+    position: absolute;
+    top: 1488px;
+    left: 330px;
+    font-size: 21px;
+    color: #fff;
+   }
+
   .J_clientdata_tit{
     position: absolute;
     top: 110px;

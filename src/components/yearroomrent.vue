@@ -25,12 +25,15 @@ export default {
   mounted() {
     var dottedBase = +new Date();
     var lineData = [];
+    var lineData2 = [];
     var barData = [];
     for (var i = 0; i < 12; i++) {
-      var b = Math.random() * 200;
-      var d = Math.random() * 200;
+      var b = parseInt(Math.random() * 200, 10);
+      var d = parseInt(Math.random() * 200, 10);
+      var e = parseInt(Math.random() * 200, 10);
       barData.push(b)
       lineData.push(d + b);
+      lineData2.push(d + b + e);
     }
 
     // 基于准备好的dom，初始化echarts实例
@@ -47,19 +50,46 @@ export default {
             show: true,
             backgroundColor: '#333'
           }
+        },
+        formatter (params, ticket, callback) {
+          var _qd = '',
+            _xz = '',
+            _tz = '',
+            str = params[0].axisValueLabel+"房间订单信息"+"<br>";
+          params.forEach(v=>{
+            if(v.seriesName == '签单')
+              _qd = v.data;
+            if(v.seriesName == '续租')
+              _xz = v.data;
+            if(v.seriesName == '退租')
+              _tz = v.data;
+          })
+
+          if(_qd)
+            str += "签单："+_qd+"<br>";
+          if(_xz)
+            str += "续租："+_xz+"<br>";
+          if(_tz)
+            str += "退租："+_tz+"<br>";
+
+          return str;
         }
       },
       legend: {
-        data: ['line', 'bar'],
+        data: ['签单', '续租', '退租'],
         textStyle: {
-          color: '#ccc'
-        }
+          color: '#7bb9dc'
+        },
+        left: 100,
+        top: 20,
+        itemGap: 30,
+        itemWidth: 50
       },
       xAxis: {
         data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
         axisLine: {
           lineStyle: {
-            color: '#ccc'
+            color: '#7bb9dc'
           }
         }
       },
@@ -67,20 +97,50 @@ export default {
         splitLine: { show: false },
         axisLine: {
           lineStyle: {
-            color: '#ccc'
+            color: '#7bb9dc'
           }
         }
       },
       series: [{
-        name: 'line',
+        name: '续租',
         type: 'line',
-        smooth: true,
+        smooth: false,
         showAllSymbol: true,
-        symbol: 'emptyCircle',
-        symbolSize: 15,
-        data: lineData
+        symbol: 'circle',
+        symbolSize: 10,
+        data: lineData,
+        itemStyle: {
+          normal: {
+            color: "#FFB508",
+            lineStyle: {
+              color: "#FFB508"
+            }
+          }
+        },
+        lineStyle: {
+          color: '#FFB508'
+        }
       }, {
-        name: 'bar',
+        name: '退租',
+        type: 'line',
+        smooth: false,
+        showAllSymbol: true,
+        symbol: 'circle',
+        symbolSize: 10,
+        data: lineData2,
+        itemStyle: {
+          normal: {
+            color: "#FF4C4B",
+            lineStyle: {
+              color: "#FF4C4B"
+            }
+          }
+        },
+        lineStyle: {
+          color: '#FF4C4B'
+        }
+      }, {
+        name: '签单',
         type: 'bar',
         barWidth: 10,
         itemStyle: {
@@ -114,7 +174,7 @@ export default {
           }
         },
         z: -12,
-        data: lineData
+        data: lineData2
       }, {
         name: 'dotted',
         type: 'pictorialBar',
@@ -128,7 +188,7 @@ export default {
         symbolSize: [12, 4],
         symbolMargin: 1,
         z: -10,
-        data: lineData
+        data: lineData2
       }]
     });    
   },

@@ -1,25 +1,24 @@
 <template>
-  <div class="lines">
+  <div class="workorder">
+    <div class="zui-flex tit">
+      <div>
+        工单数量 <span>500</span>
+      </div>
+      <div>
+        待处理数量 <span>200</span>
+      </div>
+    </div>
     <div class="main"></div>
   </div>
 </template>
 <script>
 import echarts from 'echarts'
-import {
-  mapState,
-  mapGetters,
-  mapMutations,
-  mapActions
-} from 'vuex'
 
 export default {
-  name: 'roomrent',
-  computed: {
-    ...mapState(['storecolor'])
-  },
+  name: 'workorder',
   data() {
     return {
-      msg: 'roomrent',
+      msg: 'workorder',
       name: '折线图',
       legendArr: [],
       color: [],
@@ -27,25 +26,25 @@ export default {
     }
   },
   mounted() {
-    this.zutil.deepClone(this.color, this.storecolor);
-
     var dottedBase = +new Date();
     var lineData = [];
+    var lineData2 = [];
     var barData = [];
     for (var i = 0; i < 12; i++) {
-      var b = Math.random() * 200;
-      var d = Math.random() * 200;
+      var b = parseInt(Math.random() * 200, 10);
+      var d = parseInt(Math.random() * 200, 10);
+      var e = parseInt(Math.random() * 200, 10);
       barData.push(b)
       lineData.push(d + b);
+      lineData2.push(d + b + e);
     }
 
     // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(document.querySelector('.lines .main'));
+    this.myChart = echarts.init(document.querySelector('.workorder .main'));
     this.myChart.setOption({
       title: {
         show: false
       },
-      backgroundColor: '#0f375f',
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -54,19 +53,46 @@ export default {
             show: true,
             backgroundColor: '#333'
           }
+        },
+        formatter (params, ticket, callback) {
+          var _qd = '',
+            _xz = '',
+            _tz = '',
+            str = params[0].axisValueLabel+"房间订单信息"+"<br>";
+          params.forEach(v=>{
+            if(v.seriesName == '维修')
+              _qd = v.data;
+            if(v.seriesName == '保洁')
+              _xz = v.data;
+            if(v.seriesName == '其他')
+              _tz = v.data;
+          })
+
+          if(_qd)
+            str += "维修："+_qd+"<br>";
+          if(_xz)
+            str += "保洁："+_xz+"<br>";
+          if(_tz)
+            str += "其他："+_tz+"<br>";
+
+          return str;
         }
       },
       legend: {
-        data: ['line', 'bar'],
+        data: ['维修', '保洁', '其他'],
         textStyle: {
-          color: '#ccc'
-        }
+          color: '#7bb9dc'
+        },
+        left: 100,
+        top: 20,
+        itemGap: 30,
+        itemWidth: 50
       },
       xAxis: {
         data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
         axisLine: {
           lineStyle: {
-            color: '#ccc'
+            color: '#7bb9dc'
           }
         }
       },
@@ -74,20 +100,50 @@ export default {
         splitLine: { show: false },
         axisLine: {
           lineStyle: {
-            color: '#ccc'
+            color: '#7bb9dc'
           }
         }
       },
       series: [{
-        name: 'line',
+        name: '保洁',
         type: 'line',
-        smooth: true,
+        smooth: false,
         showAllSymbol: true,
-        symbol: 'emptyCircle',
-        symbolSize: 15,
-        data: lineData
+        symbol: 'circle',
+        symbolSize: 10,
+        data: lineData,
+        itemStyle: {
+          normal: {
+            color: "#FFB508",
+            lineStyle: {
+              color: "#FFB508"
+            }
+          }
+        },
+        lineStyle: {
+          color: '#FFB508'
+        }
       }, {
-        name: 'bar',
+        name: '其他',
+        type: 'line',
+        smooth: false,
+        showAllSymbol: true,
+        symbol: 'circle',
+        symbolSize: 10,
+        data: lineData2,
+        itemStyle: {
+          normal: {
+            color: "#FF4C4B",
+            lineStyle: {
+              color: "#FF4C4B"
+            }
+          }
+        },
+        lineStyle: {
+          color: '#FF4C4B'
+        }
+      }, {
+        name: '维修',
         type: 'bar',
         barWidth: 10,
         itemStyle: {
@@ -121,7 +177,7 @@ export default {
           }
         },
         z: -12,
-        data: lineData
+        data: lineData2
       }, {
         name: 'dotted',
         type: 'pictorialBar',
@@ -135,37 +191,56 @@ export default {
         symbolSize: [12, 4],
         symbolMargin: 1,
         z: -10,
-        data: lineData
+        data: lineData2
       }]
-    });
-    this.zinit();
+    });   
   },
   methods: {
-    zinit() {
-      this.legendArr = this.myChart.getOption().series
-      this.legendArr.forEach((data) => {
-        data.selected = true;
-      })
-      // this.$root.charts.push(this.myChart)
-      window.addEventListener('resize', function() {
-        this.myChart.resize()
-      }.bind(this))
-    }
+    
   }
 }
 
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.lines {
-  border: 1px solid #ddd;
-  width: 520px;
-  height: 520px;
-  padding: 10px;
+.workorder {
+  .tit {
+    position: absolute;
+    top: -80px;
+    left: 0;
+    justify-content: flex-start;
+    & > div {
+      position: relative;
+      padding-left: 20px;
+      font-size: 17px;
+      color: #7bb9dc;
+      &:nth-child(1) {
+        margin-right: 50px;
+      }
+      &:before {
+        position: absolute;
+        left: 0;
+        top: 9px;
+        content: "";
+        width: 13px;
+        height: 13px;
+        border-radius: 13px;
+        background: #8FD3FA;
+      }
+
+      span {
+        color: #5BEAFB;
+        font-size: 26px;
+        display: inline-block;
+        vertical-align: baseline;
+        margin-left: 15px;
+      }
+    }
+  }
 
   .main {
-    width: 500px;
-    height: 500px;
+    width: 806px;
+    height: 330px;
   }
 }
 

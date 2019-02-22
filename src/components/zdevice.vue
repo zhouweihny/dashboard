@@ -37,11 +37,11 @@
             </div>
             <div>
               <span>在线</span>
-              <em>15</em>
+              <em>48</em>
             </div>
             <div>
               <span>离线</span>
-              <em>35</em>
+              <em>2</em>
             </div>
           </div>
         </div>
@@ -53,16 +53,16 @@
           <div class="zui-flex zcount">
             <div>
               <span>共</span>
-              <em>50</em>
+              <em>30</em>
               <span>个</span>
             </div>
             <div>
               <span>在线</span>
-              <em>15</em>
+              <em>25</em>
             </div>
             <div>
               <span>离线</span>
-              <em>35</em>
+              <em>5</em>
             </div>
           </div>
         </div>
@@ -74,16 +74,16 @@
           <div class="zui-flex zcount">
             <div>
               <span>共</span>
-              <em>50</em>
+              <em>60</em>
               <span>个</span>
             </div>
             <div>
               <span>在线</span>
-              <em>15</em>
+              <em>60</em>
             </div>
             <div>
               <span>离线</span>
-              <em>35</em>
+              <em>0</em>
             </div>
           </div>
         </div>
@@ -107,9 +107,9 @@ export default {
       total: '235',
       zaixian: '205',
       lixian: '30',
-      mjProgress: '50%',
-      sbProgress: '15%',
-      dbProgress: '75%',
+      mjProgress: '96%',
+      sbProgress: '83.333%',
+      dbProgress: '100%',
     }
   },
   mounted() {

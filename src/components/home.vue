@@ -150,10 +150,10 @@ $base_colo: #7bb9dc;
       height: 300px;
     }
     &.J_zdevice {
-      left: 1087px;
-      top: 320px;
-      width: 780px;
-      height: 190px;
+      left: 985px;
+      top: 290px;
+      width: 1500px;
+      height: 640px;
     }
   }
   .J_roomrent_tit {

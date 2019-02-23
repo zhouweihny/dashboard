@@ -100,7 +100,7 @@ export default {
     }
   },
   mounted() {
-    http.get('http://192.168.1.160:8088/api/appclient/v1/user/info').then(response => {
+    http.get('http://192.168.1.159/api/backend/v1/category/listByVenue').then(response => {
       console.log(response)
     })
   }

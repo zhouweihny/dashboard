@@ -143,9 +143,7 @@ export default {
 
       if(type == 'energyDay'){
         for(var i=0; i<32; i++){
-          if (i%2 !=0) {
-            dayData.push(i);
-          };
+          dayData.push(i);
         }
       }else{
         for(var i=1; i<13; i++){
@@ -154,14 +152,31 @@ export default {
       }
 
       var lineData = [];
-      for (var i = 0; i < 12; i++) {
-        var b = parseInt(Math.random() * 200, 10);
-        var d = parseInt(Math.random() * 200, 10);
-        var e = parseInt(Math.random() * 1000, 10);
-        if(type == 'energyDay'){
+      if(type == 'energyDay'){
+        for (var i = 0; i < 31; i++) {
+          var b = parseInt(Math.random() * 200, 10);
+          var d = parseInt(Math.random() * 200, 10);
           lineData.push(d + b);
-        }else{
+        }
+      }else{
+        for (var i = 0; i < 12; i++) {
+          var b = parseInt(Math.random() * 200, 10);
+          var d = parseInt(Math.random() * 200, 10);
+          var e = parseInt(Math.random() * 1000, 10);
           lineData.push(d + b + e);
+        }
+      }
+
+      var lineData2 = [];
+      if(type == 'energyDay'){
+        for (var i = 0; i < 31; i++) {
+          var b = parseInt(Math.random() * 20, 10);
+          lineData2.push(b);
+        }
+      }else{
+        for (var i = 0; i < 12; i++) {
+          var b = parseInt(Math.random() * 20, 10);
+          lineData2.push(b);
         }
       }
 
@@ -178,13 +193,34 @@ export default {
         },
         tooltip: {//鼠标悬浮弹出提示框
           trigger:'axis', //提示框弹出的触发时间，折线图和柱状图为axis
-          formatter:"{a} <br/>{b} : {c} "//提示框提示的信息，{a}series内的名字，{b}为块状的名字，{c}为数值
+          formatter (params, ticket, callback) {
+            var _qd = '',
+              _xz = '',
+              str = params[0].axisValueLabel+"号能源消耗"+"<br>";
+            params.forEach(v=>{
+              if(v.seriesName == '电')
+                _qd = v.data;
+              if(v.seriesName == '水')
+                _xz = v.data;
+            })
+
+            if(_qd)
+              str += "电量消耗："+_qd+"度<br>";
+            if(_xz)
+              str += "水量消耗："+_xz+"吨";
+
+            return str;
+          }
         },
-        grid: {//统计图距离边缘的距离
-          top: '8%',
-          left: '10%',
-          right: '10%',
-          bottom: '8%'
+        legend: {
+          data: ['电', '水'],
+          textStyle: {
+            color: '#7bb9dc'
+          },
+          left: 70,
+          top: 20,
+          itemGap: 30,
+          itemWidth: 50
         },
         xAxis: [{//x轴
           type: 'category',//数据类型为不连续数据
@@ -192,7 +228,7 @@ export default {
           axisLine: { //坐标轴轴线相关设置。数学上的x轴
             show: true,
             lineStyle: {
-              color: '#233e64' //x轴颜色
+              color: '#34607B' //x轴颜色
             },
           },
           axisLabel: { //坐标轴刻度标签的相关设置
@@ -206,7 +242,7 @@ export default {
         yAxis: [{//y轴的相关设置
           type: 'value',//y轴数据类型为连续的数据
           min: 0,//y轴上的刻度最小值
-          max:1000,//y轴上的刻度最大值
+          // max: Math.max.apply(null, lineData),//y轴上的刻度最大值
           splitNumber: 5,//y轴上的刻度段数
           splitLine: {//y轴上的y轴线条相关设置
             show: true,
@@ -217,24 +253,51 @@ export default {
           axisLine: {//y轴的相关设置
             show: true,
             lineStyle: {
-              color: '#233e64' //y轴颜色
+              color: '#34607B' //y轴颜色
             },
           },
           axisLabel: {//y轴的标签相关设置
             textStyle: {
-              color: '#6a9cd5',
+              color: '#5CEBFC',
+            },
+          }
+        }, {//y轴的相关设置
+          type: 'value',//y轴数据类型为连续的数据
+          min: 0,//y轴上的刻度最小值
+          splitNumber: 5,//y轴上的刻度段数
+          splitLine: {//y轴上的y轴线条相关设置
+            show: false,
+          },
+          axisLine: {//y轴的相关设置
+            show: true,
+            lineStyle: {
+              color: '#34607B' //y轴颜色
             },
           },
-          axisTick: { show: true,},  //刻度点数轴
+          axisLabel: {//y轴的标签相关设置
+            textStyle: {
+              color: '#5CEBFC',
+            },
+          }
         }],
         series: [{
-          name: '坐标',
+          name: '电',
           type: 'line',//统计图类型为折线图
           smooth: true, //是否平滑曲线显示
           symbolSize:0,//数据点的大小，[0,0]//b表示宽度和高度
+          yAxisIndex : 0,
+          itemStyle: {
+            normal: {
+              color: "#3deaff",
+              lineStyle: {
+                color: "#3deaff"
+              }
+            }
+          },
           lineStyle: {//线条的相关设置
             normal: {
-              color: "#3deaff"   // 线条颜色
+              color: "#3deaff",   // 线条颜色
+              width: 3
             }
           },
           areaStyle: { //区域填充样式
@@ -246,6 +309,28 @@ export default {
             }
           },
           data: lineData
+        }, {
+          name: '水',
+          type: 'line',
+          smooth: true,
+          showAllSymbol: false,
+          yAxisIndex : 1,
+          symbolSize: 0,
+          data: lineData2,
+          itemStyle: {
+            normal: {
+              color: "#FE2D54",
+              lineStyle: {
+                color: "#FE2D54"
+              }
+            }
+          },
+          lineStyle: {
+            normal: {
+              color: "#FE2D54",   // 线条颜色
+              width: 3
+            }
+          }
         }]
       });  
     }
@@ -425,20 +510,19 @@ $base_colo: #7bb9dc;
   .energyDay, .energyYear {
     position: absolute;
     top: 472px;
-    border: 1px solid #fff;
-    width: 620px;
+    width: 700px;
     height: 270px;
     .main {
-      width: 620px;
+      width: 700px;
       height: 270px;
     }
   }
 
   .energyDay {
-    left: 67px;
+    left: 37px;
   }
   .energyYear {
-    left: 804px;
+    left: 774px;
   }
 }
 

@@ -35,6 +35,10 @@
         <zdevice></zdevice>
       </div>
 
+      <div class="item J_zincome">
+        <zincome></zincome>
+      </div>
+
       <h3 class="J_clientdata_tit">客户数据</h3>
       <div class="item J_clientdata">
         <clientdata></clientdata>
@@ -69,11 +73,11 @@ import yearroomrent from '@/components/yearroomrent'
 import monthroomrent from '@/components/monthroomrent'
 import workorder from '@/components/workorder'
 import zdevice from '@/components/zdevice'
+import zincome from '@/components/zincome'
 import clientdata from '@/components/clientdata'
 import crewcase from '@/components/crewcase'
 import meetingroomdata from '@/components/meetingroomdata'
 import servequalitydata from '@/components/servequalitydata'
-
 
 export default {
   name: 'home',
@@ -84,6 +88,7 @@ export default {
     monthroomrent,
     workorder,
     zdevice,
+    zincome,
     page1,
     clientdata,
     crewcase,
@@ -183,6 +188,12 @@ $base_colo: #7bb9dc;
     &.J_zdevice {
       left: 985px;
       top: 290px;
+      width: 1500px;
+      height: 640px;
+    }
+    &.J_zincome {
+      left: 985px;
+      top: 1202px;
       width: 1500px;
       height: 640px;
     }

@@ -95,7 +95,6 @@ export default {
   },
   mounted() {
 
-    var dottedBase = +new Date();
     var lineData = [];
     var barData = [];
     for (var i = 0; i < 12; i++) {

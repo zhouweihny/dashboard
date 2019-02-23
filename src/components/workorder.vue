@@ -39,6 +39,10 @@ export default {
       lineData2.push(d + b + e);
     }
 
+    console.log(JSON.stringify(barData))
+    console.log(JSON.stringify(lineData))
+    console.log(JSON.stringify(lineData2))
+
     // 基于准备好的dom，初始化echarts实例
     this.myChart = echarts.init(document.querySelector('.workorder .main'));
     this.myChart.setOption({

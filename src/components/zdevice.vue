@@ -312,10 +312,11 @@ export default {
         }, {
           name: '水',
           type: 'line',
-          smooth: true,
-          showAllSymbol: false,
+          smooth: false,
+          showAllSymbol: true,
+          symbol: 'circle',
+          symbolSize: 8,
           yAxisIndex : 1,
-          symbolSize: 0,
           data: lineData2,
           itemStyle: {
             normal: {

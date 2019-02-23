@@ -79,7 +79,6 @@ import crewcase from '@/components/crewcase'
 import meetingroomdata from '@/components/meetingroomdata'
 import servequalitydata from '@/components/servequalitydata'
 
-
 export default {
   name: 'home',
   components: {

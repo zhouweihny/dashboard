@@ -6,7 +6,7 @@
         <div class="zui-flex ztotal">
           <div>本月总收入</div>
           <div class="zui-flex zitems">
-            <div v-for="(item, index) in total" :key="index">
+            <div v-for="(item, index) in totalS" :key="index">
               <div v-if="item == ','">
                 <div class="split">,</div>
               </div>
@@ -24,7 +24,29 @@
       </div>
 
       <div class="zright">
-        
+        <div class="main"></div>
+        <div class="zui-flex incomeCount">
+          <div class="zui-flex item">
+            <div>房间租赁收入</div>
+            <div>{{roomIn | formatNum}}</div>
+          </div>
+          <div class="zui-flex item">
+            <div>能耗收入</div>
+            <div>{{energyIn | formatNum}}</div>
+          </div>
+          <div class="zui-flex item">
+            <div>停车场收入</div>
+            <div>{{parkIn | formatNum}}</div>
+          </div>
+          <div class="zui-flex item">
+            <div>会议室收入</div>
+            <div>{{meetroomIn | formatNum}}</div>
+          </div>
+          <div class="zui-flex item">
+            <div>物业服务收入</div>
+            <div>{{serveiceIn | formatNum}}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -41,71 +63,124 @@ export default {
       legendArr: [],
       color: [],
       myChart: {},
-      total: 450000
+      total: 450000,
+      totalS: [],
+      roomIn: 258000,
+      energyIn: 258000,
+      parkIn: 100000,
+      meetroomIn: 65000,
+      serveiceIn: 35000
     }
   },
   mounted() {
     
-    this.total = this.formatNum(parseInt(this.total, 10));
-    this.total = this.total.split('')
-    console.log(this.total)
-    console.log(typeof this.total)
+    this.totalS = this.formatNum(parseInt(this.total, 10)).split('');
+    /*this.roomIn = this.formatNum(parseInt(this.roomIn, 10));
+    this.energyIn = this.formatNum(parseInt(this.energyIn, 10));
+    this.parkIn = this.formatNum(parseInt(this.parkIn, 10));
+    this.meetroomIn = this.formatNum(parseInt(this.meetroomIn, 10));
+    this.serveiceIn = this.formatNum(parseInt(this.serveiceIn, 10));*/
 
-    /*this.initCharts('energyDay');
-    setTimeout(()=>{
-      this.initCharts('energyYear');
-    }, 500)*/
+    this.initChart();
+    this.initCharts();
     
   },
   methods: {
     formatNum (num) {
       return (num+ '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
     },
-    initCharts (type) {
-      var dayData =[];
+    initCharts () {
+      var data = [
+        {
+          value: this.roomIn,
+          name: '房间租赁收入'
+        },
+        {
+          value: this.energyIn,
+          name: '能耗收入'
+        },
+        {
+          value: this.parkIn,
+          name: '停车场收入'
+        },
+        {
+          value: this.meetroomIn,
+          name: '会议室收入'
+        },
+        {
+          value: this.serveiceIn,
+          name: '物业服务收入'
+        }
+      ];
 
-      if(type == 'energyDay'){
-        for(var i=0; i<32; i++){
-          dayData.push(i);
-        }
-      }else{
-        for(var i=1; i<13; i++){
-          dayData.push(i);
-        }
+
+      // 基于准备好的dom，初始化echarts实例
+      var myChart2 = null;
+      myChart2 = echarts.init(document.querySelector('.zright .main'));
+      myChart2.setOption({
+        title:{
+          textStyle:{
+            color:"#7bb9dc",
+            fontSize: 30
+          },
+          text:'收入占比',
+          left:"center",
+          top:"32%",
+        },
+        tooltip: {//鼠标悬浮弹出提示框
+          trigger:'item'
+        },
+        series: [{
+          type: 'pie',
+          radius: ['42%', '55%'],
+          center: ['50%', '35%'],
+          avoidLabelOverlap: true,
+          color: ['#FEB407', '#FF4C4D', '#9702FE', '#00B4D2', '#00BD8D'],
+          label: {
+            align: 'left',
+            normal: {
+              formatter(v) {
+                return '{a|' + Math.round(v.percent) + '%' + '}';
+              },
+              rich: {
+                a: {
+                  color: '#7bb9dc',
+                  fontSize: 20
+                }
+              }
+            }
+          },
+          labelLine: {
+            lineStyle: {
+              color: '#7bb9dc'
+            }
+          },
+          data: data
+          // data: data.sort(function (a, b) { return a.value - b.value; })
+        }]
+      }); 
+    },
+    initChart () {
+      var dayData =[];
+      for(var i=1; i<13; i++){
+        dayData.push(i);
       }
 
       var lineData = [];
-      if(type == 'energyDay'){
-        for (var i = 0; i < 31; i++) {
-          var b = parseInt(Math.random() * 200, 10);
-          var d = parseInt(Math.random() * 200, 10);
-          lineData.push(d + b);
-        }
-      }else{
-        for (var i = 0; i < 12; i++) {
-          var b = parseInt(Math.random() * 200, 10);
-          var d = parseInt(Math.random() * 200, 10);
-          var e = parseInt(Math.random() * 1000, 10);
-          lineData.push(d + b + e);
-        }
+      for (var i = 0; i < 12; i++) {
+        var e = parseInt(Math.random() * 1000, 10);
+        lineData.push(e);
       }
 
       var lineData2 = [];
-      if(type == 'energyDay'){
-        for (var i = 0; i < 31; i++) {
-          var b = parseInt(Math.random() * 20, 10);
-          lineData2.push(b);
-        }
-      }else{
-        for (var i = 0; i < 12; i++) {
-          var b = parseInt(Math.random() * 20, 10);
-          lineData2.push(b);
-        }
+      for (var i = 0; i < 12; i++) {
+        var b = parseInt(Math.random() * 500, 10);
+        lineData2.push(b);
       }
 
       // 基于准备好的dom，初始化echarts实例
       var myChart = null;
-      myChart = echarts.init(document.querySelector('.'+type+' .main'));
+      myChart = echarts.init(document.querySelector('.yearIncome .main'));
       myChart.setOption({
         title:{
           textStyle:{
@@ -119,24 +194,24 @@ export default {
           formatter (params, ticket, callback) {
             var _qd = '',
               _xz = '',
-              str = params[0].axisValueLabel+"号能源消耗"+"<br>";
+              str = params[0].axisValueLabel+"月收支"+"<br>";
             params.forEach(v=>{
-              if(v.seriesName == '电')
+              if(v.seriesName == '收入')
                 _qd = v.data;
-              if(v.seriesName == '水')
+              if(v.seriesName == '支出')
                 _xz = v.data;
             })
 
             if(_qd)
-              str += "电量消耗："+_qd+"度<br>";
+              str += "收入："+_qd+"元<br>";
             if(_xz)
-              str += "水量消耗："+_xz+"吨";
+              str += "支出："+_xz+"元";
 
             return str;
           }
         },
         legend: {
-          data: ['电', '水'],
+          data: ['收入', '支出'],
           textStyle: {
             color: '#7bb9dc'
           },
@@ -184,31 +259,12 @@ export default {
               color: '#5CEBFC',
             },
           }
-        }, {//y轴的相关设置
-          type: 'value',//y轴数据类型为连续的数据
-          min: 0,//y轴上的刻度最小值
-          splitNumber: 5,//y轴上的刻度段数
-          splitLine: {//y轴上的y轴线条相关设置
-            show: false,
-          },
-          axisLine: {//y轴的相关设置
-            show: true,
-            lineStyle: {
-              color: '#34607B' //y轴颜色
-            },
-          },
-          axisLabel: {//y轴的标签相关设置
-            textStyle: {
-              color: '#5CEBFC',
-            },
-          }
         }],
         series: [{
-          name: '电',
+          name: '收入',
           type: 'line',//统计图类型为折线图
           smooth: true, //是否平滑曲线显示
           symbolSize:0,//数据点的大小，[0,0]//b表示宽度和高度
-          yAxisIndex : 0,
           itemStyle: {
             normal: {
               color: "#3deaff",
@@ -233,11 +289,10 @@ export default {
           },
           data: lineData
         }, {
-          name: '水',
+          name: '支出',
           type: 'line',
           smooth: true,
           showAllSymbol: false,
-          yAxisIndex : 1,
           symbolSize: 0,
           data: lineData2,
           itemStyle: {
@@ -283,10 +338,11 @@ $base_colo: #7bb9dc;
     left: 10px;
     width: 1470px;
     height: 560px;
-    border: 1px solid #fff;
+    justify-content: space-around;
 
     .zleft {
       position: relative;
+      width: 50%;
       .ztotal {
         position: absolute;
         top: 43px;
@@ -321,10 +377,85 @@ $base_colo: #7bb9dc;
 
       .yearIncome {
         position: absolute;
-        top: 403px;
-        left: 60px;
-        width: 600px;
-        height: 80px;
+        top: 199px;
+        left: 30px;
+        width: 670px;
+        height: 310px;
+        h4 {
+          position: absolute;
+          left: 205px;
+          top: 0;
+          font-size: 21px;
+          color: #fff;
+        }
+        .main {
+          position: absolute;
+          left: 0px;
+          top: 30px;
+          width: 700px;
+          height: 300px;
+        }
+      }
+    }
+
+    .zright {
+      position: relative;
+      width: 43%;
+      .main {
+        position: absolute;
+        left: 0px;
+        top: 30px;
+        width: 700px;
+        height: 460px;
+      }
+      .incomeCount {
+        position: absolute;
+        width: 700px;
+        top: 372px;
+        left: 0;
+        font-size: 18px;
+        color: $base_colo;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .item {
+          width: 46%;
+          height: 50px;
+          line-height: 50px;
+          padding-left: 20px;
+          font-size: 30px;
+          align-items: baseline;
+          & > div:first-child {
+            position: relative;
+            font-size: 16px;
+            width: 130px;
+            &:before {
+              position: absolute;
+              left: -20px;
+              top: 18px;
+              content: "";
+              width: 13px;
+              height: 13px;
+              border-radius: 13px;
+              background: #FFB508;
+            }
+          }
+          & > div:last-child {
+            color: #5BE9FA;
+          }
+
+          &:nth-of-type(2) > div:first-child:before {
+            background: #FF4C4D;
+          }
+          &:nth-of-type(3) > div:first-child:before {
+            background: #9702FE;
+          }
+          &:nth-of-type(4) > div:first-child:before {
+            background: #00B4D2;
+          }
+          &:nth-of-type(5) > div:first-child:before {
+            background: #00BD8D;
+          }
+        }
       }
     }
   }

@@ -50,7 +50,8 @@ export default {
       timeout: 10000,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        // 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Content-Type': 'application/json; charset=UTF-8'
       }
     }).then(
       (response) => {
@@ -63,6 +64,7 @@ export default {
     )
   },
   get (url, params) {
+    console.log(url)
     return axios({
       method: 'get',
       baseURL: BS_projectBaseUrl,
@@ -70,7 +72,8 @@ export default {
       params, // get 请求时带的参数
       timeout: 10000,
       headers: {
-        'X-Requested-With': 'XMLHttpRequest'
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-Type': 'application/json; charset=UTF-8'
       }
     }).then(
       (response) => {

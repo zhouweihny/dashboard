@@ -422,7 +422,7 @@ $base_colo: #7bb9dc;
           height: 50px;
           line-height: 50px;
           padding-left: 20px;
-          font-size: 30px;
+          font-size: 27px;
           align-items: baseline;
           & > div:first-child {
             position: relative;

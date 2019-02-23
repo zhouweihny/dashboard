@@ -66,7 +66,7 @@
 
 <script>
 
-import page1 from '@/components/page1'
+import http from '@/util/http'
 import dashTit from '@/components/dashTit'
 import roomrent from '@/components/roomrent'
 import yearroomrent from '@/components/yearroomrent'
@@ -89,7 +89,6 @@ export default {
     workorder,
     zdevice,
     zincome,
-    page1,
     clientdata,
     crewcase,
     meetingroomdata,
@@ -100,6 +99,11 @@ export default {
       title: '优糖星创园监控中心'
     }
   },
+  mounted() {
+    http.get('http://192.168.1.159/api/backend/v1/category/listByVenue').then(response => {
+      console.log(response)
+    })
+  }
 }
 </script>
 

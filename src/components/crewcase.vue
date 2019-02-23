@@ -64,8 +64,8 @@ export default {
         left:"center",
       },
       tooltip: {//鼠标悬浮弹出提示框
-          trigger:'axis', //提示框弹出的触发时间，折线图和柱状图为axis
-          formatter:"{a} <br/>{b} : {c} "//提示框提示的信息，{a}series内的名字，{b}为块状的名字，{c}为数值
+        trigger:'axis', //提示框弹出的触发时间，折线图和柱状图为axis
+        formatter:"{b}号{a}为: {c}人"//提示框提示的信息，{a}series内的名字，{b}为块状的名字，{c}为数值
       },
       grid: {//统计图距离边缘的距离
         top: '8%',
@@ -92,8 +92,11 @@ export default {
       }],
       yAxis: [{//y轴的相关设置
         type: 'value',//y轴数据类型为连续的数据
-        min: 0,//y轴上的刻度最小值
-        max:400,//y轴上的刻度最大值
+        name: "人数",
+        nameGap: 10,//与轴线间距
+        nameTextStyle: {
+          color: '#5BEAFB'
+        },
         splitNumber: 5,//y轴上的刻度段数
         splitLine: {//y轴上的y轴线条相关设置
           show: true,
@@ -109,13 +112,13 @@ export default {
         },
         axisLabel: {//y轴的标签相关设置
           textStyle: {
-            color: '#6a9cd5',
+            color: '#5CEBFC',
           },
         },
         axisTick: { show: true,},  //刻度点数轴
       }],
       series: [{
-        name: '坐标',
+        name: '入住人数',
         type: 'line',//统计图类型为折线图
         smooth: true, //是否平滑曲线显示
         symbolSize:0,//数据点的大小，[0,0]//b表示宽度和高度

@@ -65,21 +65,21 @@ export default {
         },
         indicator: [{
             name: '效率',
-            max: 5000
+            max: 5
           },
           {
             name: '态度',
-            max: 5000
+            max: 5
           },
           {
             name: '质量',
-            max: 5000
+            max: 5
         }]
       },
       series: [{
         type: 'radar',
         data: [{
-          value: [2000, 4000, 2000, 3000, 5000, 1000],
+          value: [1, 4.5, 2, 3.5, 2.5, 5],
           name: '企业服务评分结构',
           symbolSize: 0,
           lineStyle: {

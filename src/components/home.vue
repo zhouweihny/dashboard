@@ -192,6 +192,12 @@ $base_colo: #7bb9dc;
       width: 1500px;
       height: 640px;
     }
+    &.J_zincome {
+      left: 985px;
+      top: 1202px;
+      width: 1500px;
+      height: 640px;
+    }
     &.J_clientdata{
       right: 80px;
       top: 200px;

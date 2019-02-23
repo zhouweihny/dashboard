@@ -1,143 +1,66 @@
 <template>
   <div class="zui-flex cwrap">
-    <h3 class="J_zdevice_tit">设备在线情况</h3>
-    <div class="zui-flex ztop">
-      <div class="zui-flex zleft">
-        <div>
-          <h4>总量</h4>
-          <div class="zui-flex-center J_numBlock">
-            <div v-for="(item, index) in total.split('')" :key="index" class="J_num" >{{item}}</div><div>个</div>
+    <h3 class="J_zdevice_tit">营收数据</h3>
+    <div class="zui-flex zmain">
+      <div class="zleft">
+        <div class="zui-flex ztotal">
+          <div>本月总收入</div>
+          <div class="zui-flex zitems">
+            <div v-for="(item, index) in total" :key="index">
+              <div v-if="item == ','">
+                <div class="split">,</div>
+              </div>
+              <div v-else>
+                <div class="zitem">{{item}}</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div>
-          <h4>在线</h4>
-          <div class="zui-flex-center J_numBlock">
-            <div v-for="(item, index) in zaixian.split('')" :key="index" class="J_num" >{{item}}</div><div>个</div>
-          </div>
-        </div>
-        <div>
-          <h4>离线</h4>
-          <div class="zui-flex-center J_numBlock">
-            <div v-for="(item, index) in lixian.split('')" :key="index" class="J_num" >{{item}}</div><div>个</div>
-          </div>
+
+        <div class="yearIncome">
+          <h4>园区月收支情况（近12个月）</h4>
+          <div class="main"></div>
         </div>
       </div>
 
       <div class="zright">
-        <div class="zui-flex item">
-          <h4>门禁</h4>
-          <div class="zuiProgress">
-            <div class="progress-bar" :style="{width: mjProgress}"></div>
-          </div>
-          <div class="zui-flex zcount">
-            <div>
-              <span>共</span>
-              <em>50</em>
-              <span>个</span>
-            </div>
-            <div>
-              <span>在线</span>
-              <em>48</em>
-            </div>
-            <div>
-              <span>离线</span>
-              <em>2</em>
-            </div>
-          </div>
-        </div>
-        <div class="zui-flex item">
-          <h4>水表</h4>
-          <div class="zuiProgress">
-            <div class="progress-bar" :style="{width: sbProgress}"></div>
-          </div>
-          <div class="zui-flex zcount">
-            <div>
-              <span>共</span>
-              <em>30</em>
-              <span>个</span>
-            </div>
-            <div>
-              <span>在线</span>
-              <em>25</em>
-            </div>
-            <div>
-              <span>离线</span>
-              <em>5</em>
-            </div>
-          </div>
-        </div>
-        <div class="zui-flex item">
-          <h4>电表</h4>
-          <div class="zuiProgress">
-            <div class="progress-bar" :style="{width: dbProgress}"></div>
-          </div>
-          <div class="zui-flex zcount">
-            <div>
-              <span>共</span>
-              <em>60</em>
-              <span>个</span>
-            </div>
-            <div>
-              <span>在线</span>
-              <em>60</em>
-            </div>
-            <div>
-              <span>离线</span>
-              <em>0</em>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
-
-    <h3 class="J_zenergy_tit">本月能耗情况</h3>
-    <div class="zui-flex zenergy">
-      <div>电量<span>1000</span>度</div>
-      <div>冷水量<span>1000</span>吨</div>
-      <div>热水量<span>1000</span>吨</div>
-    </div>
-
-    <h4 class="energyTit">日水电监控（近30日）</h4>
-    <div class="energyDay">
-      <div class="main"></div>
-    </div>
-
-    <h4 class="energyTit">月水电监控（近12个月）</h4>
-    <div class="energyYear">
-      <div class="main"></div>
-    </div>
-    
   </div>
 </template>
 <script>
 import echarts from 'echarts'
 
 export default {
-  name: 'zdevice',
+  name: 'zincome',
   data() {
     return {
-      msg: 'zdevice',
-      name: '设备信息',
+      msg: 'zincome',
+      name: '营收数据',
       legendArr: [],
       color: [],
       myChart: {},
-      total: '235',
-      zaixian: '205',
-      lixian: '30',
-      mjProgress: '96%',
-      sbProgress: '83.333%',
-      dbProgress: '100%',
+      total: 450000
     }
   },
   mounted() {
     
-    this.initCharts('energyDay');
+    this.total = this.formatNum(parseInt(this.total, 10));
+    this.total = this.total.split('')
+    console.log(this.total)
+    console.log(typeof this.total)
+
+    /*this.initCharts('energyDay');
     setTimeout(()=>{
       this.initCharts('energyYear');
-    }, 500)
+    }, 500)*/
     
   },
   methods: {
+    formatNum (num) {
+      return (num+ '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+    },
     initCharts (type) {
       var dayData =[];
 
@@ -353,177 +276,59 @@ $base_colo: #7bb9dc;
     font-size: 30px;
     color: #5CEAFB;
   }
-
-  .ztop {
-    width: 1482px;
-    justify-content: space-around;
-    align-items: flex-start;
+  
+  .zmain {
     position: absolute;
-    left: 0;
     top: 70px;
-    margin-top: 30px;
+    left: 10px;
+    width: 1470px;
+    height: 560px;
+    border: 1px solid #fff;
+
     .zleft {
-      width: 46%;
-      justify-content: space-around;
-      align-items: center;
-      h4 {
-        font-size: 26px;
-        color: $base_colo;
-      }
-      .J_numBlock {
-        height: 92px;
-        margin-top: 10px;
-        align-items: flex-end;
-        & > div {
-          vertical-align: middle;
-          color: $base_colo;
-          &:last-child {
-            margin-left: 10px;
-          }
-        }
-        .J_num {
-          width: 56px;
-          background: #4F89B1;
-          margin: 0 5px;
-          text-align: center;
-          font-size: 50px;
-          font-weight: bold;
-          line-height: 92px;
-          color: #fff;
-          &:first-child {
-            margin-left: 0;
-          }
-        }
-      }
-    }
-    .zright {
-      width: 46%;
-      color: $base_colo;
-      .item {
-        height: 46px;
-        justify-content: space-around;
-        align-items: center;
-        h4 {
-          font-size: 26px;
-          color: $base_colo;
-        }
-        .zuiProgress {
-          width: 320px;
-          height: 15px;
-          display: flex;
-          background-color: #3C404C;
-          border-radius: 20px;
-          .progress-bar {
-            display: flex;
-            flex-direction: column;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            justify-content: center;
-            color: #fff;
-            text-align: center;
-            background-color: #00AFAA;
-            transition: width .6s ease;
-            border-radius: 20px;
-          }
-        }
-
-        &:nth-child(2) {
-          .zuiProgress {
-            .progress-bar {
-              background-color: #FEB407
-            }
-          }
-        }
-        &:nth-child(3) {
-          .zuiProgress {
-            .progress-bar {
-              background-color: #FF4C4D
-            }
-          }
-        }
-
-        .zcount {
-          font-size: 18px;
-          & > div {
-            padding-left: 15px;
-          }
-          em {
-            font-style: normal;
-            font-size: 30px;
-            color: #5BE9FB;
-          }
-        }
-      }
-    }
-  }
-
-  .J_zenergy_tit {
-    position: absolute;
-    top: 287px;
-    left: 43px;
-    font-size: 30px;
-    color: #5CEAFB;
-  }
-
-  .zenergy {
-    width: 1282px;
-    align-items: flex-start;
-    position: absolute;
-    left: 50px;
-    top: 355px;
-    justify-content: flex-start;
-    & > div {
       position: relative;
-      min-width: 300px;
-      color: $base_colo;
-      padding-left: 20px;
-      &:before {
+      .ztotal {
         position: absolute;
-        left: 0;
-        top: 11px;
-        content: "";
-        width: 13px;
-        height: 13px;
-        border-radius: 13px;
-        background: #8FD3FA;
-      }
-      span {
-        color: #5BEAFA;
+        top: 43px;
+        left: 60px;
+        width: 600px;
+        height: 80px;
         font-size: 30px;
-        display: inline-block;
-        margin: 0 6px;
+        color: #5BEAFB;
+        justify-content: center;
+        align-items: center;
+        & > div:first-child {
+          margin-right: 30px;
+        }
+        .zitems {
+          align-items: flex-end;
+          .zitem {
+            padding: 0 8px;
+            height: 66px;
+            line-height: 66px;
+            text-align: center;
+            background: #0A3263;
+            margin: 0 4px;
+            font-size: 46px;
+            font-weight: bold;
+          }
+          .split {
+            font-size: 40px;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .yearIncome {
+        position: absolute;
+        top: 403px;
+        left: 60px;
+        width: 600px;
+        height: 80px;
       }
     }
   }
-
-  .energyTit {
-    position: absolute;
-    top: 442px;
-    left: 274px;
-    font-size: 21px;
-    color: #fff;
-    &:nth-of-type(2) {
-      left: 1002px;
-    }
-  }
-
-  .energyDay, .energyYear {
-    position: absolute;
-    top: 472px;
-    width: 700px;
-    height: 270px;
-    .main {
-      width: 700px;
-      height: 270px;
-    }
-  }
-
-  .energyDay {
-    left: 37px;
-  }
-  .energyYear {
-    left: 774px;
-  }
+  
 }
 
 </style>

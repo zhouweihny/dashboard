@@ -23,7 +23,6 @@ export default {
     }
   },
   mounted() {
-    var dottedBase = +new Date();
     var lineData = [];
     var lineData2 = [];
     var barData = [];

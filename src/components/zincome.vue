@@ -74,18 +74,19 @@ export default {
   },
   mounted() {
     
-    this.totalS = this.formatNum(parseInt(this.total, 10)).split('');
-    /*this.roomIn = this.formatNum(parseInt(this.roomIn, 10));
-    this.energyIn = this.formatNum(parseInt(this.energyIn, 10));
-    this.parkIn = this.formatNum(parseInt(this.parkIn, 10));
-    this.meetroomIn = this.formatNum(parseInt(this.meetroomIn, 10));
-    this.serveiceIn = this.formatNum(parseInt(this.serveiceIn, 10));*/
-
-    this.initChart();
-    this.initCharts();
-    
   },
   methods: {
+    zinit () {
+      this.totalS = this.formatNum(parseInt(this.total, 10)).split('');
+      /*this.roomIn = this.formatNum(parseInt(this.roomIn, 10));
+      this.energyIn = this.formatNum(parseInt(this.energyIn, 10));
+      this.parkIn = this.formatNum(parseInt(this.parkIn, 10));
+      this.meetroomIn = this.formatNum(parseInt(this.meetroomIn, 10));
+      this.serveiceIn = this.formatNum(parseInt(this.serveiceIn, 10));*/
+
+      this.initChart();
+      this.initCharts();
+    },
     formatNum (num) {
       return (num+ '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
     },

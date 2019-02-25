@@ -7,7 +7,7 @@
             会议室使用数
           </div>
           <div class="num">
-            10
+            {{number}}
           </div>
         </li>
         <li class="zui-flex">
@@ -15,7 +15,7 @@
             会议室平均日使用频率
           </div>
           <div class="num">
-            6
+            {{frequency}}
           </div>
         </li>
         <li class="zui-flex">
@@ -23,7 +23,7 @@
             会议室空闲数
           </div>
           <div class="num">
-            3
+            {{leisure}}
           </div>
         </li>
       </ul>
@@ -38,11 +38,17 @@
 
 <script>
 import echarts from 'echarts'
+import {
+  mapState,
+  mapGetters,
+  mapMutations,
+  mapActions
+} from 'vuex'
 
 export default {
   name: 'roomrent',
   computed: {
-    
+    ...mapState(['storeAjaxData'])
   },
   data() {
     return {
@@ -51,6 +57,18 @@ export default {
       legendArr: [],
       color: ['#325B69', '#698570', '#AE5548', '#6D9EA8', '#9CC2B0', '#C98769'],
       myChart: {},
+      number: 0,
+      frequency: 0,
+      leisure: 0,
+      "meetingroomdata": {
+        "number": "",
+        "frequency": "",
+        "leisure": "",
+        "data":{
+          "data":[],
+          "day":[]
+        }
+      },
     }
   },
   mounted() {
@@ -58,7 +76,7 @@ export default {
   },
   methods: {
     zinit () {
-      var dayData =[];
+      /*var dayData =[];
       for(var i=0; i<32; i++){
         if (i%2 !=0) {
           var r = i;
@@ -70,7 +88,19 @@ export default {
       var _data = [150, 105, 204, 125, 190, 122, 208, 160, 210, 120, 190, 150, 120, 190, 150, 200]
       _data.forEach( v =>{
         resultData.push(v);
-      })
+      })*/
+
+      if(this.storeAjaxData && this.storeAjaxData.meetingroomdata){
+        this.meetingroomdata = this.storeAjaxData.meetingroomdata;
+
+        
+        this.number = this.meetingroomdata.number;
+        this.frequency = this.meetingroomdata.frequency;
+        this.leisure = this.meetingroomdata.leisure;
+
+        var dayData = this.meetingroomdata.data.day;
+        var resultData = this.meetingroomdata.data.data;
+      }
 
       // 基于准备好的dom，初始化echarts实例
       this.myChart = echarts.init(document.querySelector('.meetingroom .main'));

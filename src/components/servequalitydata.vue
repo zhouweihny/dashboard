@@ -8,8 +8,8 @@
          <span>上月同期</span>
       </div>
       <div class="lastNum">
-        <span class="num">4.5</span>
-        <span>4.0 <i class="arrow up"></i></span>
+        <span class="num">{{num}}</span>
+        <span>{{last}} <i class="arrow up"></i></span>
       </div>
     </div>
 
@@ -23,16 +23,33 @@
 
 <script>
 import echarts from 'echarts'
+import {
+  mapState,
+  mapGetters,
+  mapMutations,
+  mapActions
+} from 'vuex'
 
 export default {
-  name: 'roomrent',
+  name: 'servequalitydata',
   computed: {
-    
+    ...mapState(['storeAjaxData'])
   },
   data() {
     return {
       msg: 'servequalitydata',
       name: '企业服务评分结构',
+      num: '',
+      last: '',
+      "servequalitydata": {
+        "num": "",
+        "last": "",
+        "data": {
+          "taidu": [],
+          "xiaolv": [],
+          "zhiliang": []
+        }
+      }
     }
   },
   mounted() {
@@ -40,6 +57,12 @@ export default {
   },
   methods: {
     zinit () {
+      if(this.storeAjaxData && this.storeAjaxData.servequalitydata){
+        this.servequalitydata = this.storeAjaxData.servequalitydata;
+        this.num = this.servequalitydata.num;
+        this.last = this.servequalitydata.last;
+        var data = this.servequalitydata.data;
+      }
       // 基于准备好的dom，初始化echarts实例
       this.myChart = echarts.init(document.querySelector('.servequalitydata .main'));
       this.myChart.setOption({
@@ -83,7 +106,7 @@ export default {
         series: [{
           type: 'radar',
           data: [{
-            value: [1, 4.5, 2, 3.5, 2.5, 5],
+            value: data,
             name: '企业服务评分结构',
             symbolSize: 0,
             lineStyle: {

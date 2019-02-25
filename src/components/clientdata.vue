@@ -9,10 +9,10 @@
           </div>
           <div class="statistics">
           	<div class="num">
-	            123
+	            {{ruzhushu.num}}
 	          </div>
 	          <div class="lastNum">
-	            <span>110</span>
+	            <span>{{ruzhushu.last}}</span>
 	            <i class="arrow up"></i>
 	          </div>
           </div>
@@ -23,10 +23,10 @@
           </div>
           <div class="statistics">
           	<div class="num">
-		          56
+		          {{enterOrg.num}}
 		        </div>
 	          <div class="lastNum">
-	            <span>72</span>
+	            <span>{{enterOrg.last}}</span>
 	            <i class="arrow down"></i>
 	          </div>
           </div>
@@ -42,10 +42,10 @@
           </div>
           <div class="statistics">
           	<div class="num">
-	            62
+	            {{fangke.num}}
 	          </div>
 	          <div class="lastNum">
-	            <span>110</span>
+	            <span>{{fangke.last}}</span>
 	            <i class="arrow up"></i>
 	          </div>
           </div>
@@ -56,10 +56,10 @@
           </div>
           <div class="statistics">
           	<div class="num">
-	            56
+	            {{enterPerson.num}}
 	          </div>
 	          <div class="lastNum">
-	            <span>72</span>
+	            <span>{{enterPerson.last}}</span>
 	            <i class="arrow down"></i>
 	          </div>
           </div>
@@ -81,7 +81,7 @@ import {
 export default {
   name: 'roomrent',
   computed: {
-    ...mapState(['storecolor'])
+    ...mapState(['storeAjaxData'])
   },
   data() {
     return {
@@ -90,6 +90,31 @@ export default {
       legendArr: [],
       color: [],
       myChart: {},
+
+      ruzhushu: {},
+      fangke: {},
+      enterOrg: {},
+      enterPerson: {},
+      "clientdata": {
+        "data": {
+          "ruzhushu": {
+            "num": "",
+            "last": ""
+          },
+          "fangke": {
+            "num": "",
+            "last": ""
+          },
+          "enterOrg": {
+            "num": "",
+            "last": ""
+          },
+          "enterPerson": {
+            "num": "",
+            "last": ""
+          }
+        }
+      },
     }
   },
   mounted() {
@@ -97,7 +122,14 @@ export default {
   },
   methods: {
     zinit() {
+      if(this.storeAjaxData && this.storeAjaxData.clientdata){
+        this.clientdata = this.storeAjaxData.clientdata;
 
+        this.ruzhushu = this.clientdata.data.ruzhushu;
+        this.fangke = this.clientdata.data.fangke;
+        this.enterOrg = this.clientdata.data.enterOrg;
+        this.enterPerson = this.clientdata.data.enterPerson;
+      }
     }
   }
 }	

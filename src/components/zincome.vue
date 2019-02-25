@@ -53,9 +53,18 @@
 </template>
 <script>
 import echarts from 'echarts'
+import {
+  mapState,
+  mapGetters,
+  mapMutations,
+  mapActions
+} from 'vuex'
 
 export default {
   name: 'zincome',
+  computed: {
+    ...mapState(['storeAjaxData'])
+  },
   data() {
     return {
       msg: 'zincome',
@@ -63,13 +72,29 @@ export default {
       legendArr: [],
       color: [],
       myChart: {},
-      total: 450000,
+      total: 0,
       totalS: [],
-      roomIn: 258000,
-      energyIn: 258000,
-      parkIn: 100000,
-      meetroomIn: 65000,
-      serveiceIn: 35000
+      roomIn: 0,
+      energyIn: 0,
+      parkIn: 0,
+      meetroomIn: 0,
+      serveiceIn: 0,
+
+      "zincome": {
+        "total": 450000,
+        "income": {
+          "fangjian":{ "price":'', "rate": '' } ,
+          "tingchechang": {"price":'', "rate": '' },
+          "wuye": {"price":'', "rate": ''},
+          "nenhao": {"price":'', "rate": '' },
+          "huiyishi": {"price":'', "rate": '' }
+        },
+        "data": {
+          "shouru": [],
+          "zhichu": [],
+          "day": []
+        }
+      },
     }
   },
   mounted() {
@@ -84,35 +109,80 @@ export default {
       this.meetroomIn = this.formatNum(parseInt(this.meetroomIn, 10));
       this.serveiceIn = this.formatNum(parseInt(this.serveiceIn, 10));*/
 
-      this.initChart();
-      this.initCharts();
+      if(this.storeAjaxData && this.storeAjaxData.zincome){
+        this.zincome = this.storeAjaxData.zincome;
+        this.total = this.zincome.total+ '';
+        this.totalS = this.total.split('');
+
+        this.roomIn = this.zincome.income.fangjian.price;
+        this.energyIn = this.zincome.income.nenhao.price;
+        this.parkIn = this.zincome.income.tingchechang.price;
+        this.meetroomIn = this.zincome.income.huiyishi.price;
+        this.serveiceIn = this.zincome.income.wuye.price;
+      }
+      this.initChart(this.zincome);
+      this.initCharts(this.zincome);
     },
     formatNum (num) {
       return (num+ '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
     },
-    initCharts () {
+    initCharts (obj) {
+      console.log(obj);
+
+      var obj = obj
       var data = [
         {
-          value: this.roomIn,
+          value: obj.income.fangjian.price,
           name: '房间租赁收入'
         },
         {
-          value: this.energyIn,
+          value: obj.income.nenhao.price,
           name: '能耗收入'
         },
         {
-          value: this.parkIn,
+          value: obj.income.tingchechang.price,
           name: '停车场收入'
         },
         {
-          value: this.meetroomIn,
+          value: obj.income.huiyishi.price,
           name: '会议室收入'
         },
         {
-          value: this.serveiceIn,
+          value: obj.income.wuye.price,
           name: '物业服务收入'
         }
       ];
+
+        /*totalS =  this.zincome.total;
+        roomIn =  this.zincome.income.fangjian;
+        energyIn =  this.zincome.income.nenhao;
+        parkIn =  this.zincome.income.tingchechang;
+        meetroomIn =  this.zincome.income.huiyishi;
+        serveiceIn =  this.zincome.income.wuye;
+
+
+        var data = [
+          {
+            value: this.zincome.income.fangjian,
+            name: '房间租赁收入'
+          },
+          {
+            value: this.zincome.income.nenhao,
+            name: '能耗收入'
+          },
+          {
+            value: this.zincome.income.tingchechang,
+            name: '停车场收入'
+          },
+          {
+            value: this.zincome.income.huiyishi,
+            name: '会议室收入'
+          },
+          {
+            value: this.zincome.income.wuye,
+            name: '物业服务收入'
+          }
+        ];*/
 
 
       // 基于准备好的dom，初始化echarts实例
@@ -161,8 +231,8 @@ export default {
         }]
       }); 
     },
-    initChart () {
-      var dayData =[];
+    initChart (obj) {
+      /*var dayData =[];
       for(var i=1; i<13; i++){
         dayData.push(i);
       }
@@ -177,7 +247,12 @@ export default {
       for (var i = 0; i < 12; i++) {
         var b = parseInt(Math.random() * 500, 10);
         lineData2.push(b);
-      }
+      }*/
+
+      var obj = obj;
+      var dayData = obj.data.day;
+      var lineData = obj.data.shouru;
+      var lineData2 = obj.data.zhichu;
 
       // 基于准备好的dom，初始化echarts实例
       var myChart = null;

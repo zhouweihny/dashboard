@@ -1,65 +1,71 @@
 <template>
-  <div class="mainpage" id="mainpage">
-    <div class="zui-flex J_weather">
-      <div>2019年02月16日</div>
-      <div>6℃ ~ 11℃</div>
-      <div>雨</div>
+  <div>
+    <div class="mainpage" id="mainpage">
+      <div class="zui-flex J_weather">
+        <div>2019年02月16日</div>
+        <div>6℃ ~ 11℃</div>
+        <div>雨</div>
+      </div>
+      <div class="zui-flex J_parkNum">
+        <div>车辆在园：100</div>
+        <div>剩余车位：20</div>
+      </div>
+      <!-- 中间内容区 -->
+      <div class="J_main" id="J_main">
+        <h3 class="J_roomrent_tit">房间租赁数据</h3>
+        <div class="item J_roomrent">
+          <roomrent></roomrent>
+        </div>
+
+        <h3 class="J_yearroomrent_tit">月房间签单/续租/退租（近年）</h3>
+        <div class="item J_yearroomrent">
+          <yearroomrent></yearroomrent>
+        </div>
+
+        <h3 class="J_monthroomrent_tit">房间收入月柱状图</h3>
+        <div class="item J_monthroomrent">
+          <monthroomrent></monthroomrent>
+        </div>
+
+        <h3 class="J_workorder_tit">月工单数量（维修、保洁、其他）</h3>
+        <div class="item J_workorder">
+          <workorder></workorder>
+        </div>
+
+        <div class="item J_zdevice">
+          <zdevice></zdevice>
+        </div>
+
+        <div class="item J_zincome">
+          <zincome></zincome>
+        </div>
+
+        <h3 class="J_clientdata_tit">客户数据</h3>
+        <div class="item J_clientdata">
+          <clientdata></clientdata>
+        </div>
+
+        <h3 class="J_crewcase_tit">在园人数情况</h3>
+        <div class="item J_crewcase">
+          <crewcase></crewcase>
+        </div>
+
+        <h3 class="J_meetingroomdata_tit">会议室使用数据</h3>
+        <div class="item J_meetingroomdata">
+          <meetingroomdata></meetingroomdata>
+        </div>
+    
+        <h3 class="J_servequalitydata_tit">服务品质数据</h3>
+        <h3 class="J_servequalitydata_tit2">企业服务评分结构</h3>
+        <div class="item J_servequalitydata">
+          <servequalitydata></servequalitydata>
+        </div>
+
+      </div>
     </div>
-    <div class="zui-flex J_parkNum">
-      <div>车辆在园：100</div>
-      <div>剩余车位：20</div>
-    </div>
-    <!-- 中间内容区 -->
-    <div class="J_main" id="J_main">
-      <h3 class="J_roomrent_tit">房间租赁数据</h3>
-      <div class="item J_roomrent">
-        <roomrent></roomrent>
-      </div>
 
-      <h3 class="J_yearroomrent_tit">月房间签单/续租/退租（近年）</h3>
-      <div class="item J_yearroomrent">
-        <yearroomrent></yearroomrent>
-      </div>
-
-      <h3 class="J_monthroomrent_tit">房间收入月柱状图</h3>
-      <div class="item J_monthroomrent">
-        <monthroomrent></monthroomrent>
-      </div>
-
-      <h3 class="J_workorder_tit">月工单数量（维修、保洁、其他）</h3>
-      <div class="item J_workorder">
-        <workorder></workorder>
-      </div>
-
-      <div class="item J_zdevice">
-        <zdevice></zdevice>
-      </div>
-
-      <div class="item J_zincome">
-        <zincome></zincome>
-      </div>
-
-      <h3 class="J_clientdata_tit">客户数据</h3>
-      <div class="item J_clientdata">
-        <clientdata></clientdata>
-      </div>
-
-      <h3 class="J_crewcase_tit">在园人数情况</h3>
-      <div class="item J_crewcase">
-        <crewcase></crewcase>
-      </div>
-
-      <h3 class="J_meetingroomdata_tit">会议室使用数据</h3>
-      <div class="item J_meetingroomdata">
-        <meetingroomdata></meetingroomdata>
-      </div>
-  
-      <h3 class="J_servequalitydata_tit">服务品质数据</h3>
-      <h3 class="J_servequalitydata_tit2">企业服务评分结构</h3>
-      <div class="item J_servequalitydata">
-        <servequalitydata></servequalitydata>
-      </div>
-
+    <div class="circleWrap" v-if="showLoading">
+      <div id="circle"></div><div id="circle1"></div>
     </div>
   </div>
 </template>
@@ -96,12 +102,14 @@ export default {
   },
   data () {
     return {
-      title: '优糖星创园监控中心'
+      title: '优糖星创园监控中心',
+      showLoading: true
     }
   },
   mounted() {
     http.get('http://192.168.1.159/api/backend/v1/category/listByVenue').then(response => {
       console.log(response)
+      this.showLoading = false;
     })
   }
 }
@@ -288,5 +296,64 @@ $base_colo: #7bb9dc;
     right: 388px;
     font-size: 22px;
   }
+}
+
+/** 「載入中」動畫 **/
+#circle {
+  background-color: rgba(0,0,0,0);
+  border:5px solid rgba(10,10,10,0.9);
+  opacity:.9;
+  border-right:5px solid rgba(0,0,0,0);
+  border-left:5px solid rgba(0,0,0,0);
+  border-radius:150px;
+  box-shadow: 0 0 35px #808080;
+  z-index:1000;
+  width:150px;
+  height:150px;
+  margin:0 auto;       
+  position:fixed;
+  left:30px;
+  bottom:30px;
+  -moz-animation:spinPulse 1s infinite ease-in-out;
+  -webkit-animation:spinPulse 1s infinite ease-in-out;
+  -o-animation:spinPulse 1s infinite ease-in-out;
+  -ms-animation:spinPulse 1s infinite ease-in-out;
+}
+#circle1 {
+  background-color: rgba(0,0,0,0);
+  border:5px solid rgba(20,20,20,0.9);
+  opacity:.9;
+  border-left:5px solid rgba(0,0,0,0);
+  border-right:5px solid rgba(0,0,0,0);
+  border-radius:130px;
+  box-shadow: 0 0 15px #202020; 
+  z-index:1000;
+  width:100px;
+  height:100px;
+  margin:0 auto;
+  position:fixed;
+  left:55px;
+  bottom:55px;
+  -moz-animation:spinoffPulse 1s infinite linear;
+  -webkit-animation:spinoffPulse 1s infinite linear;
+  -o-animation:spinoffPulse 1s infinite linear;
+  -ms-animation:spinoffPulse 1s infinite linear;
+}
+@-webkit-keyframes spinPulse {
+  0% { -webkit-transform:rotate(160deg); opacity:0; box-shadow:0 0 1px #505050; }
+  50% { -webkit-transform:rotate(145deg); opacity:1;}
+  100% { -webkit-transform:rotate(-320deg); opacity:0; }
+}
+@-webkit-keyframes spinoffPulse {
+  0% { -webkit-transform:rotate(0deg); }
+  100% { -webkit-transform:rotate(360deg); }
+}
+.circleWrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 3450px;
+  height: 1940px;
+  background: rgba(255, 255, 255, 0.7);
 }
 </style>

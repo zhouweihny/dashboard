@@ -173,7 +173,7 @@ $base_colo: #7bb9dc;
         vertical-align: middle;
       }
       .tit{
-      	flex:2;
+      	width: 200px;
       }
       .statistics{
       	flex: 1;

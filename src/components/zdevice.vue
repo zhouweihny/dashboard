@@ -131,13 +131,14 @@ export default {
   },
   mounted() {
     
-    this.initCharts('energyDay');
-    setTimeout(()=>{
-      this.initCharts('energyYear');
-    }, 500)
-    
   },
   methods: {
+    zinit () {
+      this.initCharts('energyDay');
+      setTimeout(()=>{
+        this.initCharts('energyYear');
+      }, 500)
+    },
     initCharts (type) {
       var dayData =[];
 

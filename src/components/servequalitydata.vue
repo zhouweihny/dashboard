@@ -36,68 +36,70 @@ export default {
     }
   },
   mounted() {
-    // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(document.querySelector('.servequalitydata .main'));
-    this.myChart.setOption({
-      radar: {
-        center: ['50%', '60%'],//图表位置
-        // shape: 'circle',
-        name: {
-          textStyle: {
-            color: '#72ACD1',
-          }
-        },
-        axisLine: {
-          lineStyle: {
-            color: '#214770'
-          }
-        },
-        splitArea: {
-          areaStyle: {
-            color: ['#08112E', '#08112E', '#08112E', '#08112E'],
-            shadowColor: '#08112E'
-          }
-        },
-        splitLine: {
-          lineStyle: {
-            color: '#214770'
-          }
-        },
-        indicator: [{
-            name: '效率',
-            max: 5
-          },
-          {
-            name: '态度',
-            max: 5
-          },
-          {
-            name: '质量',
-            max: 5
-        }]
-      },
-      series: [{
-        type: 'radar',
-        data: [{
-          value: [1, 4.5, 2, 3.5, 2.5, 5],
-          name: '企业服务评分结构',
-          symbolSize: 0,
-          lineStyle: {
-            normal: {
-              color: '#5CEAFB'
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: '#317F96'
-            }
-          }
-        }]
-      }]
-    });    
+        
   },
   methods: {
-    
+    zinit () {
+      // 基于准备好的dom，初始化echarts实例
+      this.myChart = echarts.init(document.querySelector('.servequalitydata .main'));
+      this.myChart.setOption({
+        radar: {
+          center: ['50%', '60%'],//图表位置
+          // shape: 'circle',
+          name: {
+            textStyle: {
+              color: '#72ACD1',
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#214770'
+            }
+          },
+          splitArea: {
+            areaStyle: {
+              color: ['#08112E', '#08112E', '#08112E', '#08112E'],
+              shadowColor: '#08112E'
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#214770'
+            }
+          },
+          indicator: [{
+              name: '效率',
+              max: 5
+            },
+            {
+              name: '态度',
+              max: 5
+            },
+            {
+              name: '质量',
+              max: 5
+          }]
+        },
+        series: [{
+          type: 'radar',
+          data: [{
+            value: [1, 4.5, 2, 3.5, 2.5, 5],
+            name: '企业服务评分结构',
+            symbolSize: 0,
+            lineStyle: {
+              normal: {
+                color: '#5CEAFB'
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: '#317F96'
+              }
+            }
+          }]
+        }]
+      });
+    }
   }
 }
 </script>

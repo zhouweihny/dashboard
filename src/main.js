@@ -16,6 +16,10 @@ Vue.filter('time', function (value, formatString) {
   return moment(value).format(formatString);
 })
 
+Vue.filter('formatNum', function (value, type) {
+  return (value+ '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

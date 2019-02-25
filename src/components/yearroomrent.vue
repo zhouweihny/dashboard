@@ -1,27 +1,24 @@
 <template>
-  <div class="workorder">
-    <div class="zui-flex tit">
-      <div>
-        工单数量 <span>500</span>
-      </div>
-      <div>
-        待处理数量 <span>200</span>
-      </div>
+  <div class="zui-flex cwrap">
+    <div class="yearroomrent">
+      <div class="main"></div>
     </div>
-    <div class="main"></div>
   </div>
 </template>
 <script>
 import echarts from 'echarts'
 
 export default {
-  name: 'workorder',
+  name: 'roomrent',
+  computed: {
+    
+  },
   data() {
     return {
-      msg: 'workorder',
-      name: '折线图',
+      msg: 'yearroomrent',
+      name: '月房间签单/续租/退租（近年）',
       legendArr: [],
-      color: [],
+      color: ['#325B69', '#698570', '#AE5548', '#6D9EA8', '#9CC2B0', '#C98769'],
       myChart: {},
     }
   },
@@ -40,7 +37,7 @@ export default {
     }
 
     // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(document.querySelector('.workorder .main'));
+    this.myChart = echarts.init(document.querySelector('.yearroomrent .main'));
     this.myChart.setOption({
       title: {
         show: false
@@ -60,26 +57,26 @@ export default {
             _tz = '',
             str = params[0].axisValueLabel+"房间订单信息"+"<br>";
           params.forEach(v=>{
-            if(v.seriesName == '维修')
+            if(v.seriesName == '签单')
               _qd = v.data;
-            if(v.seriesName == '保洁')
+            if(v.seriesName == '续租')
               _xz = v.data;
-            if(v.seriesName == '其他')
+            if(v.seriesName == '退租')
               _tz = v.data;
           })
 
           if(_qd)
-            str += "维修："+_qd+"<br>";
+            str += "签单："+_qd+"<br>";
           if(_xz)
-            str += "保洁："+_xz+"<br>";
+            str += "续租："+_xz+"<br>";
           if(_tz)
-            str += "其他："+_tz+"<br>";
+            str += "退租："+_tz+"<br>";
 
           return str;
         }
       },
       legend: {
-        data: ['维修', '保洁', '其他'],
+        data: ['签单', '续租', '退租'],
         textStyle: {
           color: '#7bb9dc'
         },
@@ -105,7 +102,7 @@ export default {
         }
       },
       series: [{
-        name: '保洁',
+        name: '续租',
         type: 'line',
         smooth: false,
         showAllSymbol: true,
@@ -124,7 +121,7 @@ export default {
           color: '#FFB508'
         }
       }, {
-        name: '其他',
+        name: '退租',
         type: 'line',
         smooth: false,
         showAllSymbol: true,
@@ -143,7 +140,7 @@ export default {
           color: '#FF4C4B'
         }
       }, {
-        name: '维修',
+        name: '签单',
         type: 'bar',
         barWidth: 10,
         itemStyle: {
@@ -193,7 +190,7 @@ export default {
         z: -10,
         data: lineData2
       }]
-    });   
+    });    
   },
   methods: {
     
@@ -203,44 +200,14 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.workorder {
-  .tit {
-    position: absolute;
-    top: -80px;
-    left: 0;
-    justify-content: flex-start;
-    & > div {
-      position: relative;
-      padding-left: 20px;
-      font-size: 17px;
-      color: #7bb9dc;
-      &:nth-child(1) {
-        margin-right: 50px;
-      }
-      &:before {
-        position: absolute;
-        left: 0;
-        top: 9px;
-        content: "";
-        width: 13px;
-        height: 13px;
-        border-radius: 13px;
-        background: #8FD3FA;
-      }
+$base_colo: #7bb9dc;
 
-      span {
-        color: #5BEAFB;
-        font-size: 26px;
-        display: inline-block;
-        vertical-align: baseline;
-        margin-left: 15px;
-      }
+.cwrap {
+  .yearroomrent {
+    .main {
+      width: 806px;
+      height: 330px;
     }
-  }
-
-  .main {
-    width: 806px;
-    height: 330px;
   }
 }
 

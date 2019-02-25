@@ -45,26 +45,26 @@
       <div class="zui-flex total">
         <div class="rent">
           房间租用数
-          <span>500</span>
+          <span>{{roomrent.rentOut}}</span>
         </div>
         <div class="rent rentLast">
           房间剩余数
-          <span>200</span>
+          <span>{{roomrent.residue}}</span>
         </div>
       </div>
       <div class="main"></div>
       <div class="zui-flex ztit">
         <div class="fn-center">
           <p>办公室租用率</p>
-          <p><em></em>共30间，余15</p>
+          <p><em></em>共{{roomrent.bangongshi.sum}}间，余{{roomrent.bangongshi.residue}}</p>
         </div>
         <div class="fn-center">
           <p>移动办公租用率</p>
-          <p><em></em>共30间，余15</p>
+          <p><em></em>共{{roomrent.yidonggongwei.sum}}间，余{{roomrent.yidonggongwei.residue}}</p>
         </div>
         <div class="fn-center">
           <p>固定工位租用率</p>
-          <p><em></em>共30间，余15</p>
+          <p><em></em>共{{roomrent.gudinggongwei.sum}}间，余{{roomrent.gudinggongwei.residue}}</p>
         </div>
       </div>
     </div>
@@ -92,14 +92,14 @@ export default {
       color: [],
       myChart: {},
       roomrent: {
-        "rentOut": "500",
-        "residue": "200",
-        "contract": {"num": "123","last": "110"},
-        "relet": {"num": "56","last": "72"},
-        "throwalease": {"num": "56","last": "12"},
-        "bangongshi": {"rentOut": "32", "residue": "68", "sum": "30", "residue": "5"},
-        "yidonggongwei": {"rentOut": "74", "residue": "26", "sum": "30", "residue": "5"},
-        "gudinggongwei": {"rentOut": "18", "residue": "82", "sum": "30", "residue": "5"}
+        "rentOut": "",
+        "residue": "",
+        "contract": {"num": "","last": ""},
+        "relet": {"num": "","last": ""},
+        "throwalease": {"num": "","last": ""},
+        "bangongshi": {"rentOut": "", "residue": "", "sum": "", "residue": ""},
+        "yidonggongwei": {"rentOut": "", "residue": "", "sum": "", "residue": ""},
+        "gudinggongwei": {"rentOut": "", "residue": "", "sum": "", "residue": ""}
       }
     }
   },
@@ -107,198 +107,206 @@ export default {
 
     console.log(this.storeAjaxData)
 
-    /*var lineData = [];
-    var barData = [];
-    for (var i = 0; i < 12; i++) {
-      var b = parseInt(Math.random() * 200, 10);
-      var d = parseInt(Math.random() * 200, 10);
-      barData.push(b)
-      lineData.push(d + b);
-    }*/
-
-    if(this.storeAjaxData && this.storeAjaxData.roomrent){
-      this.roomrent = this.storeAjaxData.roomrent;
-
-      if(this.roomrent.contract.num > this.roomrent.contract.last){
-        this.roomrent.contract.arrow = 'up'
-      }else if(this.roomrent.contract.num < this.roomrent.contract.last){
-        this.roomrent.contract.arrow = 'down'
+    /*setInterval(()=>{
+      if(this.storeAjaxData){
+        this.zinit();
       }
-      if(this.roomrent.relet.num > this.roomrent.relet.last){
-        this.roomrent.relet.arrow = 'up'
-      }else if(this.roomrent.relet.num < this.roomrent.relet.last){
-        this.roomrent.relet.arrow = 'down'
-      }
-      if(this.roomrent.throwalease.num > this.roomrent.throwalease.last){
-        this.roomrent.throwalease.arrow = 'up'
-      }else if(this.roomrent.throwalease.num < this.roomrent.throwalease.last){
-        this.roomrent.throwalease.arrow = 'down'
-      }
-    }
+    }, 50)*/
 
-    // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(document.querySelector('.J_roomrent .main'));
-    this.myChart.setOption({
-      title: {
-
-      },
-      tooltip: {},
-      series: [{
-        name: '办公室',
-        type: 'pie',
-        radius: ['70%', '78%'],
-        center: ['15%', '53%'],
-        avoidLabelOverlap: false,
-        color: '#00AFAA',
-        label: {
-          normal: {
-            position: 'center'
-          }
-        },
-        data: [{
-          value: 32,
-          name: '已租',
-          itemStyle: {
-            color: '#00AFAA'
-          },
-          label: {
-            normal: {
-              formatter: '{d} %',
-              textStyle: {
-                color: '#00AFAA',
-                fontSize: 18
-              }
-            },
-            distance: 100
-          },
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a}{b}：{c}"
-          }
-        }, {
-          value: 68,
-          name: '待租',
-          label: {
-            show: false
-          },
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a}{b}：{c}"
-          },
-          itemStyle: {
-            normal: {
-              color: '#3D414D',
-            },
-            emphasis: {
-              color: '#3D414D'
-            }
-          },
-        }]
-      }, {
-        name: '移动工位',
-        type: 'pie',
-        radius: ['70%', '78%'],
-        center: ['49%', '53%'],
-        avoidLabelOverlap: false,
-        color: '#FFB408',
-        label: {
-          normal: {
-            position: 'center'
-          }
-        },
-        data: [{
-          value: 74,
-          name: '已租',
-          itemStyle: {
-            color: '#FFB408'
-          },
-          label: {
-            normal: {
-              formatter: '{d} %',
-              textStyle: {
-                color: '#FFB408',
-                fontSize: 18
-              }
-            }
-          },
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a}{b}：{c}"
-          }
-        }, {
-          value: 26,
-          name: '待租',
-          label: {
-            show: false
-          },
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a}{b}：{c}"
-          },
-          itemStyle: {
-            normal: {
-              color: '#3D414D'
-            },
-            emphasis: {
-              color: '#3D414D'
-            }
-          },
-        }]
-      }, {
-        name: '固定工位',
-        type: 'pie',
-        radius: ['70%', '78%'],
-        center: ['82%', '53%'],
-        avoidLabelOverlap: false,
-        color: '#FF4B4E',
-        label: {
-          normal: {
-            position: 'center'
-          }
-        },
-        data: [{
-          value: 18,
-          name: '已租',
-          itemStyle: {
-            color: '#FF4B4E'
-          },
-          label: {
-            normal: {
-              formatter: '{d} %',
-              textStyle: {
-                fontSize: 18
-              }
-            }
-          },
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a}{b}：{c}"
-          }
-        }, {
-          value: 82,
-          name: '待租',
-          label: {
-            show: false
-          },
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a}{b}：{c}"
-          },
-          itemStyle: {
-            normal: {
-              color: '#3D414D'
-            },
-            emphasis: {
-              color: '#3D414D'
-            }
-          },
-        }]
-      }]
-    });
+    
   },
   methods: {
     zinit() {
+      /*var lineData = [];
+      var barData = [];
+      for (var i = 0; i < 12; i++) {
+        var b = parseInt(Math.random() * 200, 10);
+        var d = parseInt(Math.random() * 200, 10);
+        barData.push(b)
+        lineData.push(d + b);
+      }*/
 
+      if(this.storeAjaxData && this.storeAjaxData.roomrent){
+        this.roomrent = this.storeAjaxData.roomrent;
+
+        if(this.roomrent.contract.num > this.roomrent.contract.last){
+          this.roomrent.contract.arrow = 'up'
+        }else if(this.roomrent.contract.num < this.roomrent.contract.last){
+          this.roomrent.contract.arrow = 'down'
+        }
+        if(this.roomrent.relet.num > this.roomrent.relet.last){
+          this.roomrent.relet.arrow = 'up'
+        }else if(this.roomrent.relet.num < this.roomrent.relet.last){
+          this.roomrent.relet.arrow = 'down'
+        }
+        if(this.roomrent.throwalease.num > this.roomrent.throwalease.last){
+          this.roomrent.throwalease.arrow = 'up'
+        }else if(this.roomrent.throwalease.num < this.roomrent.throwalease.last){
+          this.roomrent.throwalease.arrow = 'down'
+        }
+      }
+      let _that = this;
+      console.log(_that.roomrent.bangongshi.rentOut)
+
+      // 基于准备好的dom，初始化echarts实例
+      this.myChart = echarts.init(document.querySelector('.J_roomrent .main'));
+      this.myChart.setOption({
+        title: {
+
+        },
+        tooltip: {},
+        series: [{
+          name: '办公室',
+          type: 'pie',
+          radius: ['70%', '78%'],
+          center: ['15%', '53%'],
+          avoidLabelOverlap: false,
+          color: '#00AFAA',
+          label: {
+            normal: {
+              position: 'center'
+            }
+          },
+          data: [{
+            value: _that.roomrent.bangongshi.rentOut,
+            name: '已租',
+            itemStyle: {
+              color: '#00AFAA'
+            },
+            label: {
+              normal: {
+                formatter: '{d} %',
+                textStyle: {
+                  color: '#00AFAA',
+                  fontSize: 18
+                }
+              },
+              distance: 100
+            },
+            tooltip: {
+              trigger: 'item',
+              formatter: "{a}{b}：{c}"
+            }
+          }, {
+            value: _that.roomrent.bangongshi.residue,
+            name: '待租',
+            label: {
+              show: false
+            },
+            tooltip: {
+              trigger: 'item',
+              formatter: "{a}{b}：{c}"
+            },
+            itemStyle: {
+              normal: {
+                color: '#3D414D',
+              },
+              emphasis: {
+                color: '#3D414D'
+              }
+            },
+          }]
+        }, {
+          name: '移动工位',
+          type: 'pie',
+          radius: ['70%', '78%'],
+          center: ['49%', '53%'],
+          avoidLabelOverlap: false,
+          color: '#FFB408',
+          label: {
+            normal: {
+              position: 'center'
+            }
+          },
+          data: [{
+            value: _that.roomrent.yidonggongwei.rentOut,
+            name: '已租',
+            itemStyle: {
+              color: '#FFB408'
+            },
+            label: {
+              normal: {
+                formatter: '{d} %',
+                textStyle: {
+                  color: '#FFB408',
+                  fontSize: 18
+                }
+              }
+            },
+            tooltip: {
+              trigger: 'item',
+              formatter: "{a}{b}：{c}"
+            }
+          }, {
+            value: _that.roomrent.yidonggongwei.residue,
+            name: '待租',
+            label: {
+              show: false
+            },
+            tooltip: {
+              trigger: 'item',
+              formatter: "{a}{b}：{c}"
+            },
+            itemStyle: {
+              normal: {
+                color: '#3D414D'
+              },
+              emphasis: {
+                color: '#3D414D'
+              }
+            },
+          }]
+        }, {
+          name: '固定工位',
+          type: 'pie',
+          radius: ['70%', '78%'],
+          center: ['82%', '53%'],
+          avoidLabelOverlap: false,
+          color: '#FF4B4E',
+          label: {
+            normal: {
+              position: 'center'
+            }
+          },
+          data: [{
+            value: _that.roomrent.gudinggongwei.rentOut,
+            name: '已租',
+            itemStyle: {
+              color: '#FF4B4E'
+            },
+            label: {
+              normal: {
+                formatter: '{d} %',
+                textStyle: {
+                  fontSize: 18
+                }
+              }
+            },
+            tooltip: {
+              trigger: 'item',
+              formatter: "{a}{b}：{c}"
+            }
+          }, {
+            value: _that.roomrent.gudinggongwei.residue,
+            name: '待租',
+            label: {
+              show: false
+            },
+            tooltip: {
+              trigger: 'item',
+              formatter: "{a}{b}：{c}"
+            },
+            itemStyle: {
+              normal: {
+                color: '#3D414D'
+              },
+              emphasis: {
+                color: '#3D414D'
+              }
+            },
+          }]
+        }]
+      });
     }
   }
 }

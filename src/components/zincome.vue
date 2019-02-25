@@ -459,7 +459,7 @@ $base_colo: #7bb9dc;
         }
         .main {
           position: absolute;
-          left: 0px;
+          left: -30px;
           top: 30px;
           width: 700px;
           height: 300px;

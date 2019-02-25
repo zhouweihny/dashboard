@@ -117,8 +117,6 @@ export default {
   },
   mounted() {
     http.get('http://192.168.1.159/statistics').then(response => {
-      console.log(response)
-      let res = response
       if(response.status == 200){
         // let data = JSON.parse(response.data);
         let data = eval('('+response.data+')');

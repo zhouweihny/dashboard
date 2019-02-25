@@ -8,11 +8,11 @@
             本月房间新签约量
           </div>
           <div class="num">
-            123
+            {{roomrent.contract.num}}
           </div>
           <div class="lastNum">
-            <span>110</span>
-            <i class="arrow up"></i>
+            <span>{{roomrent.contract.last}}</span>
+            <i class="arrow " :class="roomrent.contract.arrow"></i>
           </div>
         </li>
         <li class="zui-flex">
@@ -20,11 +20,11 @@
             本月房间续租量
           </div>
           <div class="num">
-            56
+            {{roomrent.relet.num}}
           </div>
           <div class="lastNum">
-            <span>72</span>
-            <i class="arrow down"></i>
+            <span>{{roomrent.relet.last}}</span>
+            <i class="arrow " :class="roomrent.relet.arrow"></i>
           </div>
         </li>
         <li class="zui-flex">
@@ -32,11 +32,11 @@
             本月房间退租量
           </div>
           <div class="num">
-            62
+            {{roomrent.throwalease.num}}
           </div>
           <div class="lastNum">
-            <span>52</span>
-            <i class="arrow up"></i>
+            <span>{{roomrent.throwalease.last}}</span>
+            <i class="arrow " :class="roomrent.throwalease.arrow"></i>
           </div>
         </li>
       </ul>
@@ -82,7 +82,7 @@ import {
 export default {
   name: 'roomrent',
   computed: {
-    ...mapState(['storecolor'])
+    ...mapState(['storeAjaxData'])
   },
   data() {
     return {
@@ -91,18 +91,51 @@ export default {
       legendArr: [],
       color: [],
       myChart: {},
+      roomrent: {
+        "rentOut": "500",
+        "residue": "200",
+        "contract": {"num": "123","last": "110"},
+        "relet": {"num": "56","last": "72"},
+        "throwalease": {"num": "56","last": "12"},
+        "bangongshi": {"rentOut": "32", "residue": "68", "sum": "30", "residue": "5"},
+        "yidonggongwei": {"rentOut": "74", "residue": "26", "sum": "30", "residue": "5"},
+        "gudinggongwei": {"rentOut": "18", "residue": "82", "sum": "30", "residue": "5"}
+      }
     }
   },
   mounted() {
 
-    var lineData = [];
+    console.log(this.storeAjaxData)
+
+    /*var lineData = [];
     var barData = [];
     for (var i = 0; i < 12; i++) {
       var b = parseInt(Math.random() * 200, 10);
       var d = parseInt(Math.random() * 200, 10);
       barData.push(b)
       lineData.push(d + b);
+    }*/
+
+    if(this.storeAjaxData && this.storeAjaxData.roomrent){
+      this.roomrent = this.storeAjaxData.roomrent;
+
+      if(this.roomrent.contract.num > this.roomrent.contract.last){
+        this.roomrent.contract.arrow = 'up'
+      }else if(this.roomrent.contract.num < this.roomrent.contract.last){
+        this.roomrent.contract.arrow = 'down'
+      }
+      if(this.roomrent.relet.num > this.roomrent.relet.last){
+        this.roomrent.relet.arrow = 'up'
+      }else if(this.roomrent.relet.num < this.roomrent.relet.last){
+        this.roomrent.relet.arrow = 'down'
+      }
+      if(this.roomrent.throwalease.num > this.roomrent.throwalease.last){
+        this.roomrent.throwalease.arrow = 'up'
+      }else if(this.roomrent.throwalease.num < this.roomrent.throwalease.last){
+        this.roomrent.throwalease.arrow = 'down'
+      }
     }
+
     // 基于准备好的dom，初始化echarts实例
     this.myChart = echarts.init(document.querySelector('.J_roomrent .main'));
     this.myChart.setOption({

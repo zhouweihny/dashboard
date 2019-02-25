@@ -137,7 +137,6 @@ export default {
         }
       }
       let _that = this;
-      console.log(_that.roomrent.bangongshi.rentOut)
 
       // 基于准备好的dom，初始化echarts实例
       this.myChart = echarts.init(document.querySelector('.J_roomrent .main'));

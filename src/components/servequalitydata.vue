@@ -61,67 +61,73 @@ export default {
         this.servequalitydata = this.storeAjaxData.servequalitydata;
         this.num = this.servequalitydata.num;
         this.last = this.servequalitydata.last;
-        var data = this.servequalitydata.data;
+        var dataS = this.servequalitydata.data;
+        var data = [];
+        data.push(dataS.xiaolv[0]);
+        data.push(dataS.taidu[0]);
+        data.push(dataS.zhiliang[0]);
+        console.log(data)
+
+        // 基于准备好的dom，初始化echarts实例
+        this.myChart = echarts.init(document.querySelector('.servequalitydata .main'));
+        this.myChart.setOption({
+          radar: {
+            center: ['50%', '60%'],//图表位置
+            // shape: 'circle',
+            name: {
+              textStyle: {
+                color: '#72ACD1',
+              }
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#214770'
+              }
+            },
+            splitArea: {
+              areaStyle: {
+                color: ['#08112E', '#08112E', '#08112E', '#08112E'],
+                shadowColor: '#08112E'
+              }
+            },
+            splitLine: {
+              lineStyle: {
+                color: '#214770'
+              }
+            },
+            indicator: [{
+                name: '效率',
+                max: 50
+              },
+              {
+                name: '态度',
+                max: 50
+              },
+              {
+                name: '质量',
+                max: 50
+            }]
+          },
+          series: [{
+            type: 'radar',
+            data: [{
+              value: data,
+              name: '企业服务评分结构',
+              symbolSize: 0,
+              lineStyle: {
+                normal: {
+                  color: '#5CEAFB'
+                }
+              },
+              areaStyle: {
+                normal: {
+                  color: '#317F96'
+                }
+              }
+            }]
+          }]
+        });
       }
-      // 基于准备好的dom，初始化echarts实例
-      this.myChart = echarts.init(document.querySelector('.servequalitydata .main'));
-      this.myChart.setOption({
-        radar: {
-          center: ['50%', '60%'],//图表位置
-          // shape: 'circle',
-          name: {
-            textStyle: {
-              color: '#72ACD1',
-            }
-          },
-          axisLine: {
-            lineStyle: {
-              color: '#214770'
-            }
-          },
-          splitArea: {
-            areaStyle: {
-              color: ['#08112E', '#08112E', '#08112E', '#08112E'],
-              shadowColor: '#08112E'
-            }
-          },
-          splitLine: {
-            lineStyle: {
-              color: '#214770'
-            }
-          },
-          indicator: [{
-              name: '效率',
-              max: 5
-            },
-            {
-              name: '态度',
-              max: 5
-            },
-            {
-              name: '质量',
-              max: 5
-          }]
-        },
-        series: [{
-          type: 'radar',
-          data: [{
-            value: data,
-            name: '企业服务评分结构',
-            symbolSize: 0,
-            lineStyle: {
-              normal: {
-                color: '#5CEAFB'
-              }
-            },
-            areaStyle: {
-              normal: {
-                color: '#317F96'
-              }
-            }
-          }]
-        }]
-      });
     }
   }
 }

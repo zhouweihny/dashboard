@@ -105,15 +105,6 @@ export default {
   },
   mounted() {
 
-    console.log(this.storeAjaxData)
-
-    /*setInterval(()=>{
-      if(this.storeAjaxData){
-        this.zinit();
-      }
-    }, 50)*/
-
-    
   },
   methods: {
     zinit() {

@@ -81,7 +81,7 @@ export default {
       serveiceIn: 0,
 
       "zincome": {
-        "total": 450000,
+        "total": 0,
         "income": {
           "fangjian":{ "price":'', "rate": '' } ,
           "tingchechang": {"price":'', "rate": '' },
@@ -102,17 +102,11 @@ export default {
   },
   methods: {
     zinit () {
-      this.totalS = this.formatNum(parseInt(this.total, 10)).split('');
-      /*this.roomIn = this.formatNum(parseInt(this.roomIn, 10));
-      this.energyIn = this.formatNum(parseInt(this.energyIn, 10));
-      this.parkIn = this.formatNum(parseInt(this.parkIn, 10));
-      this.meetroomIn = this.formatNum(parseInt(this.meetroomIn, 10));
-      this.serveiceIn = this.formatNum(parseInt(this.serveiceIn, 10));*/
 
       if(this.storeAjaxData && this.storeAjaxData.zincome){
         this.zincome = this.storeAjaxData.zincome;
         this.total = this.zincome.total+ '';
-        this.totalS = this.total.split('');
+        this.totalS = this.formatNum(parseInt(this.total, 10)).split('');
 
         this.roomIn = this.zincome.income.fangjian.price;
         this.energyIn = this.zincome.income.nenhao.price;
@@ -127,7 +121,6 @@ export default {
       return (num+ '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
     },
     initCharts (obj) {
-      console.log(obj);
 
       var obj = obj
       var data = [

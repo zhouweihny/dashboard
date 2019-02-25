@@ -48,6 +48,7 @@ export default {
       url,
       data: qs.stringify(data),
       timeout: 10000,
+      dataType: "json",
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         // 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -64,13 +65,13 @@ export default {
     )
   },
   get (url, params) {
-    console.log(url)
     return axios({
       method: 'get',
       baseURL: BS_projectBaseUrl,
       url,
       params, // get 请求时带的参数
       timeout: 10000,
+      dataType: "json",
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'Content-Type': 'application/json; charset=UTF-8'

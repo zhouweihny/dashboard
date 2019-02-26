@@ -36,11 +36,11 @@
           <zdevice ref="zdevice"></zdevice>
         </div>
         
-        <!-- <div class="item J_zincome">
+        <div class="item J_zincome">
           <zincome ref="zincome"></zincome>
         </div>
         
-        <h3 class="J_clientdata_tit">客户数据</h3>
+        <!-- <h3 class="J_clientdata_tit">客户数据</h3>
         <div class="item J_clientdata">
           <clientdata ref="clientdata"></clientdata>
         </div>
@@ -236,10 +236,10 @@ $base_colo: #7bb9dc;
       height: 24rem;
     }
     &.J_zincome {
-      left: 985px;
-      top: 1202px;
-      width: 1500px;
-      height: 640px;
+      left: 26.5rem;
+      top: 33rem;
+      width: 43rem;
+      height: 19rem;
     }
     &.J_clientdata{
       right: 80px;

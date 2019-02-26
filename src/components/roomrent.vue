@@ -148,8 +148,8 @@ export default {
         series: [{
           name: '办公室',
           type: 'pie',
-          radius: ['70%', '78%'],
-          center: ['15%', '53%'],
+          radius: ['55%', '60%'],
+          center: ['15%', '55%'],
           avoidLabelOverlap: false,
           color: '#00AFAA',
           label: {
@@ -168,10 +168,9 @@ export default {
                 formatter: '{d} %',
                 textStyle: {
                   color: '#00AFAA',
-                  fontSize: 18
+                  fontSize: 10
                 }
-              },
-              distance: 100
+              }
             },
             tooltip: {
               trigger: 'item',
@@ -199,8 +198,8 @@ export default {
         }, {
           name: '移动工位',
           type: 'pie',
-          radius: ['70%', '78%'],
-          center: ['49%', '53%'],
+          radius: ['55%', '60%'],
+          center: ['48%', '55%'],
           avoidLabelOverlap: false,
           color: '#FFB408',
           label: {
@@ -219,7 +218,7 @@ export default {
                 formatter: '{d} %',
                 textStyle: {
                   color: '#FFB408',
-                  fontSize: 18
+                  fontSize: 12
                 }
               }
             },
@@ -249,8 +248,8 @@ export default {
         }, {
           name: '固定工位',
           type: 'pie',
-          radius: ['70%', '78%'],
-          center: ['82%', '53%'],
+          radius: ['55%', '60%'],
+          center: ['81%', '55%'],
           avoidLabelOverlap: false,
           color: '#FF4B4E',
           label: {
@@ -268,7 +267,7 @@ export default {
               normal: {
                 formatter: '{d} %',
                 textStyle: {
-                  fontSize: 18
+                  fontSize: 12
                 }
               }
             },
@@ -309,7 +308,7 @@ $base_colo: #7bb9dc;
 .cwrap {
 
   .left {
-    width: 300px;
+    width: 9.2rem;
     box-sizing: border-box;
     padding-top: 30px;
     position: relative;
@@ -318,16 +317,17 @@ $base_colo: #7bb9dc;
       position: absolute;
       right: -3px;
       top: 12px;
-      font-size: 13px;
+      font-size: .5rem;
       color: #8e9096;
     }
 
     ul {
+      width: 9.2rem;
       li {
         position: relative;
-        padding-left: 20px;
-        height: 60px;
-        font-size: 17px;
+        padding-left: .7rem;
+        height: 2rem;
+        font-size: .6rem;
         color: $base_colo;
         justify-content: space-between;
         align-items: baseline;
@@ -335,11 +335,11 @@ $base_colo: #7bb9dc;
         &:before {
           position: absolute;
           left: 0;
-          top: 9px;
+          top: .4rem;
           content: "";
-          width: 13px;
-          height: 13px;
-          border-radius: 13px;
+          width: .4rem;
+          height: .4rem;
+          border-radius: .4rem;
           background: #8FD3FA;
         }
 
@@ -349,7 +349,7 @@ $base_colo: #7bb9dc;
 
         .num {
           color: #5BEAFB;
-          font-size: 26px;
+          font-size: .9rem;
         }
 
         .lastNum {}
@@ -359,34 +359,35 @@ $base_colo: #7bb9dc;
 
   .right {
     flex: 1;
-    padding-left: 80px;
+    padding-left: 1rem;
 
     .total {
-      height: 30px;
-      line-height: 30px;
-      font-size: 17px;
+      height: 1rem;
+      line-height: 1rem;
+      font-size: .6rem;
       color: $base_colo;
       justify-content: space-around;
+      padding-top: 0.35rem;
 
       .rent {
         position: relative;
 
         &:before {
           position: absolute;
-          left: -20px;
-          top: 11px;
+          left: -0.7rem;
+          top: .3rem;
           content: "";
-          width: 13px;
-          height: 13px;
-          border-radius: 13px;
+          width: .4rem;
+          height: .4rem;
+          border-radius: .4rem;
           background: #8FD3FA;
         }
 
         span {
           color: #5BEAFB;
-          font-size: 26px;
+          font-size: .85rem;
           display: inline-block;
-          margin-left: 17px;
+          margin-left: .2rem;
         }
 
         &.rentLast {}
@@ -394,16 +395,16 @@ $base_colo: #7bb9dc;
     }
 
     .main {
-      width: 400px;
-      height: 105px;
+      width: 10rem;
+      height: 4.5rem;
     }
 
     .ztit {
       justify-content: space-around;
       align-items: center;
-      font-size: 14px;
+      font-size: .5rem;
       color: $base_colo;
-      margin-left: -10px;
+      margin-left: -.4rem;
 
       & > div {
         p {

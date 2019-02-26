@@ -17,7 +17,7 @@
           <roomrent ref="roomrent"></roomrent>
         </div>
 
-        <!-- <h3 class="J_yearroomrent_tit">月房间签单/续租/退租（近年）</h3>
+        <h3 class="J_yearroomrent_tit">月房间签单/续租/退租（近年）</h3>
         <div class="item J_yearroomrent">
           <yearroomrent ref="yearroomrent"></yearroomrent>
         </div>
@@ -32,7 +32,7 @@
           <workorder ref="workorder"></workorder>
         </div>
         
-        <div class="item J_zdevice">
+        <!-- <div class="item J_zdevice">
           <zdevice ref="zdevice"></zdevice>
         </div>
         
@@ -212,22 +212,22 @@ $base_colo: #7bb9dc;
       height: 7rem;
     }
     &.J_yearroomrent {
-      left: 94px;
-      top: 494px;
-      width: 766px;
-      height: 300px;
+      width: 21.5rem;
+      height: 9.8rem;
+      top: 12.55rem;
+      left: 2.5rem;
     }
     &.J_monthroomrent {
-      left: 94px;
-      top: 914px;
-      width: 766px;
-      height: 300px;
+      width: 21.5rem;
+      height: 9.8rem;
+      top: 24rem;
+      left: 2.5rem;
     }
     &.J_workorder {
-      left: 94px;
-      top: 1504px;
-      width: 766px;
-      height: 300px;
+      width: 21.5rem;
+      height: 9.8rem;
+      top: 41.2rem;
+      left: 2.5rem;
     }
     &.J_zdevice {
       left: 985px;
@@ -273,24 +273,24 @@ $base_colo: #7bb9dc;
   }
   .J_yearroomrent_tit {
     position: absolute;
-    top: 452px;
-    left: 335px;
-    font-size: 21px;
+    top: 12.55rem;
+    left: 9.25rem;
+    font-size: .6rem;
     color: #fff;
   }
 
   .J_monthroomrent_tit {
     position: absolute;
-    top: 869px;
-    left: 388px;
-    font-size: 21px;
+    top: 24.2rem;
+    left: 10.77rem;
+    font-size: .6rem;
     color: #fff;
   }
   .J_workorder_tit {
     position: absolute;
-    top: 1488px;
-    left: 330px;
-    font-size: 21px;
+    top: 41.45rem;
+    left: 9.1rem;
+    font-size: .6rem;
     color: #fff;
    }
 

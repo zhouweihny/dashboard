@@ -5,7 +5,7 @@
       <ul>
         <li class="zui-flex">
           <div class="tit">
-            本月房间新签约量
+            本月新签约量
           </div>
           <div class="num">
             {{roomrent.contract.num}}
@@ -17,7 +17,7 @@
         </li>
         <li class="zui-flex">
           <div class="tit">
-            本月房间续租量
+            本月续租量
           </div>
           <div class="num">
             {{roomrent.relet.num}}
@@ -29,7 +29,7 @@
         </li>
         <li class="zui-flex">
           <div class="tit">
-            本月房间退租量
+            本月退租量
           </div>
           <div class="num">
             {{roomrent.throwalease.num}}

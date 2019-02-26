@@ -45,7 +45,7 @@
           <clientdata ref="clientdata"></clientdata>
         </div>
         
-        <!-- <h3 class="J_crewcase_tit">在园人数情况</h3>
+        <h3 class="J_crewcase_tit">在园人数情况</h3>
         <div class="item J_crewcase">
           <crewcase ref="crewcase"></crewcase>
         </div>
@@ -55,7 +55,7 @@
           <meetingroomdata ref="meetingroomdata"></meetingroomdata>
         </div>
             
-        <h3 class="J_servequalitydata_tit">服务品质数据</h3>
+        <!-- <h3 class="J_servequalitydata_tit">服务品质数据</h3>
         <h3 class="J_servequalitydata_tit2">企业服务评分结构</h3>
         <div class="item J_servequalitydata">
           <servequalitydata ref="servequalitydata"></servequalitydata>
@@ -248,15 +248,16 @@ $base_colo: #7bb9dc;
       width: 22rem;
     }
     &.J_crewcase{
-      right:80px;
-      top: 458px;
-      width: 780px;
-
+      right: 2rem;
+      top: 12rem;
+      width: 22rem;
+      height: 12rem;
     }
     &.J_meetingroomdata{
-      right: 80px;
-      top: 1010px;
-      width: 780px;
+      right: 2rem;
+      top: 28rem;
+      width: 22rem;
+      height: 12rem;
     }
     &.J_servequalitydata{
       right: 80px;
@@ -269,7 +270,7 @@ $base_colo: #7bb9dc;
     top: 2.5rem;
     left: 9.9rem;
     font-size: 1rem;
-    color: #7bb9dc;
+    color: $base_colo;
   }
   .J_yearroomrent_tit {
     position: absolute;
@@ -299,28 +300,28 @@ $base_colo: #7bb9dc;
     top: 2.5rem;
     font-size: 1rem;
     right: 11rem;
-    color: #7bb9dc;
+    color: $base_colo;
   }
   .J_crewcase_tit{
     position: absolute;
-    top: 365px;
-    right: 388px;
-    font-size: 26px;
+    top: 9.8rem;
+    font-size: 1rem;
+    right: 10rem;
     color: $base_colo;
   }
   .J_meetingroomdata_tit{
     position: absolute;
-    top: 918px;
-    right: 388px;
-    font-size: 26px;
-    color: #7bb9dc;
+    top: 25.2rem;
+    font-size: 1rem;
+    right: 10rem;
+    color: $base_colo;
   }
   .J_servequalitydata_tit{
     position: absolute;
     top: 1475px;
     right: 388px;
     font-size: 26px;
-    color: #7bb9dc;
+    color: $base_colo;
   }
   .J_servequalitydata_tit2{
     position: absolute;

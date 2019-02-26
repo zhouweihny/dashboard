@@ -1,7 +1,7 @@
 <template>
   <div class="cwrap">
     <div class="top">
-      <ul>
+      <ul class="zui-flex zcount">
         <li class="zui-flex">
           <div class="tit">
             会议室使用数
@@ -12,7 +12,7 @@
         </li>
         <li class="zui-flex">
           <div class="tit">
-            会议室平均日使用频率
+            平均日使用频率
           </div>
           <div class="num">
             {{frequency}}
@@ -113,14 +113,8 @@ export default {
           left:"center",
         },
         tooltip: {//鼠标悬浮弹出提示框
-            trigger:'axis', //提示框弹出的触发时间，折线图和柱状图为axis
-            formatter:"{b}号{a}为: {c}次"//提示框提示的信息，{a}series内的名字，{b}为块状的名字，{c}为数值
-        },
-        grid: {//统计图距离边缘的距离
-          top: '8%',
-          left: '10%',
-          right: '10%',
-          bottom: '8%'
+          trigger:'axis', //提示框弹出的触发时间，折线图和柱状图为axis
+          formatter:"{b}号{a}为: {c}次"//提示框提示的信息，{a}series内的名字，{b}为块状的名字，{c}为数值
         },
         xAxis: [{//x轴
           type: 'category',//数据类型为不连续数据
@@ -199,57 +193,60 @@ $base_colo: #7bb9dc;
   .top{
     display: flex;
     justify-content:center;
-
-    ul {
+    .zcount {
       width: 100%;
-      display: flex;
-      justify-content:space-around;
+      justify-content: space-between;
+      align-items: center;
+    }
+    ul {
       li {
         position: relative;
-        padding-left: 20px;
-        height: 60px;
-        font-size: 17px;
+        padding-left: .7rem;
+        height: 2rem;
+        line-height: 2rem;
+        font-size: .6rem;
         color: $base_colo;
         justify-content: space-between;
-        align-items: baseline;
-
+        align-items: center;
+        width: 30%;
         &:before {
           position: absolute;
           left: 0;
-          top: 9px;
+          top: .78rem;
           content: "";
-          width: 13px;
-          height: 13px;
-          border-radius: 13px;
+          width: .4rem;
+          height: .4rem;
+          border-radius: .4rem;
           background: #8FD3FA;
         }
-
         div {
           vertical-align: middle;
         }
-
         .num {
-          margin-left:30px;
+          margin-left: 1rem;
           color: #5BEAFB;
-          font-size: 26px;
+          font-size: .9rem;
+          flex: 1;
         }
-
-        .lastNum {}
       }
     } 
   }
-
   .J_meetingroom_tit{
-    display: flex;
-    justify-content: center;
-    margin-top: 9px;
-  } 
-
-  .main {
-    width: 800px;
-    height: 300px;
+    position: absolute;
+    top: 2.05rem;
+    right: 7.55rem;
+    font-size: .6rem;
+    color: #fff;
   }
-
-  
+  .meetingroom {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    height: 9rem;
+    .main {
+      width: 23rem;
+      height: 12rem;
+    }
+  }
 }
 </style>

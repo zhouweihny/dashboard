@@ -143,7 +143,7 @@ $base_colo: #7bb9dc;
     li {
       position: relative;
       padding-left: .7rem;
-      height: 2rem;
+      height: 1.5rem;
       font-size: .6rem;
       color: $base_colo;
       justify-content: space-between;

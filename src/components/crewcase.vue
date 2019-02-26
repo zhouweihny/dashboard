@@ -84,7 +84,7 @@ export default {
       this.myChart.setOption({
         title:{
           textStyle:{
-              color:"#6a9cd5",
+            color:"#6a9cd5",
           },
           text:'',
           left:"center",
@@ -92,12 +92,6 @@ export default {
         tooltip: {//鼠标悬浮弹出提示框
           trigger:'axis', //提示框弹出的触发时间，折线图和柱状图为axis
           formatter:"{b}号{a}为: {c}人"//提示框提示的信息，{a}series内的名字，{b}为块状的名字，{c}为数值
-        },
-        grid: {//统计图距离边缘的距离
-          top: '8%',
-          left: '10%',
-          right: '10%',
-          bottom: '8%'
         },
         xAxis: [{//x轴
           type: 'category',//数据类型为不连续数据
@@ -119,11 +113,9 @@ export default {
         yAxis: [{//y轴的相关设置
           type: 'value',//y轴数据类型为连续的数据
           name: "人数",
-          nameGap: 10,//与轴线间距
           nameTextStyle: {
             color: '#5BEAFB'
           },
-          splitNumber: 5,//y轴上的刻度段数
           splitLine: {//y轴上的y轴线条相关设置
             show: true,
             lineStyle: {
@@ -180,14 +172,15 @@ $base_colo: #7bb9dc;
         position: relative;
         padding-left: .7rem;
         height: 2rem;
+        line-height: 2rem;
         font-size: .6rem;
         color: $base_colo;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
         &:before {
           position: absolute;
           left: 0;
-          top: .4rem;
+          top: .78rem;
           content: "";
           width: .4rem;
           height: .4rem;
@@ -198,22 +191,30 @@ $base_colo: #7bb9dc;
           vertical-align: middle;
         }
         .num {
-          margin-left:30px;
+          margin-left: 1rem;
           color: #5BEAFB;
-          font-size: 26px;
+          font-size: .9rem;
         }
         .lastNum {}
       }
     } 
   }
   .J_crewcase_tit{
-    display: flex;
-    justify-content: center;
-    margin-top: 3px;
-  } 
-	.main {
-    width: 800px;
-    height: 300px;
+    position: absolute;
+    top: 2.5rem;
+    right: 7.8rem;
+    font-size: .6rem;
+    color: #fff;
+  }
+  .crewcase {
+    position: absolute;
+    top: 1.5rem;
+    left: 0;
+    height: 9rem;
+    .main {
+      width: 23rem;
+      height: 12rem;
+    }
   }
 }
 </style>

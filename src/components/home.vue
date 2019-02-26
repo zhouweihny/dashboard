@@ -55,11 +55,11 @@
           <meetingroomdata ref="meetingroomdata"></meetingroomdata>
         </div>
             
-        <!-- <h3 class="J_servequalitydata_tit">服务品质数据</h3>
+        <h3 class="J_servequalitydata_tit">服务品质数据</h3>
         <h3 class="J_servequalitydata_tit2">企业服务评分结构</h3>
         <div class="item J_servequalitydata">
           <servequalitydata ref="servequalitydata"></servequalitydata>
-        </div> -->
+        </div>
 
       </div>
     </div>
@@ -260,9 +260,10 @@ $base_colo: #7bb9dc;
       height: 12rem;
     }
     &.J_servequalitydata{
-      right: 80px;
-      top: 1582px;
-      width: 780px;
+      right: 2rem;
+      top: 44rem;
+      width: 22rem;
+      height: 8rem;
     }
   }
   .J_roomrent_tit {
@@ -318,16 +319,17 @@ $base_colo: #7bb9dc;
   }
   .J_servequalitydata_tit{
     position: absolute;
-    top: 1475px;
-    right: 388px;
-    font-size: 26px;
+    top: 40.8rem;
+    font-size: 1rem;
+    right: 10rem;
     color: $base_colo;
   }
   .J_servequalitydata_tit2{
     position: absolute;
-    top: 1590px;
-    right: 388px;
-    font-size: 22px;
+    top: 44.3rem;
+    right: 10.6rem;
+    font-size: .6rem;
+    color: #fff;
   }
 }
 

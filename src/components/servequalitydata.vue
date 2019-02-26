@@ -1,16 +1,13 @@
 <template>
   <div class="cwrap">
     <div class="left">
-      <div>
-        <span class="dot">本月企业服务评分</span>
+      <div class="dot">本月企业服务评分</div>
+      <div class="zui-flex zpoint">
+        <div class="num">{{num}}</div>
+        <div>{{last}} <i class="arrow up"></i></div>
       </div>
-      <div class="ztips">
-         <span>上月同期</span>
-      </div>
-      <div class="lastNum">
-        <span class="num">{{num}}</span>
-        <span>{{last}} <i class="arrow up"></i></span>
-      </div>
+
+      <span class="ztips">上月同期</span>
     </div>
 
     <div class="right">
@@ -66,7 +63,6 @@ export default {
         data.push(dataS.xiaolv[0]);
         data.push(dataS.taidu[0]);
         data.push(dataS.zhiliang[0]);
-        console.log(data)
 
         // 基于准备好的dom，初始化echarts实例
         this.myChart = echarts.init(document.querySelector('.servequalitydata .main'));
@@ -125,7 +121,26 @@ export default {
                 }
               }
             }]
-          }]
+          }],
+          tooltip: {//鼠标悬浮弹出提示框
+            trigger:'item', //提示框弹出的触发时间，折线图和柱状图为axis
+            formatter (params, ticket, callback) {
+              console.log(params)
+              var _xv = parseInt(params.value[0], 10)/10,
+                _td = parseInt(params.value[1], 10)/10,
+                _zl = parseInt(params.value[2], 10)/10,
+                str = "本月企业服务平均评分"+"<br>";
+
+              if(_xv)
+                str += "效率："+_xv+"分<br>";
+              if(_td)
+                str += "态度："+_td+"分<br>";
+              if(_zl)
+                str += "质量："+_zl+"分";
+
+              return str;
+            }
+          }
         });
       }
     }
@@ -137,85 +152,74 @@ export default {
 $base_colo: #7bb9dc;
 .cwrap{
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
+  width: 21rem;
+  height: 8rem;
+  .right {
+    width: 46%;
+  }
   .left{
-    width: 460px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+    width: 46%;
+    position: relative;
+    padding-top: 2.5rem;
     .dot{
-      position: relative;
-      color: #7bb9dc;
+      min-width: 12rem;
+      color: $base_colo;
+      padding-left: 2.5rem;
+      font-size: .7rem;
       &:before {
         position: absolute;
-        left: -22px;
-        top: 4px;
+        left: 1.6rem;
+        top: 2.7rem;
         content: "";
-        width: 13px;
-        height: 13px;
-        border-radius: 13px;
+        width: .4rem;
+        height: .4rem;
+        border-radius: .4rem;
         background: #8FD3FA;
       }
     }
-    .ztips {
-      margin: 20px auto;
-      width: 64%;
-      right: -3px;
-      top: 12px;
-      font-size: 13px;
-      color: #8e9096;
-      display: flex;
-      justify-content:flex-end;
-    }
-    .num {
-      margin-left:30px;
-      color: #5BEAFB;
-      font-size: 26px;
-    }
-    .lastNum {
-      width: 100%;
-      color: #7bb9dc;
-      vertical-align: middle;
-      display: flex;
+    .zpoint {
       justify-content: space-around;
       align-items: center;
+      height: 2rem;
+      padding-top: 2.2rem;
+      div {
+        font-size: .7rem;
+        color: $base_colo;
+      }
+      .num {
+        color: #5AE9FA;
+        font-size: 1rem;
+      }
     }
-  }
-
-  .J_servequalitydata_tit{
-
-    display: flex;
-    justify-content: center;
-    margin-top: 9px;
-  } 
-  .servequalitydata{
-    display: flex;
-    flex-direction:row-reverse;
-    padding-right: 50px;
+    .ztips {
+      position: absolute;
+      right: 2rem;
+      top: 4rem;
+      font-size: .5rem;
+      color: #8e9096;
+    }
   }
   .main {
-    width: 340px;
-    height: 300px;
+    width: 10rem;
+    height: 8rem;
+  }
+}
+
+.arrow {
+  width: 13px;
+  height: 17px;
+  display: inline-block;
+  margin-left: 3px;
+
+  &.up {
+    background: url(../../static/up.png) 0 0 no-repeat;
+    background-size: contain;
   }
 
-  .arrow {
-    width: 13px;
-    height: 17px;
-    display: inline-block;
-    margin-left: 3px;
-
-    &.up {
-      background: url(../../static/up.png) 0 0 no-repeat;
-      background-size: contain;
-    }
-
-    &.down {
-      background: url(../../static/down.png) 0 0 no-repeat;
-      background-size: contain;
-    }
+  &.down {
+    background: url(../../static/down.png) 0 0 no-repeat;
+    background-size: contain;
   }
-  
 }
 </style>

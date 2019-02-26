@@ -125,7 +125,6 @@ export default {
           tooltip: {//鼠标悬浮弹出提示框
             trigger:'item', //提示框弹出的触发时间，折线图和柱状图为axis
             formatter (params, ticket, callback) {
-              console.log(params)
               var _xv = parseInt(params.value[0], 10)/10,
                 _td = parseInt(params.value[1], 10)/10,
                 _zl = parseInt(params.value[2], 10)/10,

@@ -291,10 +291,10 @@ export default {
             textStyle: {
               color: '#7bb9dc'
             },
-            left: 70,
-            top: 20,
+            left: 40,
+            top: 30,
             itemGap: 30,
-            itemWidth: 50
+            itemWidth: 30
           },
           xAxis: [{//x轴
             type: 'category',//数据类型为不连续数据
@@ -421,34 +421,35 @@ $base_colo: #7bb9dc;
 
 .cwrap {
   position: relative;
-  width: 1482px;
-  height: 640px;
+  width: 43rem;
+  height: 24rem;
   .J_zdevice_tit {
     position: absolute;
-    top: 10px;
-    left: 43px;
-    font-size: 30px;
+    top: 1.2rem;
+    left: 2rem;
+    font-size: .9rem;
     color: #5CEAFB;
   }
 
   .ztop {
-    width: 1482px;
+    width: 43rem;
     justify-content: space-around;
     align-items: flex-start;
     position: absolute;
     left: 0;
-    top: 70px;
-    margin-top: 30px;
+    top: 3.5rem;
     .zleft {
       width: 46%;
+      padding-top: .5rem;
+      padding-left: .8rem;
       justify-content: space-around;
       align-items: center;
       h4 {
-        font-size: 26px;
+        font-size: .8rem;
         color: $base_colo;
       }
       .J_numBlock {
-        height: 92px;
+        height: 2.7rem;
         margin-top: 10px;
         align-items: flex-end;
         & > div {
@@ -459,13 +460,13 @@ $base_colo: #7bb9dc;
           }
         }
         .J_num {
-          width: 56px;
+          width: 1.5rem;
           background: #4F89B1;
-          margin: 0 5px;
+          margin: 0 .15rem;
           text-align: center;
-          font-size: 50px;
+          font-size: 2rem;
           font-weight: bold;
-          line-height: 92px;
+          line-height: 2.7rem;
           color: #fff;
           &:first-child {
             margin-left: 0;
@@ -477,16 +478,16 @@ $base_colo: #7bb9dc;
       width: 46%;
       color: $base_colo;
       .item {
-        height: 46px;
+        height: 1.65rem;
         justify-content: space-around;
         align-items: center;
         h4 {
-          font-size: 26px;
+          font-size: .8rem;
           color: $base_colo;
         }
         .zuiProgress {
-          width: 320px;
-          height: 15px;
+          width: 8.5rem;
+          height: .5rem;
           display: flex;
           background-color: #3C404C;
           border-radius: 20px;
@@ -520,13 +521,13 @@ $base_colo: #7bb9dc;
         }
 
         .zcount {
-          font-size: 18px;
+          font-size: .5rem;
           & > div {
-            padding-left: 15px;
+            padding-left: .3rem;
           }
           em {
             font-style: normal;
-            font-size: 30px;
+            font-size: 1rem;
             color: #5BE9FB;
           }
         }
@@ -536,37 +537,38 @@ $base_colo: #7bb9dc;
 
   .J_zenergy_tit {
     position: absolute;
-    top: 287px;
-    left: 43px;
-    font-size: 30px;
+    top: 8.9rem;
+    left: 2rem;
+    font-size: .9rem;
     color: #5CEAFB;
   }
 
   .zenergy {
-    width: 1282px;
+    width: 40rem;
     align-items: flex-start;
     position: absolute;
-    left: 50px;
-    top: 355px;
+    left: 2rem;
+    top: 11rem;
     justify-content: flex-start;
+    font-size: .8rem;
     & > div {
       position: relative;
-      min-width: 300px;
+      min-width: 12rem;
       color: $base_colo;
-      padding-left: 20px;
+      padding-left: 1rem;
       &:before {
         position: absolute;
-        left: 0;
-        top: 11px;
+        left: .2rem;
+        top: .55rem;
         content: "";
-        width: 13px;
-        height: 13px;
-        border-radius: 13px;
+        width: .4rem;
+        height: .4rem;
+        border-radius: .4rem;
         background: #8FD3FA;
       }
       span {
         color: #5BEAFA;
-        font-size: 30px;
+        font-size: 1.2rem;
         display: inline-block;
         margin: 0 6px;
       }
@@ -575,31 +577,31 @@ $base_colo: #7bb9dc;
 
   .energyTit {
     position: absolute;
-    top: 442px;
-    left: 274px;
-    font-size: 21px;
+    top: 13.38rem;
+    left: 8.45rem;
+    font-size: .6rem;
     color: #fff;
     &:nth-of-type(2) {
-      left: 1002px;
+      left: 28.7rem;
     }
   }
 
   .energyDay, .energyYear {
     position: absolute;
-    top: 472px;
-    width: 700px;
-    height: 270px;
+    top: 13rem;
+    width: 18rem;
+    height: 8.3rem;
     .main {
-      width: 700px;
-      height: 270px;
+      width: 18rem;
+      height: 10.3rem;
     }
   }
 
   .energyDay {
-    left: 37px;
+    left: 2.5rem;
   }
   .energyYear {
-    left: 774px;
+    left: 23.3rem;
   }
 }
 

@@ -32,11 +32,11 @@
           <workorder ref="workorder"></workorder>
         </div>
         
-        <!-- <div class="item J_zdevice">
+        <div class="item J_zdevice">
           <zdevice ref="zdevice"></zdevice>
         </div>
         
-        <div class="item J_zincome">
+        <!-- <div class="item J_zincome">
           <zincome ref="zincome"></zincome>
         </div>
         
@@ -230,10 +230,10 @@ $base_colo: #7bb9dc;
       left: 2.5rem;
     }
     &.J_zdevice {
-      left: 985px;
-      top: 290px;
-      width: 1500px;
-      height: 640px;
+      left: 26.5rem;
+      top: 7rem;
+      width: 43rem;
+      height: 24rem;
     }
     &.J_zincome {
       left: 985px;

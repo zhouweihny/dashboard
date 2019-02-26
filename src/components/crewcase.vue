@@ -175,54 +175,45 @@ $base_colo: #7bb9dc;
 	.top{
     display: flex;
     justify-content:center;
-
     ul {
       li {
         position: relative;
-        padding-left: 20px;
-        height: 60px;
-        font-size: 17px;
+        padding-left: .7rem;
+        height: 2rem;
+        font-size: .6rem;
         color: $base_colo;
         justify-content: space-between;
         align-items: baseline;
-
         &:before {
           position: absolute;
           left: 0;
-          top: 9px;
+          top: .4rem;
           content: "";
-          width: 13px;
-          height: 13px;
-          border-radius: 13px;
+          width: .4rem;
+          height: .4rem;
+          border-radius: .4rem;
           background: #8FD3FA;
         }
-
         div {
           vertical-align: middle;
         }
-
         .num {
           margin-left:30px;
           color: #5BEAFB;
           font-size: 26px;
         }
-
         .lastNum {}
       }
     } 
   }
-
   .J_crewcase_tit{
     display: flex;
     justify-content: center;
     margin-top: 3px;
   } 
-
 	.main {
-      width: 800px;
-      height: 300px;
-    }
-
-	
+    width: 800px;
+    height: 300px;
+  }
 }
 </style>

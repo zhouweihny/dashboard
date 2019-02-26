@@ -40,12 +40,12 @@
           <zincome ref="zincome"></zincome>
         </div>
         
-        <!-- <h3 class="J_clientdata_tit">客户数据</h3>
+        <h3 class="J_clientdata_tit">客户数据</h3>
         <div class="item J_clientdata">
           <clientdata ref="clientdata"></clientdata>
         </div>
         
-        <h3 class="J_crewcase_tit">在园人数情况</h3>
+        <!-- <h3 class="J_crewcase_tit">在园人数情况</h3>
         <div class="item J_crewcase">
           <crewcase ref="crewcase"></crewcase>
         </div>
@@ -242,10 +242,10 @@ $base_colo: #7bb9dc;
       height: 19rem;
     }
     &.J_clientdata{
-      right: 80px;
-      top: 200px;
-      width: 780px;
-      height: 190px;
+      height: 6rem;
+      top: 5rem;
+      right: 2rem;
+      width: 22rem;
     }
     &.J_crewcase{
       right:80px;
@@ -296,9 +296,9 @@ $base_colo: #7bb9dc;
 
   .J_clientdata_tit{
     position: absolute;
-    top: 110px;
-    right: 420px;
-    font-size: 26px;
+    top: 2.5rem;
+    font-size: 1rem;
+    right: 11rem;
     color: #7bb9dc;
   }
   .J_crewcase_tit{

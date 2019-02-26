@@ -169,8 +169,8 @@ $base_colo: #7bb9dc;
   // height: 1080px;
   // width: 5760px;
   // height: 3240px;*/
-  width: 100%;
-  height: 100%;
+  width: 1920px;
+  height: 1080px;
   display: inline-block;
   position: absolute;
   left: 0;
@@ -180,22 +180,22 @@ $base_colo: #7bb9dc;
 }
 
 .J_weather, .J_parkNum {
-  height: 50px;
-  line-height: 50px;
+  height: 1rem;
+  line-height: 1rem;
   position: absolute;
-  top: 80px;
+  top: 2.5rem;
   justify-content: space-around;
   align-items: center;
-  color: $base_colo;
-  font-size: 30px;
+  color: #5BE9FB;
+  font-size: .9rem;
 }
 .J_weather {
-  width: 500px;
-  left: 840px;
+  width: 14rem;
+  left: 24rem;
 }
 .J_parkNum {
-  width: 460px;
-  left: 2100px;
+  width: 14rem;
+  left: 58rem;
 }
 
 .J_main {
@@ -267,8 +267,8 @@ $base_colo: #7bb9dc;
   .J_roomrent_tit {
     position: absolute;
     top: 2.5rem;
-    left: 9.5rem;
-    font-size: 1.2rem;
+    left: 9.9rem;
+    font-size: 1rem;
     color: #7bb9dc;
   }
   .J_yearroomrent_tit {

@@ -55,15 +55,15 @@
       <div class="main"></div>
       <div class="zui-flex ztit">
         <div class="fn-center">
-          <p>办公室租用率</p>
+          <p>办公室</p>
           <p><em></em>共{{roomrent.bangongshi.sum}}间，余{{roomrent.bangongshi.residue}}</p>
         </div>
         <div class="fn-center">
-          <p>移动办公租用率</p>
+          <p>移动办公</p>
           <p><em></em>共{{roomrent.yidonggongwei.sum}}间，余{{roomrent.yidonggongwei.residue}}</p>
         </div>
         <div class="fn-center">
-          <p>固定工位租用率</p>
+          <p>固定工位</p>
           <p><em></em>共{{roomrent.gudinggongwei.sum}}间，余{{roomrent.gudinggongwei.residue}}</p>
         </div>
       </div>
@@ -149,7 +149,7 @@ export default {
           name: '办公室',
           type: 'pie',
           radius: ['55%', '60%'],
-          center: ['15%', '55%'],
+          center: ['15%', '47%'],
           avoidLabelOverlap: false,
           color: '#00AFAA',
           label: {
@@ -199,7 +199,7 @@ export default {
           name: '移动工位',
           type: 'pie',
           radius: ['55%', '60%'],
-          center: ['48%', '55%'],
+          center: ['48%', '47%'],
           avoidLabelOverlap: false,
           color: '#FFB408',
           label: {
@@ -249,7 +249,7 @@ export default {
           name: '固定工位',
           type: 'pie',
           radius: ['55%', '60%'],
-          center: ['81%', '55%'],
+          center: ['81%', '47%'],
           avoidLabelOverlap: false,
           color: '#FF4B4E',
           label: {
@@ -395,7 +395,7 @@ $base_colo: #7bb9dc;
     }
 
     .main {
-      width: 10rem;
+      width: 100%;
       height: 4.5rem;
     }
 
@@ -405,11 +405,12 @@ $base_colo: #7bb9dc;
       font-size: .5rem;
       color: $base_colo;
       margin-left: -.4rem;
+      margin-top: -.9rem;
 
       & > div {
         p {
-          height: 22px;
-          line-height: 22px;
+          height: 1rem;
+          line-height: 1rem;
 
           &:nth-child(2) {
             position: relative;

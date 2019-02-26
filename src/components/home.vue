@@ -117,25 +117,27 @@ export default {
   },
   mounted() {
     http.get('http://192.168.1.159/statistics').then(response => {
-      console.log(response)
+      if(response.status == 200){
+        // let data = JSON.parse(response.data);
+        let data = eval('('+response.data+')');
+        console.log(JSON.stringify(data));
+        // let data = {"roomrent": {"rentOut": "500", "residue": "200", "contract": {"num": "123","last": "110"}, "relet": {"num": "56","last": "72"}, "throwalease": {"num": "56","last": "12"}, "bangongshi": {"rentOut": "32", "residue": "68", "sum": "30", "residue": "5"}, "yidonggongwei": {"rentOut": "74", "residue": "26", "sum": "30", "residue": "5"}, "gudinggongwei": {"rentOut": "18", "residue": "82", "sum": "30", "residue": "5"} }, "yearroomrent": {"qiandan":[ 192, 146, 41, 163, 182, 30, 4, 93, 41, 76, 169, 60], "xiuzhu": [ 316, 314, 239, 88, 139, 294, 260, 153, 181, 98, 232, 57], "tuizhu": [ 380, 558, 332, 328, 262, 208, 198, 368, 171, 298, 328, 377], "yuefen": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"] }, "monthroomrent":{"qiandan":[ 192, 146, 41, 163, 182, 30, 4, 93, 41, 76, 169, 60], "xiuzhu": [ 316, 314, 239, 88, 139, 294, 260, 153, 181, 98, 232, 57], "tuizhu": [ 380, 558, 332, 328, 262, 208, 198, 368, 171, 298, 328, 377], "yuefen": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"] }, "workorder": {"total": 500, "daichuli": 200, "data": {"weixiu": [45, 80, 174, 40, 68, 15, 9, 57, 48, 171, 77, 162], "baojie": [127, 143, 252, 228, 68, 214, 112, 115, 210, 233, 225, 322], "qita": [192, 222, 350, 314, 186, 295, 290, 290, 283, 353, 280, 365], "yuefen": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"] } }, "zdevice":{"sum": 200, "onLine": 79, "offLine": 20, "menjin": {"sum": 50, "onLine": 15, "offLine": 3 }, "shuibiao":{"sum": 50, "onLine": 15, "offLine": 3 }, "dianbiao": {"sum": 50, "onLine": 15, "offLine": 3, }, "benyuenenghao": {"dian":1000, "shui":1000, "reshui":1000 }, "energyDay": {"shui": [329, 96, 51, 36, 163, 158, 52, 173, 203, 90, 63, 249, 196, 104, 172, 156, 147, 165, 146, 263, 31, 149, 219, 81, 249, 203, 246, 52, 172, 68, 215], "dian": [14, 10, 16, 16, 11, 14, 14, 18, 9, 17, 1, 18, 16, 12, 4, 3, 8, 3, 6, 15, 0, 17, 17, 2, 7, 3, 6, 7, 12, 10, 18], "day": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] }, "energyYear": {"shui": [1178, 214, 1029, 799, 1074, 840, 788, 358, 561, 959, 1179, 600], "dian": [16, 4, 17, 14, 3, 10, 15, 13, 10, 8, 1, 11], "day": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] } }, "zincome": {"total": 45000, "income": {"fangjian":{ "price":358000, "rate": 36 } , "tingchechang": {"price":100000, "rate": 14 }, "wuye": {"price":35000, "rate": 5}, "nenhao": {"price":258000, "rate": 36 }, "huiyishi": {"price":65000, "rate": 9 } }, "data": {"shouru": [930, 421, 830, 346, 841, 289, 742, 806, 289, 2, 877, 903], "zhichu": [1, 196, 139, 204, 304, 314, 480, 499, 9, 73, 135, 88], "day": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] } }, "clientdata": {"data": {"ruzhushu": {"num": "123", "last": "110"}, "fangke": {"num": "62", "last": "110"}, "enterOrg": {"num": "56", "last": "72"}, "enterPerson": {"num": "56", "last": "72"} } }, "crewcase": {"number": "400", "data": {"data": [150, 105, 204, 125, 190, 122, 208, 160, 210, 120, 190, 150, 120, 190, 150, 200], "day": [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31] } }, "meetingroomdata": {"number": "20", "frequency": "6", "leisure": "3", "data":{"data":[150, 105, 204, 125, 190, 122, 208, 160, 210, 120, 190, 150, 120, 190, 150, 200], "day":[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31] } }, "servequalitydata": {"num": "5.5", "last": "4.0", "data":[4,4,4] } };
 
-      let data = {"roomrent": {"rentOut": "500", "residue": "200", "contract": {"num": "123","last": "110"}, "relet": {"num": "56","last": "72"}, "throwalease": {"num": "56","last": "12"}, "bangongshi": {"rentOut": "32", "residue": "68", "sum": "30", "residue": "5"}, "yidonggongwei": {"rentOut": "74", "residue": "26", "sum": "30", "residue": "5"}, "gudinggongwei": {"rentOut": "18", "residue": "82", "sum": "30", "residue": "5"} }, "yearroomrent": {"qiandan":[ 192, 146, 41, 163, 182, 30, 4, 93, 41, 76, 169, 60], "xiuzhu": [ 316, 314, 239, 88, 139, 294, 260, 153, 181, 98, 232, 57], "tuizhu": [ 380, 558, 332, 328, 262, 208, 198, 368, 171, 298, 328, 377], "yuefen": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"] }, "monthroomrent":{"qiandan":[ 192, 146, 41, 163, 182, 30, 4, 93, 41, 76, 169, 60], "xiuzhu": [ 316, 314, 239, 88, 139, 294, 260, 153, 181, 98, 232, 57], "tuizhu": [ 380, 558, 332, 328, 262, 208, 198, 368, 171, 298, 328, 377], "yuefen": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"] }, "workorder": {"total": 500, "daichuli": 200, "data": {"weixiu": [45, 80, 174, 40, 68, 15, 9, 57, 48, 171, 77, 162], "baojie": [127, 143, 252, 228, 68, 214, 112, 115, 210, 233, 225, 322], "qita": [192, 222, 350, 314, 186, 295, 290, 290, 283, 353, 280, 365], "yuefen": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"] } }, "zdevice":{"sum": 200, "onLine": 79, "offLine": 20, "menjin": {"sum": 50, "onLine": 15, "offLine": 3 }, "shuibiao":{"sum": 50, "onLine": 15, "offLine": 3 }, "dianbiao": {"sum": 50, "onLine": 15, "offLine": 3, }, "benyuenenghao": {"dian":1000, "shui":1000, "reshui":1000 }, "energyDay": {"shui": [329, 96, 51, 36, 163, 158, 52, 173, 203, 90, 63, 249, 196, 104, 172, 156, 147, 165, 146, 263, 31, 149, 219, 81, 249, 203, 246, 52, 172, 68, 215], "dian": [14, 10, 16, 16, 11, 14, 14, 18, 9, 17, 1, 18, 16, 12, 4, 3, 8, 3, 6, 15, 0, 17, 17, 2, 7, 3, 6, 7, 12, 10, 18], "day": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] }, "energyYear": {"shui": [1178, 214, 1029, 799, 1074, 840, 788, 358, 561, 959, 1179, 600], "dian": [16, 4, 17, 14, 3, 10, 15, 13, 10, 8, 1, 11], "day": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] } }, "zincome": {"total": 450000, "income": {"fangjian":{ "price":358000, "rate": 36 } , "tingchechang": {"price":100000, "rate": 14 }, "wuye": {"price":35000, "rate": 5}, "nenhao": {"price":258000, "rate": 36 }, "huiyishi": {"price":65000, "rate": 9 } }, "data": {"shouru": [930, 421, 830, 346, 841, 289, 742, 806, 289, 2, 877, 903], "zhichu": [1, 196, 139, 204, 304, 314, 480, 499, 9, 73, 135, 88], "day": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] } }, "clientdata": {"data": {"ruzhushu": {"num": "123", "last": "110"}, "fangke": {"num": "62", "last": "110"}, "enterOrg": {"num": "56", "last": "72"}, "enterPerson": {"num": "56", "last": "72"} } }, "crewcase": {"number": "400", "data": {"data": [150, 105, 204, 125, 190, 122, 208, 160, 210, 120, 190, 150, 120, 190, 150, 200], "day": [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31] } }, "meetingroomdata": {"number": "20", "frequency": "6", "leisure": "3", "data":{"data":[150, 105, 204, 125, 190, 122, 208, 160, 210, 120, 190, 150, 120, 190, 150, 200], "day":[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31] } }, "servequalitydata": {"num": "5.5", "last": "4.0", "data":[4,4,4] } };
+        this.setStoreAjaxData(data);
 
-      data.ajaxInit = true;
-      this.setStoreAjaxData(data);
+        this.$refs.roomrent.zinit();
+        this.$refs.yearroomrent.zinit();
+        this.$refs.monthroomrent.zinit();
+        this.$refs.workorder.zinit();
+        this.$refs.zdevice.zinit();
+        this.$refs.zincome.zinit();
+        this.$refs.clientdata.zinit();
+        this.$refs.crewcase.zinit();
+        this.$refs.meetingroomdata.zinit();
+        this.$refs.servequalitydata.zinit();
 
-      this.$refs.roomrent.zinit();
-      this.$refs.yearroomrent.zinit();
-      this.$refs.monthroomrent.zinit();
-      this.$refs.workorder.zinit();
-      this.$refs.zdevice.zinit();
-      this.$refs.zincome.zinit();
-      this.$refs.clientdata.zinit();
-      this.$refs.crewcase.zinit();
-      this.$refs.meetingroomdata.zinit();
-      this.$refs.servequalitydata.zinit();
-
-      this.showLoading = false;
+        this.showLoading = false;
+      }
     })
   }
 }

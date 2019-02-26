@@ -105,15 +105,6 @@ export default {
   },
   mounted() {
 
-    console.log(this.storeAjaxData)
-
-    /*setInterval(()=>{
-      if(this.storeAjaxData){
-        this.zinit();
-      }
-    }, 50)*/
-
-    
   },
   methods: {
     zinit() {
@@ -146,7 +137,6 @@ export default {
         }
       }
       let _that = this;
-      console.log(_that.roomrent.bangongshi.rentOut)
 
       // 基于准备好的dom，初始化echarts实例
       this.myChart = echarts.init(document.querySelector('.J_roomrent .main'));

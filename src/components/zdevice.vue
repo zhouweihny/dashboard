@@ -358,7 +358,9 @@ export default {
             name: '电',
             type: 'line',//统计图类型为折线图
             smooth: true, //是否平滑曲线显示
-            symbolSize:0,//数据点的大小，[0,0]//b表示宽度和高度
+            showAllSymbol: true,
+            symbol: 'circle',
+            symbolSize: 0,
             yAxisIndex : 0,
             itemStyle: {
               normal: {
@@ -371,7 +373,7 @@ export default {
             lineStyle: {//线条的相关设置
               normal: {
                 color: "#3deaff",   // 线条颜色
-                width: 3
+                width: 2
               }
             },
             areaStyle: { //区域填充样式
@@ -389,7 +391,7 @@ export default {
             smooth: false,
             showAllSymbol: true,
             symbol: 'circle',
-            symbolSize: 8,
+            symbolSize: 6,
             yAxisIndex : 1,
             data: lineData2,
             itemStyle: {
@@ -403,7 +405,7 @@ export default {
             lineStyle: {
               normal: {
                 color: "#FE2D54",   // 线条颜色
-                width: 3
+                width: 2
               }
             }
           }]

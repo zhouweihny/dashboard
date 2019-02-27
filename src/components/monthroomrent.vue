@@ -108,7 +108,7 @@ export default {
             type: "bar",
             stack: "总量",
             barMaxWidth: 20,
-            barWidth: 15,
+            barWidth: 10,
             barGap: "10%",
             data: lineData,
             itemStyle: {
@@ -124,7 +124,7 @@ export default {
             type: "bar",
             stack: "总量",
             barMaxWidth: 20,
-            barWidth: 15,
+            barWidth: 10,
             barGap: "10%",
             data: lineData2,
             itemStyle: {
@@ -140,7 +140,7 @@ export default {
             type: "bar",
             stack: "总量",
             barMaxWidth: 20,
-            barWidth: 15,
+            barWidth: 10,
             barGap: "10%",
             itemStyle: {
               normal: {

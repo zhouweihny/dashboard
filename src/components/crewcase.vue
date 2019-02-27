@@ -142,7 +142,8 @@ export default {
           symbolSize:0,//数据点的大小，[0,0]//b表示宽度和高度
           lineStyle: {//线条的相关设置
             normal: {
-              color: "#3deaff"   // 线条颜色
+              color: "#3deaff",   // 线条颜色
+              width: 2
             }
           },
           areaStyle: { //区域填充样式

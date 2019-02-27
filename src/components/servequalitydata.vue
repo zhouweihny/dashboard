@@ -68,7 +68,7 @@ export default {
         this.myChart = echarts.init(document.querySelector('.servequalitydata .main'));
         this.myChart.setOption({
           radar: {
-            center: ['50%', '60%'],//图表位置
+            center: ['50%', '68%'],//图表位置
             // shape: 'circle',
             name: {
               textStyle: {
@@ -201,7 +201,7 @@ $base_colo: #7bb9dc;
   }
   .main {
     width: 10rem;
-    height: 8rem;
+    height: 7.5rem;
   }
 }
 

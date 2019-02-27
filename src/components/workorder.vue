@@ -140,7 +140,7 @@ export default {
             smooth: false,
             showAllSymbol: true,
             symbol: 'circle',
-            symbolSize: 10,
+            symbolSize: 6,
             data: lineData,
             itemStyle: {
               normal: {
@@ -159,7 +159,7 @@ export default {
             smooth: false,
             showAllSymbol: true,
             symbol: 'circle',
-            symbolSize: 10,
+            symbolSize: 6,
             data: lineData2,
             itemStyle: {
               normal: {

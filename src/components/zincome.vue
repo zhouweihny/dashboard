@@ -333,7 +333,9 @@ export default {
           name: '收入',
           type: 'line',//统计图类型为折线图
           smooth: true, //是否平滑曲线显示
-          symbolSize:0,//数据点的大小，[0,0]//b表示宽度和高度
+          showAllSymbol: true,
+          symbol: 'circle',
+          symbolSize: 0,
           itemStyle: {
             normal: {
               color: "#3deaff",
@@ -345,7 +347,7 @@ export default {
           lineStyle: {//线条的相关设置
             normal: {
               color: "#3deaff",   // 线条颜色
-              width: 3
+              width: 2
             }
           },
           areaStyle: { //区域填充样式
@@ -361,7 +363,8 @@ export default {
           name: '支出',
           type: 'line',
           smooth: true,
-          showAllSymbol: false,
+          showAllSymbol: true,
+          symbol: 'circle',
           symbolSize: 0,
           data: lineData2,
           itemStyle: {
@@ -375,7 +378,7 @@ export default {
           lineStyle: {
             normal: {
               color: "#FE2D54",   // 线条颜色
-              width: 3
+              width: 2
             }
           }
         }]

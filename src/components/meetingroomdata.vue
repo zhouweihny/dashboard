@@ -7,7 +7,7 @@
             会议室使用数
           </div>
           <div class="num">
-            {{number}}
+            {{number || 0}}
           </div>
         </li>
         <li class="zui-flex">
@@ -15,7 +15,7 @@
             平均日使用频率
           </div>
           <div class="num">
-            {{frequency}}
+            {{frequency || 0}}
           </div>
         </li>
         <li class="zui-flex">
@@ -23,7 +23,7 @@
             会议室空闲数
           </div>
           <div class="num">
-            {{leisure}}
+            {{leisure || 0}}
           </div>
         </li>
       </ul>

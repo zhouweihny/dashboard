@@ -133,9 +133,9 @@ export default {
         this.$refs.crewcase.zinit();
         this.$refs.meetingroomdata.zinit();
         this.$refs.servequalitydata.zinit();
-
-        this.showLoading = false;
       }
+    }).then(response => {
+      this.showLoading = false;
     })
   }
 }

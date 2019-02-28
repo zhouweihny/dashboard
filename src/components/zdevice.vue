@@ -270,7 +270,12 @@ export default {
             formatter (params, ticket, callback) {
               var _qd = '',
                 _xz = '',
-                str = params[0].axisValueLabel+"号能源消耗"+"<br>";
+                str = params[0].axisValueLabel;
+              if(type == 'energyDay'){
+                str += "号能源消耗"+"<br>";
+              }else{
+                str += "月能源消耗"+"<br>";
+              }
               params.forEach(v=>{
                 if(v.seriesName == '电')
                   _qd = v.data;
@@ -309,6 +314,13 @@ export default {
               textStyle: {
                 color: '#6a9cd5',
               },
+              formatter: (value) => {
+                if(type == 'energyDay'){
+                  return this.moment(value, "YYYY-MM-DD").format("DD");
+                }else{
+                  return this.moment(value, "YYYY-MM").format("MM");
+                }
+              }
             },
             axisTick: { show: true,},//刻度点数轴
             data: dayData 

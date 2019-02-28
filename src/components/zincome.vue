@@ -302,6 +302,9 @@ export default {
             textStyle: {
               color: '#6a9cd5',
             },
+            formatter: (value) => {
+              return this.moment(value, "YYYY-MM").format("MM");
+            }
           },
           axisTick: { show: true,},//刻度点数轴
           data: dayData 

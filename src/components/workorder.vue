@@ -120,6 +120,11 @@ export default {
           },
           xAxis: {
             data: yuefen,
+            axisLabel : {
+              formatter: (value) => {
+                return this.moment(value, "YYYY-MM").format("MM");
+              }
+            },
             axisLine: {
               lineStyle: {
                 color: '#7bb9dc'

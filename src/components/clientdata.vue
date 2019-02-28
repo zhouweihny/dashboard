@@ -12,7 +12,7 @@
           </div>
           <div class="lastNum">
             <span>{{ruzhushu.last}}</span>
-            <i class="arrow up"></i>
+            <i class="arrow " :class="ruzhushu.arrow"></i>
           </div>
         </li>
         <li class="zui-flex">
@@ -24,7 +24,7 @@
 	        </div>
           <div class="lastNum">
             <span>{{enterOrg.last}}</span>
-            <i class="arrow down"></i>
+            <i class="arrow " :class="enterOrg.arrow"></i>
           </div>
         </li>
       </ul>
@@ -41,7 +41,7 @@
           </div>
           <div class="lastNum">
             <span>{{fangke.last}}</span>
-            <i class="arrow up"></i>
+            <i class="arrow " :class="fangke.arrow"></i>
           </div>
         </li>
         <li class="zui-flex">
@@ -53,7 +53,7 @@
           </div>
           <div class="lastNum">
             <span>{{enterPerson.last}}</span>
-            <i class="arrow down"></i>
+            <i class="arrow " :class="enterPerson.arrow"></i>
           </div>
         </li>
       </ul>
@@ -121,6 +121,36 @@ export default {
         this.fangke = this.clientdata.data.fangke;
         this.enterOrg = this.clientdata.data.enterOrg;
         this.enterPerson = this.clientdata.data.enterPerson;
+
+        this.ruzhushu.num = parseInt(this.ruzhushu.num, 10) || 0;
+        this.ruzhushu.last = parseInt(this.ruzhushu.last, 10) || 0;
+        this.fangke.num = parseInt(this.fangke.num, 10) || 0;
+        this.fangke.last = parseInt(this.fangke.last, 10) || 0;
+        this.enterOrg.num = parseInt(this.enterOrg.num, 10) || 0;
+        this.enterOrg.last = parseInt(this.enterOrg.last, 10) || 0;
+        this.enterPerson.num = parseInt(this.enterPerson.num, 10) || 0;
+        this.enterPerson.last = parseInt(this.enterPerson.last, 10) || 0;
+
+        if(this.ruzhushu.num > this.ruzhushu.last){
+          this.ruzhushu.arrow = 'up'
+        }else if(this.ruzhushu.num < this.ruzhushu.last){
+          this.ruzhushu.arrow = 'down'
+        }
+        if(this.fangke.num > this.fangke.last){
+          this.fangke.arrow = 'up'
+        }else if(this.fangke.num < this.fangke.last){
+          this.fangke.arrow = 'down'
+        }
+        if(this.enterOrg.num > this.enterOrg.last){
+          this.enterOrg.arrow = 'up'
+        }else if(this.enterOrg.num < this.enterOrg.last){
+          this.enterOrg.arrow = 'down'
+        }
+        if(this.enterPerson.num > this.enterPerson.last){
+          this.enterPerson.arrow = 'up'
+        }else if(this.enterPerson.num < this.enterPerson.last){
+          this.enterPerson.arrow = 'down'
+        }
       }
     }
   }

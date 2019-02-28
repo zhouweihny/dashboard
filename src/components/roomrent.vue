@@ -120,6 +120,13 @@ export default {
       if(this.storeAjaxData && this.storeAjaxData.roomrent){
         this.roomrent = this.storeAjaxData.roomrent;
 
+        this.roomrent.contract.num = parseInt(this.roomrent.contract.num, 10) || 0;
+        this.roomrent.contract.last = parseInt(this.roomrent.contract.last, 10) || 0;
+        this.roomrent.relet.num = parseInt(this.roomrent.relet.num, 10) || 0;
+        this.roomrent.relet.last = parseInt(this.roomrent.relet.last, 10) || 0;
+        this.roomrent.throwalease.num = parseInt(this.roomrent.throwalease.num, 10) || 0;
+        this.roomrent.throwalease.last = parseInt(this.roomrent.throwalease.last, 10) || 0;
+
         if(this.roomrent.contract.num > this.roomrent.contract.last){
           this.roomrent.contract.arrow = 'up'
         }else if(this.roomrent.contract.num < this.roomrent.contract.last){

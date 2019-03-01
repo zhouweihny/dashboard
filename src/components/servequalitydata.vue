@@ -4,7 +4,7 @@
       <div class="dot">本月企业服务评分</div>
       <div class="zui-flex zpoint">
         <div class="num">{{num}}</div>
-        <div>{{last}} <i class="arrow up"></i></div>
+        <div>{{last}} <i class="arrow" :class="arrow"></i></div>
       </div>
 
       <span class="ztips">上月同期</span>
@@ -38,6 +38,7 @@ export default {
       name: '企业服务评分结构',
       num: '',
       last: '',
+      arrow: 'up',
       "servequalitydata": {
         "num": "",
         "last": "",
@@ -56,8 +57,15 @@ export default {
     zinit () {
       if(this.storeAjaxData && this.storeAjaxData.servequalitydata){
         this.servequalitydata = this.storeAjaxData.servequalitydata;
-        this.num = this.servequalitydata.num;
-        this.last = this.servequalitydata.last;
+        
+        this.num = Number(this.servequalitydata.num);
+        this.last = Number(this.servequalitydata.last);
+        if(this.num > this.last){
+          this.arrow = 'up'
+        }else if(this.num < this.last){
+          this.arrow = 'down'
+        }
+
         var dataS = this.servequalitydata.data;
         var data = [];
         data.push(dataS.xiaolv[0]);

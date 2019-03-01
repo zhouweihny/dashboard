@@ -414,7 +414,7 @@ export default {
             smooth: false,
             showAllSymbol: true,
             symbol: 'circle',
-            symbolSize: 6,
+            symbolSize: 4,
             yAxisIndex : 1,
             data: lineData2,
             itemStyle: {

@@ -144,6 +144,7 @@ export default {
             color: '#5BEAFB'
           },
           min: 0,//y轴上的刻度最小值
+          max:15,
           splitNumber: 5,//y轴上的刻度段数
           splitLine: {//y轴上的y轴线条相关设置
             show: true,

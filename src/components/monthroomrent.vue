@@ -55,9 +55,9 @@ export default {
 
       if(this.storeAjaxData && this.storeAjaxData.monthroomrent){
         this.monthroomrent = this.storeAjaxData.monthroomrent;
-        var lineData = this.monthroomrent.xiuzhu;
-        var lineData2 = this.monthroomrent.tuizhu;
-        var barData = this.monthroomrent.qiandan;
+        var lineData = this.monthroomrent.qiandan;
+        var lineData2 = this.monthroomrent.xiuzhu;
+        var barData = this.monthroomrent.tuizhu;
         var yuefen = this.monthroomrent.yuefen;
 
 

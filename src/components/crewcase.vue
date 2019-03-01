@@ -57,20 +57,6 @@ export default {
   },
   methods: {
     zinit () {
-      /*var dayData =[];
-      for(var i=0; i<32; i++){
-        if (i%2 !=0) {
-          var r = i;
-          dayData.push(r);
-        };
-      }
-
-      var resultData =[];
-      var _data = [150, 105, 204, 125, 190, 122, 208, 160, 210, 120, 190, 150, 120, 190, 150, 200]
-      _data.forEach( v =>{
-        resultData.push(v);
-      })*/
-      
       if(this.storeAjaxData && this.storeAjaxData.crewcase){
         this.crewcase = this.storeAjaxData.crewcase;
 
@@ -116,6 +102,7 @@ export default {
         yAxis: [{//y轴的相关设置
           type: 'value',//y轴数据类型为连续的数据
           name: "人数",
+          min: 0,
           nameTextStyle: {
             color: '#5BEAFB'
           },

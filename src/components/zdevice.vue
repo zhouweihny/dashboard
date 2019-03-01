@@ -241,11 +241,11 @@ export default {
         var lineData = [];
         var lineData2 = [];
         if(type == 'energyDay'){
-          lineData = this.zdevice.energyDay.shui;
-          lineData2 = this.zdevice.energyDay.dian;
+          lineData = this.zdevice.energyDay.dian;
+          lineData2 = this.zdevice.energyDay.shui;
         }else{
-          lineData = this.zdevice.energyYear.shui;
-          lineData2 = this.zdevice.energyYear.dian;
+          lineData = this.zdevice.energyYear.dian;
+          lineData2 = this.zdevice.energyYear.shui;
         }
 
         var barData = this.zdevice.qiandan;
@@ -328,6 +328,11 @@ export default {
           }],
           yAxis: [{//y轴的相关设置
             type: 'value',//y轴数据类型为连续的数据
+            name: "（度）           ",
+            nameGap: 10,//与轴线间距
+            nameTextStyle: {
+              color: '#5BEAFB'
+            },
             min: 0,//y轴上的刻度最小值
             // max: Math.max.apply(null, lineData),//y轴上的刻度最大值
             splitNumber: 5,//y轴上的刻度段数
@@ -350,6 +355,11 @@ export default {
             }
           }, {//y轴的相关设置
             type: 'value',//y轴数据类型为连续的数据
+            name: "（吨）",
+            nameGap: 10,//与轴线间距
+            nameTextStyle: {
+              color: '#5BEAFB'
+            },
             min: 0,//y轴上的刻度最小值
             splitNumber: 5,//y轴上的刻度段数
             splitLine: {//y轴上的y轴线条相关设置
@@ -358,12 +368,12 @@ export default {
             axisLine: {//y轴的相关设置
               show: true,
               lineStyle: {
-                color: '#34607B' //y轴颜色
+                color: '#FE2D54' //y轴颜色
               },
             },
             axisLabel: {//y轴的标签相关设置
               textStyle: {
-                color: '#5CEBFC',
+                color: '#5BEAFB',
               },
             }
           }],

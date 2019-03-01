@@ -56,15 +56,15 @@
       <div class="zui-flex ztit">
         <div class="fn-center">
           <p>办公室</p>
-          <p><em></em>共{{roomrent.bangongshi.sum}}，余{{roomrent.bangongshi.residue}}</p>
+          <p><em></em>共{{roomrent.bangongshi.sum}},余{{roomrent.bangongshi.residue}}</p>
         </div>
         <div class="fn-center">
           <p>移动办公</p>
-          <p><em></em>共{{roomrent.yidonggongwei.sum}}，余{{roomrent.yidonggongwei.residue}}</p>
+          <p><em></em>共{{roomrent.yidonggongwei.sum}},余{{roomrent.yidonggongwei.residue}}</p>
         </div>
         <div class="fn-center">
           <p>固定工位</p>
-          <p><em></em>共{{roomrent.gudinggongwei.sum}}，余{{roomrent.gudinggongwei.residue}}</p>
+          <p><em></em>共{{roomrent.gudinggongwei.sum}},余{{roomrent.gudinggongwei.residue}}</p>
         </div>
       </div>
     </div>

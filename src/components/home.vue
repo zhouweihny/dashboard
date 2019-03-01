@@ -122,8 +122,8 @@ export default {
     initPages () {
       this.showLoading = true;
       axios.all([
-        axios.get('http://192.168.1.23/statistics'),
-        axios.get('http://192.168.1.23/weather')
+        axios.get('http://utowntest.utowntech.com:8091/statistics'),
+        axios.get('http://utowntest.utowntech.com:8091/weather')
       ])
       .then(axios.spread((cs, fl)=> {
         // 上面两个请求都完成后，才执行这个回调方法

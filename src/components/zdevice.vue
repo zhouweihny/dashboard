@@ -33,7 +33,6 @@
             <div>
               <span>共</span>
               <em>{{zdevice.menjin.sum}}</em>
-              <span>个</span>
             </div>
             <div>
               <span>在线</span>
@@ -54,7 +53,6 @@
             <div>
               <span>共</span>
               <em>{{zdevice.shuibiao.sum}}</em>
-              <span>个</span>
             </div>
             <div>
               <span>在线</span>
@@ -75,7 +73,6 @@
             <div>
               <span>共</span>
               <em>{{zdevice.dianbiao.sum}}</em>
-              <span>个</span>
             </div>
             <div>
               <span>在线</span>
@@ -133,9 +130,9 @@ export default {
       total: '235',
       zaixian: '205',
       lixian: '30',
-      mjProgress: '96%',
-      sbProgress: '83.333%',
-      dbProgress: '100%',
+      mjProgress: '0',
+      sbProgress: '0',
+      dbProgress: '0',
 
       "zdevice":{
         "sum": "",
@@ -253,6 +250,10 @@ export default {
 
         var barData = this.zdevice.qiandan;
         var yuefen = this.zdevice.yuefen;
+
+        this.mjProgress = (this.zdevice.menjin.onLine/this.zdevice.menjin.sum).toFixed(4)*100 + "%";
+        this.sbProgress = (this.zdevice.shuibiao.onLine/this.zdevice.shuibiao.sum).toFixed(4)*100 + "%";
+        this.dbProgress = (this.zdevice.dianbiao.onLine/this.zdevice.dianbiao.sum).toFixed(4)*100 + "%";
 
         // 基于准备好的dom，初始化echarts实例
         var myChart = null;
@@ -493,7 +494,7 @@ $base_colo: #7bb9dc;
       color: $base_colo;
       .item {
         height: 1.65rem;
-        justify-content: space-around;
+        justify-content: flex-start;
         align-items: center;
         h4 {
           font-size: .8rem;
@@ -505,6 +506,7 @@ $base_colo: #7bb9dc;
           display: flex;
           background-color: #3C404C;
           border-radius: 20px;
+          margin-left: .5rem;
           .progress-bar {
             display: flex;
             flex-direction: column;
@@ -536,6 +538,9 @@ $base_colo: #7bb9dc;
 
         .zcount {
           font-size: .5rem;
+          justify-content: space-between;
+          align-items: center;
+          flex: 1;
           & > div {
             padding-left: .3rem;
           }

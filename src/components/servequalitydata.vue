@@ -38,7 +38,7 @@ export default {
       name: '企业服务评分结构',
       num: '',
       last: '',
-      arrow: 'up',
+      arrow: '',
       "servequalitydata": {
         "num": "",
         "last": "",

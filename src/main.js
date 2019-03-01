@@ -10,6 +10,7 @@ import moment from 'moment'
 Vue.config.productionTip = false
 
 Vue.prototype.zutil = zutil;
+Vue.prototype.moment = moment;
 
 Vue.filter('time', function (value, formatString) {
   formatString = formatString || 'YYYY-MM-DD HH:mm';

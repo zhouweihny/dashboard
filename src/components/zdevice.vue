@@ -33,7 +33,6 @@
             <div>
               <span>共</span>
               <em>{{zdevice.menjin.sum}}</em>
-              <span>个</span>
             </div>
             <div>
               <span>在线</span>
@@ -54,7 +53,6 @@
             <div>
               <span>共</span>
               <em>{{zdevice.shuibiao.sum}}</em>
-              <span>个</span>
             </div>
             <div>
               <span>在线</span>
@@ -75,7 +73,6 @@
             <div>
               <span>共</span>
               <em>{{zdevice.dianbiao.sum}}</em>
-              <span>个</span>
             </div>
             <div>
               <span>在线</span>
@@ -92,9 +89,9 @@
 
     <h3 class="J_zenergy_tit">本月能耗情况</h3>
     <div class="zui-flex zenergy">
-      <div>电量<span>{{zdevice.benyuenenghao.dian}}</span>度</div>
-      <div>冷水量<span>{{zdevice.benyuenenghao.shui}}</span>吨</div>
-      <div>热水量<span>{{zdevice.benyuenenghao.reshui}}</span>吨</div>
+      <div>电量<span>{{zdevice.benyuenenghao.dian || 0}}</span>度</div>
+      <div>冷水量<span>{{zdevice.benyuenenghao.shui || 0}}</span>吨</div>
+      <div>热水量<span>{{zdevice.benyuenenghao.reshui || 0}}</span>吨</div>
     </div>
 
     <h4 class="energyTit">日水电监控（近30日）</h4>
@@ -133,9 +130,9 @@ export default {
       total: '235',
       zaixian: '205',
       lixian: '30',
-      mjProgress: '96%',
-      sbProgress: '83.333%',
-      dbProgress: '100%',
+      mjProgress: '0',
+      sbProgress: '0',
+      dbProgress: '0',
 
       "zdevice":{
         "sum": "",
@@ -244,15 +241,19 @@ export default {
         var lineData = [];
         var lineData2 = [];
         if(type == 'energyDay'){
-          lineData = this.zdevice.energyDay.shui;
-          lineData2 = this.zdevice.energyDay.dian;
+          lineData = this.zdevice.energyDay.dian;
+          lineData2 = this.zdevice.energyDay.shui;
         }else{
-          lineData = this.zdevice.energyYear.shui;
-          lineData2 = this.zdevice.energyYear.dian;
+          lineData = this.zdevice.energyYear.dian;
+          lineData2 = this.zdevice.energyYear.shui;
         }
 
         var barData = this.zdevice.qiandan;
         var yuefen = this.zdevice.yuefen;
+
+        this.mjProgress = (this.zdevice.menjin.onLine/this.zdevice.menjin.sum).toFixed(4)*100 + "%";
+        this.sbProgress = (this.zdevice.shuibiao.onLine/this.zdevice.shuibiao.sum).toFixed(4)*100 + "%";
+        this.dbProgress = (this.zdevice.dianbiao.onLine/this.zdevice.dianbiao.sum).toFixed(4)*100 + "%";
 
         // 基于准备好的dom，初始化echarts实例
         var myChart = null;
@@ -270,7 +271,12 @@ export default {
             formatter (params, ticket, callback) {
               var _qd = '',
                 _xz = '',
-                str = params[0].axisValueLabel+"号能源消耗"+"<br>";
+                str = params[0].axisValueLabel;
+              if(type == 'energyDay'){
+                str += "号能源消耗"+"<br>";
+              }else{
+                str += "月能源消耗"+"<br>";
+              }
               params.forEach(v=>{
                 if(v.seriesName == '电')
                   _qd = v.data;
@@ -291,10 +297,10 @@ export default {
             textStyle: {
               color: '#7bb9dc'
             },
-            left: 70,
-            top: 20,
+            left: 40,
+            top: 30,
             itemGap: 30,
-            itemWidth: 50
+            itemWidth: 30
           },
           xAxis: [{//x轴
             type: 'category',//数据类型为不连续数据
@@ -309,12 +315,24 @@ export default {
               textStyle: {
                 color: '#6a9cd5',
               },
+              formatter: (value) => {
+                if(type == 'energyDay'){
+                  return this.moment(value, "YYYY-MM-DD").format("DD");
+                }else{
+                  return this.moment(value, "YYYY-MM").format("MM");
+                }
+              }
             },
             axisTick: { show: true,},//刻度点数轴
             data: dayData 
           }],
           yAxis: [{//y轴的相关设置
             type: 'value',//y轴数据类型为连续的数据
+            name: "（度）           ",
+            nameGap: 10,//与轴线间距
+            nameTextStyle: {
+              color: '#5BEAFB'
+            },
             min: 0,//y轴上的刻度最小值
             // max: Math.max.apply(null, lineData),//y轴上的刻度最大值
             splitNumber: 5,//y轴上的刻度段数
@@ -337,6 +355,11 @@ export default {
             }
           }, {//y轴的相关设置
             type: 'value',//y轴数据类型为连续的数据
+            name: "（吨）",
+            nameGap: 10,//与轴线间距
+            nameTextStyle: {
+              color: '#5BEAFB'
+            },
             min: 0,//y轴上的刻度最小值
             splitNumber: 5,//y轴上的刻度段数
             splitLine: {//y轴上的y轴线条相关设置
@@ -345,12 +368,12 @@ export default {
             axisLine: {//y轴的相关设置
               show: true,
               lineStyle: {
-                color: '#34607B' //y轴颜色
+                color: '#FE2D54' //y轴颜色
               },
             },
             axisLabel: {//y轴的标签相关设置
               textStyle: {
-                color: '#5CEBFC',
+                color: '#5BEAFB',
               },
             }
           }],
@@ -358,7 +381,9 @@ export default {
             name: '电',
             type: 'line',//统计图类型为折线图
             smooth: true, //是否平滑曲线显示
-            symbolSize:0,//数据点的大小，[0,0]//b表示宽度和高度
+            showAllSymbol: true,
+            symbol: 'circle',
+            symbolSize: 0,
             yAxisIndex : 0,
             itemStyle: {
               normal: {
@@ -371,7 +396,7 @@ export default {
             lineStyle: {//线条的相关设置
               normal: {
                 color: "#3deaff",   // 线条颜色
-                width: 3
+                width: 2
               }
             },
             areaStyle: { //区域填充样式
@@ -389,7 +414,7 @@ export default {
             smooth: false,
             showAllSymbol: true,
             symbol: 'circle',
-            symbolSize: 8,
+            symbolSize: 6,
             yAxisIndex : 1,
             data: lineData2,
             itemStyle: {
@@ -403,7 +428,7 @@ export default {
             lineStyle: {
               normal: {
                 color: "#FE2D54",   // 线条颜色
-                width: 3
+                width: 2
               }
             }
           }]
@@ -421,34 +446,35 @@ $base_colo: #7bb9dc;
 
 .cwrap {
   position: relative;
-  width: 1482px;
-  height: 640px;
+  width: 43rem;
+  height: 24rem;
   .J_zdevice_tit {
     position: absolute;
-    top: 10px;
-    left: 43px;
-    font-size: 30px;
+    top: 1.2rem;
+    left: 2rem;
+    font-size: .9rem;
     color: #5CEAFB;
   }
 
   .ztop {
-    width: 1482px;
+    width: 43rem;
     justify-content: space-around;
     align-items: flex-start;
     position: absolute;
     left: 0;
-    top: 70px;
-    margin-top: 30px;
+    top: 3.5rem;
     .zleft {
       width: 46%;
+      padding-top: .5rem;
+      padding-left: .8rem;
       justify-content: space-around;
       align-items: center;
       h4 {
-        font-size: 26px;
+        font-size: .8rem;
         color: $base_colo;
       }
       .J_numBlock {
-        height: 92px;
+        height: 2.7rem;
         margin-top: 10px;
         align-items: flex-end;
         & > div {
@@ -459,13 +485,13 @@ $base_colo: #7bb9dc;
           }
         }
         .J_num {
-          width: 56px;
+          width: 1.5rem;
           background: #4F89B1;
-          margin: 0 5px;
+          margin: 0 .15rem;
           text-align: center;
-          font-size: 50px;
+          font-size: 2rem;
           font-weight: bold;
-          line-height: 92px;
+          line-height: 2.7rem;
           color: #fff;
           &:first-child {
             margin-left: 0;
@@ -477,19 +503,20 @@ $base_colo: #7bb9dc;
       width: 46%;
       color: $base_colo;
       .item {
-        height: 46px;
-        justify-content: space-around;
+        height: 1.65rem;
+        justify-content: flex-start;
         align-items: center;
         h4 {
-          font-size: 26px;
+          font-size: .8rem;
           color: $base_colo;
         }
         .zuiProgress {
-          width: 320px;
-          height: 15px;
+          width: 8.5rem;
+          height: .5rem;
           display: flex;
           background-color: #3C404C;
           border-radius: 20px;
+          margin-left: .5rem;
           .progress-bar {
             display: flex;
             flex-direction: column;
@@ -520,13 +547,16 @@ $base_colo: #7bb9dc;
         }
 
         .zcount {
-          font-size: 18px;
+          font-size: .5rem;
+          justify-content: space-between;
+          align-items: center;
+          flex: 1;
           & > div {
-            padding-left: 15px;
+            padding-left: .3rem;
           }
           em {
             font-style: normal;
-            font-size: 30px;
+            font-size: 1rem;
             color: #5BE9FB;
           }
         }
@@ -536,37 +566,38 @@ $base_colo: #7bb9dc;
 
   .J_zenergy_tit {
     position: absolute;
-    top: 287px;
-    left: 43px;
-    font-size: 30px;
+    top: 8.9rem;
+    left: 2rem;
+    font-size: .9rem;
     color: #5CEAFB;
   }
 
   .zenergy {
-    width: 1282px;
+    width: 40rem;
     align-items: flex-start;
     position: absolute;
-    left: 50px;
-    top: 355px;
+    left: 2rem;
+    top: 11rem;
     justify-content: flex-start;
+    font-size: .8rem;
     & > div {
       position: relative;
-      min-width: 300px;
+      min-width: 12rem;
       color: $base_colo;
-      padding-left: 20px;
+      padding-left: 1rem;
       &:before {
         position: absolute;
-        left: 0;
-        top: 11px;
+        left: .2rem;
+        top: .55rem;
         content: "";
-        width: 13px;
-        height: 13px;
-        border-radius: 13px;
+        width: .4rem;
+        height: .4rem;
+        border-radius: .4rem;
         background: #8FD3FA;
       }
       span {
         color: #5BEAFA;
-        font-size: 30px;
+        font-size: 1.2rem;
         display: inline-block;
         margin: 0 6px;
       }
@@ -575,31 +606,31 @@ $base_colo: #7bb9dc;
 
   .energyTit {
     position: absolute;
-    top: 442px;
-    left: 274px;
-    font-size: 21px;
+    top: 13.38rem;
+    left: 8.45rem;
+    font-size: .6rem;
     color: #fff;
     &:nth-of-type(2) {
-      left: 1002px;
+      left: 28.7rem;
     }
   }
 
   .energyDay, .energyYear {
     position: absolute;
-    top: 472px;
-    width: 700px;
-    height: 270px;
+    top: 13rem;
+    width: 18rem;
+    height: 8.3rem;
     .main {
-      width: 700px;
-      height: 270px;
+      width: 18rem;
+      height: 10.3rem;
     }
   }
 
   .energyDay {
-    left: 37px;
+    left: 2.5rem;
   }
   .energyYear {
-    left: 774px;
+    left: 23.3rem;
   }
 }
 

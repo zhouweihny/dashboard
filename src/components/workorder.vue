@@ -113,13 +113,18 @@ export default {
             textStyle: {
               color: '#7bb9dc'
             },
-            left: 100,
-            top: 20,
+            left: 40,
+            top: 30,
             itemGap: 30,
-            itemWidth: 50
+            itemWidth: 30
           },
           xAxis: {
             data: yuefen,
+            axisLabel : {
+              formatter: (value) => {
+                return this.moment(value, "YYYY-MM").format("MM");
+              }
+            },
             axisLine: {
               lineStyle: {
                 color: '#7bb9dc'
@@ -140,7 +145,7 @@ export default {
             smooth: false,
             showAllSymbol: true,
             symbol: 'circle',
-            symbolSize: 10,
+            symbolSize: 6,
             data: lineData,
             itemStyle: {
               normal: {
@@ -159,7 +164,7 @@ export default {
             smooth: false,
             showAllSymbol: true,
             symbol: 'circle',
-            symbolSize: 10,
+            symbolSize: 6,
             data: lineData2,
             itemStyle: {
               normal: {
@@ -235,41 +240,41 @@ export default {
 .workorder {
   .tit {
     position: absolute;
-    top: -80px;
+    top: -1.8rem;
     left: 0;
     justify-content: flex-start;
     & > div {
       position: relative;
-      padding-left: 20px;
-      font-size: 17px;
+      padding-left: .7rem;
+      font-size: .6rem;
       color: #7bb9dc;
       &:nth-child(1) {
-        margin-right: 50px;
+        margin-right: 2rem;
       }
       &:before {
         position: absolute;
         left: 0;
-        top: 9px;
+        top: .3rem;
         content: "";
-        width: 13px;
-        height: 13px;
-        border-radius: 13px;
+        width: .4rem;
+        height: .4rem;
+        border-radius: .4rem;
         background: #8FD3FA;
       }
 
       span {
         color: #5BEAFB;
-        font-size: 26px;
+        font-size: .9rem;
         display: inline-block;
         vertical-align: baseline;
-        margin-left: 15px;
+        margin-left: .8rem;
       }
     }
   }
 
   .main {
-    width: 806px;
-    height: 330px;
+    width: 23.5rem;
+    height: 11.8rem;
   }
 }
 

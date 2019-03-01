@@ -104,13 +104,18 @@ export default {
             textStyle: {
               color: '#7bb9dc'
             },
-            left: 100,
-            top: 20,
+            left: 40,
+            top: 25,
             itemGap: 30,
-            itemWidth: 50
+            itemWidth: 30
           },
           xAxis: {
             data: yuefen,
+            axisLabel : {
+              formatter: (value) => {
+                return this.moment(value, "YYYY-MM").format("MM");
+              }
+            },
             axisLine: {
               lineStyle: {
                 color: '#7bb9dc'
@@ -131,7 +136,7 @@ export default {
             smooth: false,
             showAllSymbol: true,
             symbol: 'circle',
-            symbolSize: 10,
+            symbolSize: 6,
             data: lineData,
             itemStyle: {
               normal: {
@@ -150,7 +155,7 @@ export default {
             smooth: false,
             showAllSymbol: true,
             symbol: 'circle',
-            symbolSize: 10,
+            symbolSize: 6,
             data: lineData2,
             itemStyle: {
               normal: {
@@ -228,8 +233,8 @@ $base_colo: #7bb9dc;
 .cwrap {
   .yearroomrent {
     .main {
-      width: 806px;
-      height: 330px;
+      width: 23.5rem;
+      height: 11.8rem;
     }
   }
 }

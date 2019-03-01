@@ -27,23 +27,23 @@
         <div class="main"></div>
         <div class="zui-flex incomeCount">
           <div class="zui-flex item">
-            <div>房间租赁收入</div>
+            <div>房间租赁</div>
             <div>{{roomIn | formatNum}}</div>
           </div>
           <div class="zui-flex item">
-            <div>能耗收入</div>
+            <div>能耗</div>
             <div>{{energyIn | formatNum}}</div>
           </div>
           <div class="zui-flex item">
-            <div>停车场收入</div>
+            <div>停车场</div>
             <div>{{parkIn | formatNum}}</div>
           </div>
           <div class="zui-flex item">
-            <div>会议室收入</div>
+            <div>会议室</div>
             <div>{{meetroomIn | formatNum}}</div>
           </div>
           <div class="zui-flex item">
-            <div>物业服务收入</div>
+            <div>物业服务</div>
             <div>{{serveiceIn | formatNum}}</div>
           </div>
         </div>
@@ -185,11 +185,11 @@ export default {
         title:{
           textStyle:{
             color:"#7bb9dc",
-            fontSize: 30
+            fontSize: 18
           },
           text:'收入占比',
           left:"center",
-          top:"32%",
+          top:"35%",
         },
         tooltip: {//鼠标悬浮弹出提示框
           trigger:'item'
@@ -197,7 +197,7 @@ export default {
         series: [{
           type: 'pie',
           radius: ['42%', '55%'],
-          center: ['50%', '35%'],
+          center: ['50%', '40%'],
           avoidLabelOverlap: true,
           color: ['#FEB407', '#FF4C4D', '#9702FE', '#00B4D2', '#00BD8D'],
           label: {
@@ -209,7 +209,7 @@ export default {
               rich: {
                 a: {
                   color: '#7bb9dc',
-                  fontSize: 20
+                  fontSize: 14
                 }
               }
             }
@@ -284,10 +284,10 @@ export default {
           textStyle: {
             color: '#7bb9dc'
           },
-          left: 70,
-          top: 20,
+          left: 40,
+          top: 30,
           itemGap: 30,
-          itemWidth: 50
+          itemWidth: 30
         },
         xAxis: [{//x轴
           type: 'category',//数据类型为不连续数据
@@ -302,6 +302,9 @@ export default {
             textStyle: {
               color: '#6a9cd5',
             },
+            formatter: (value) => {
+              return this.moment(value, "YYYY-MM").format("MM");
+            }
           },
           axisTick: { show: true,},//刻度点数轴
           data: dayData 
@@ -333,7 +336,9 @@ export default {
           name: '收入',
           type: 'line',//统计图类型为折线图
           smooth: true, //是否平滑曲线显示
-          symbolSize:0,//数据点的大小，[0,0]//b表示宽度和高度
+          showAllSymbol: true,
+          symbol: 'circle',
+          symbolSize: 0,
           itemStyle: {
             normal: {
               color: "#3deaff",
@@ -345,7 +350,7 @@ export default {
           lineStyle: {//线条的相关设置
             normal: {
               color: "#3deaff",   // 线条颜色
-              width: 3
+              width: 2
             }
           },
           areaStyle: { //区域填充样式
@@ -361,7 +366,8 @@ export default {
           name: '支出',
           type: 'line',
           smooth: true,
-          showAllSymbol: false,
+          showAllSymbol: true,
+          symbol: 'circle',
           symbolSize: 0,
           data: lineData2,
           itemStyle: {
@@ -375,7 +381,7 @@ export default {
           lineStyle: {
             normal: {
               color: "#FE2D54",   // 线条颜色
-              width: 3
+              width: 2
             }
           }
         }]
@@ -391,22 +397,22 @@ $base_colo: #7bb9dc;
 
 .cwrap {
   position: relative;
-  width: 1482px;
-  height: 640px;
+  width: 43rem;
+  height: 20rem;
   .J_zdevice_tit {
     position: absolute;
-    top: 10px;
-    left: 43px;
-    font-size: 30px;
+    top: 0.7rem;
+    left: 2rem;
+    font-size: .9rem;
     color: #5CEAFB;
   }
   
   .zmain {
     position: absolute;
-    top: 70px;
-    left: 10px;
-    width: 1470px;
-    height: 560px;
+    top: 3rem;
+    left: .5rem;
+    width: 42rem;
+    height: 15rem;
     justify-content: space-around;
 
     .zleft {
@@ -414,28 +420,29 @@ $base_colo: #7bb9dc;
       width: 50%;
       .ztotal {
         position: absolute;
-        top: 43px;
-        left: 60px;
-        width: 600px;
-        height: 80px;
-        font-size: 30px;
+        top: .2rem;
+        left: 0;
+        width: 20rem;
+        height: 3rem;
+        font-size: .9rem;
         color: #5BEAFB;
         justify-content: center;
         align-items: center;
         & > div:first-child {
-          margin-right: 30px;
+          margin-right: .8rem;
+          padding-left: 1.3rem;
         }
         .zitems {
           align-items: flex-end;
           .zitem {
-            padding: 0 8px;
-            height: 66px;
-            line-height: 66px;
+            height: 2.2rem;
+            line-height: 2.2rem;
             text-align: center;
             background: #0A3263;
-            margin: 0 4px;
-            font-size: 46px;
+            margin: 0 .15rem;
+            font-size: 1.5rem;
             font-weight: bold;
+            width: 1.5rem;
           }
           .split {
             font-size: 40px;
@@ -446,23 +453,23 @@ $base_colo: #7bb9dc;
 
       .yearIncome {
         position: absolute;
-        top: 199px;
-        left: 30px;
-        width: 670px;
-        height: 310px;
+        top: 4rem;
+        left: 1rem;
+        width: 18.5rem;
+        height: 10rem;
         h4 {
           position: absolute;
-          left: 205px;
-          top: 0;
-          font-size: 21px;
           color: #fff;
+          top: 1rem;
+          left: 5.5rem;
+          font-size: .6rem;
         }
         .main {
           position: absolute;
-          left: -30px;
-          top: 30px;
-          width: 700px;
-          height: 300px;
+          left: 0;
+          top: .6rem;
+          width: 19.5rem;
+          height: 10.5rem;
         }
       }
     }
@@ -472,44 +479,45 @@ $base_colo: #7bb9dc;
       width: 43%;
       .main {
         position: absolute;
-        left: 0px;
-        top: 30px;
-        width: 700px;
-        height: 460px;
+        left: 0;
+        top: 0;
+        width: 19rem;
+        height: 11.5rem;
       }
       .incomeCount {
         position: absolute;
-        width: 700px;
-        top: 372px;
-        left: 0;
-        font-size: 18px;
+        width: 19rem;
+        top: 9.3rem;
+        font-size: .7rem;
         color: $base_colo;
         justify-content: space-between;
         flex-wrap: wrap;
         .item {
           width: 46%;
-          height: 50px;
-          line-height: 50px;
-          padding-left: 20px;
-          font-size: 27px;
+          height: 1.5rem;
+          line-height: 1.5rem;
+          padding-left: .7rem;
+          font-size: .7rem;
           align-items: baseline;
           & > div:first-child {
             position: relative;
-            font-size: 16px;
-            width: 130px;
+            width: 4rem;
             &:before {
               position: absolute;
-              left: -20px;
-              top: 18px;
+              left: -0.7rem;
+              top: .55rem;
               content: "";
-              width: 13px;
-              height: 13px;
-              border-radius: 13px;
+              width: .4rem;
+              height: .4rem;
+              border-radius: .4rem;
               background: #FFB508;
             }
           }
           & > div:last-child {
             color: #5BE9FA;
+            font-size: .8rem;
+            font-weight: bold;
+            flex: 1;
           }
 
           &:nth-of-type(2) > div:first-child:before {

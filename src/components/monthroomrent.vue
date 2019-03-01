@@ -55,9 +55,9 @@ export default {
 
       if(this.storeAjaxData && this.storeAjaxData.monthroomrent){
         this.monthroomrent = this.storeAjaxData.monthroomrent;
-        var lineData = this.monthroomrent.xiuzhu;
-        var lineData2 = this.monthroomrent.tuizhu;
-        var barData = this.monthroomrent.qiandan;
+        var lineData = this.monthroomrent.qiandan;
+        var lineData2 = this.monthroomrent.xiuzhu;
+        var barData = this.monthroomrent.tuizhu;
         var yuefen = this.monthroomrent.yuefen;
 
 
@@ -82,13 +82,18 @@ export default {
             textStyle: {
               color: '#7bb9dc'
             },
-            left: 100,
-            top: 20,
+            left: 40,
+            top: 30,
             itemGap: 30,
-            itemWidth: 50
+            itemWidth: 30
           },
           xAxis: {
             data: yuefen,
+            axisLabel : {
+              formatter: (value) => {
+                return this.moment(value, "YYYY-MM").format("MM");
+              }
+            },
             axisLine: {
               lineStyle: {
                 color: '#7bb9dc'
@@ -108,7 +113,7 @@ export default {
             type: "bar",
             stack: "总量",
             barMaxWidth: 20,
-            barWidth: 15,
+            barWidth: 10,
             barGap: "10%",
             data: lineData,
             itemStyle: {
@@ -124,7 +129,7 @@ export default {
             type: "bar",
             stack: "总量",
             barMaxWidth: 20,
-            barWidth: 15,
+            barWidth: 10,
             barGap: "10%",
             data: lineData2,
             itemStyle: {
@@ -140,7 +145,7 @@ export default {
             type: "bar",
             stack: "总量",
             barMaxWidth: 20,
-            barWidth: 15,
+            barWidth: 10,
             barGap: "10%",
             itemStyle: {
               normal: {
@@ -166,8 +171,8 @@ $base_colo: #7bb9dc;
 .cwrap {
   .monthroomrent {
     .main {
-      width: 806px;
-      height: 330px;
+      width: 23.5rem;
+      height: 11.8rem;
     }
   }
 }

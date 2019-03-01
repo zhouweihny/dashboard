@@ -5,7 +5,7 @@
       <ul>
         <li class="zui-flex">
           <div class="tit">
-            本月房间新签约量
+            本月新签约量
           </div>
           <div class="num">
             {{roomrent.contract.num}}
@@ -17,7 +17,7 @@
         </li>
         <li class="zui-flex">
           <div class="tit">
-            本月房间续租量
+            本月续租量
           </div>
           <div class="num">
             {{roomrent.relet.num}}
@@ -29,7 +29,7 @@
         </li>
         <li class="zui-flex">
           <div class="tit">
-            本月房间退租量
+            本月退租量
           </div>
           <div class="num">
             {{roomrent.throwalease.num}}
@@ -55,16 +55,16 @@
       <div class="main"></div>
       <div class="zui-flex ztit">
         <div class="fn-center">
-          <p>办公室租用率</p>
-          <p><em></em>共{{roomrent.bangongshi.sum}}间，余{{roomrent.bangongshi.residue}}</p>
+          <p>办公室</p>
+          <p><em></em>共{{roomrent.bangongshi.sum}}，余{{roomrent.bangongshi.residue}}</p>
         </div>
         <div class="fn-center">
-          <p>移动办公租用率</p>
-          <p><em></em>共{{roomrent.yidonggongwei.sum}}间，余{{roomrent.yidonggongwei.residue}}</p>
+          <p>移动办公</p>
+          <p><em></em>共{{roomrent.yidonggongwei.sum}}，余{{roomrent.yidonggongwei.residue}}</p>
         </div>
         <div class="fn-center">
-          <p>固定工位租用率</p>
-          <p><em></em>共{{roomrent.gudinggongwei.sum}}间，余{{roomrent.gudinggongwei.residue}}</p>
+          <p>固定工位</p>
+          <p><em></em>共{{roomrent.gudinggongwei.sum}}，余{{roomrent.gudinggongwei.residue}}</p>
         </div>
       </div>
     </div>
@@ -120,6 +120,13 @@ export default {
       if(this.storeAjaxData && this.storeAjaxData.roomrent){
         this.roomrent = this.storeAjaxData.roomrent;
 
+        this.roomrent.contract.num = parseInt(this.roomrent.contract.num, 10) || 0;
+        this.roomrent.contract.last = parseInt(this.roomrent.contract.last, 10) || 0;
+        this.roomrent.relet.num = parseInt(this.roomrent.relet.num, 10) || 0;
+        this.roomrent.relet.last = parseInt(this.roomrent.relet.last, 10) || 0;
+        this.roomrent.throwalease.num = parseInt(this.roomrent.throwalease.num, 10) || 0;
+        this.roomrent.throwalease.last = parseInt(this.roomrent.throwalease.last, 10) || 0;
+
         if(this.roomrent.contract.num > this.roomrent.contract.last){
           this.roomrent.contract.arrow = 'up'
         }else if(this.roomrent.contract.num < this.roomrent.contract.last){
@@ -148,8 +155,8 @@ export default {
         series: [{
           name: '办公室',
           type: 'pie',
-          radius: ['70%', '78%'],
-          center: ['15%', '53%'],
+          radius: ['55%', '60%'],
+          center: ['15%', '47%'],
           avoidLabelOverlap: false,
           color: '#00AFAA',
           label: {
@@ -168,10 +175,9 @@ export default {
                 formatter: '{d} %',
                 textStyle: {
                   color: '#00AFAA',
-                  fontSize: 18
+                  fontSize: 10
                 }
-              },
-              distance: 100
+              }
             },
             tooltip: {
               trigger: 'item',
@@ -199,8 +205,8 @@ export default {
         }, {
           name: '移动工位',
           type: 'pie',
-          radius: ['70%', '78%'],
-          center: ['49%', '53%'],
+          radius: ['55%', '60%'],
+          center: ['48%', '47%'],
           avoidLabelOverlap: false,
           color: '#FFB408',
           label: {
@@ -219,7 +225,7 @@ export default {
                 formatter: '{d} %',
                 textStyle: {
                   color: '#FFB408',
-                  fontSize: 18
+                  fontSize: 12
                 }
               }
             },
@@ -249,8 +255,8 @@ export default {
         }, {
           name: '固定工位',
           type: 'pie',
-          radius: ['70%', '78%'],
-          center: ['82%', '53%'],
+          radius: ['55%', '60%'],
+          center: ['81%', '47%'],
           avoidLabelOverlap: false,
           color: '#FF4B4E',
           label: {
@@ -268,7 +274,7 @@ export default {
               normal: {
                 formatter: '{d} %',
                 textStyle: {
-                  fontSize: 18
+                  fontSize: 12
                 }
               }
             },
@@ -309,7 +315,7 @@ $base_colo: #7bb9dc;
 .cwrap {
 
   .left {
-    width: 300px;
+    width: 9.2rem;
     box-sizing: border-box;
     padding-top: 30px;
     position: relative;
@@ -318,16 +324,17 @@ $base_colo: #7bb9dc;
       position: absolute;
       right: -3px;
       top: 12px;
-      font-size: 13px;
+      font-size: .5rem;
       color: #8e9096;
     }
 
     ul {
+      width: 9.2rem;
       li {
         position: relative;
-        padding-left: 20px;
-        height: 60px;
-        font-size: 17px;
+        padding-left: .7rem;
+        height: 2rem;
+        font-size: .6rem;
         color: $base_colo;
         justify-content: space-between;
         align-items: baseline;
@@ -335,11 +342,11 @@ $base_colo: #7bb9dc;
         &:before {
           position: absolute;
           left: 0;
-          top: 9px;
+          top: .4rem;
           content: "";
-          width: 13px;
-          height: 13px;
-          border-radius: 13px;
+          width: .4rem;
+          height: .4rem;
+          border-radius: .4rem;
           background: #8FD3FA;
         }
 
@@ -349,7 +356,7 @@ $base_colo: #7bb9dc;
 
         .num {
           color: #5BEAFB;
-          font-size: 26px;
+          font-size: .9rem;
         }
 
         .lastNum {}
@@ -359,34 +366,35 @@ $base_colo: #7bb9dc;
 
   .right {
     flex: 1;
-    padding-left: 80px;
+    padding-left: 1rem;
 
     .total {
-      height: 30px;
-      line-height: 30px;
-      font-size: 17px;
+      height: 1rem;
+      line-height: 1rem;
+      font-size: .6rem;
       color: $base_colo;
       justify-content: space-around;
+      padding-top: 0.35rem;
 
       .rent {
         position: relative;
 
         &:before {
           position: absolute;
-          left: -20px;
-          top: 11px;
+          left: -0.7rem;
+          top: .3rem;
           content: "";
-          width: 13px;
-          height: 13px;
-          border-radius: 13px;
+          width: .4rem;
+          height: .4rem;
+          border-radius: .4rem;
           background: #8FD3FA;
         }
 
         span {
           color: #5BEAFB;
-          font-size: 26px;
+          font-size: .85rem;
           display: inline-block;
-          margin-left: 17px;
+          margin-left: .2rem;
         }
 
         &.rentLast {}
@@ -394,21 +402,22 @@ $base_colo: #7bb9dc;
     }
 
     .main {
-      width: 400px;
-      height: 105px;
+      width: 100%;
+      height: 4.5rem;
     }
 
     .ztit {
       justify-content: space-around;
       align-items: center;
-      font-size: 14px;
+      font-size: .5rem;
       color: $base_colo;
-      margin-left: -10px;
+      margin-left: -.4rem;
+      margin-top: -.9rem;
 
       & > div {
         p {
-          height: 22px;
-          line-height: 22px;
+          height: 1rem;
+          line-height: 1rem;
 
           &:nth-child(2) {
             position: relative;

@@ -84,7 +84,7 @@ export default {
       this.myChart.setOption({
         title:{
           textStyle:{
-              color:"#6a9cd5",
+            color:"#6a9cd5",
           },
           text:'',
           left:"center",
@@ -92,12 +92,6 @@ export default {
         tooltip: {//鼠标悬浮弹出提示框
           trigger:'axis', //提示框弹出的触发时间，折线图和柱状图为axis
           formatter:"{b}号{a}为: {c}人"//提示框提示的信息，{a}series内的名字，{b}为块状的名字，{c}为数值
-        },
-        grid: {//统计图距离边缘的距离
-          top: '8%',
-          left: '10%',
-          right: '10%',
-          bottom: '8%'
         },
         xAxis: [{//x轴
           type: 'category',//数据类型为不连续数据
@@ -112,6 +106,9 @@ export default {
             textStyle: {
               color: '#6a9cd5',
             },
+            formatter: (value) => {
+              return this.moment(value, "YYYY-MM-DD").format("DD");
+            }
           },
           axisTick: { show: true,},//刻度点数轴
           data: dayData 
@@ -119,11 +116,9 @@ export default {
         yAxis: [{//y轴的相关设置
           type: 'value',//y轴数据类型为连续的数据
           name: "人数",
-          nameGap: 10,//与轴线间距
           nameTextStyle: {
             color: '#5BEAFB'
           },
-          splitNumber: 5,//y轴上的刻度段数
           splitLine: {//y轴上的y轴线条相关设置
             show: true,
             lineStyle: {
@@ -150,7 +145,8 @@ export default {
           symbolSize:0,//数据点的大小，[0,0]//b表示宽度和高度
           lineStyle: {//线条的相关设置
             normal: {
-              color: "#3deaff"   // 线条颜色
+              color: "#3deaff",   // 线条颜色
+              width: 2
             }
           },
           areaStyle: { //区域填充样式
@@ -175,54 +171,54 @@ $base_colo: #7bb9dc;
 	.top{
     display: flex;
     justify-content:center;
-
     ul {
       li {
         position: relative;
-        padding-left: 20px;
-        height: 60px;
-        font-size: 17px;
+        padding-left: .7rem;
+        height: 2rem;
+        line-height: 2rem;
+        font-size: .6rem;
         color: $base_colo;
         justify-content: space-between;
-        align-items: baseline;
-
+        align-items: center;
         &:before {
           position: absolute;
           left: 0;
-          top: 9px;
+          top: .78rem;
           content: "";
-          width: 13px;
-          height: 13px;
-          border-radius: 13px;
+          width: .4rem;
+          height: .4rem;
+          border-radius: .4rem;
           background: #8FD3FA;
         }
-
         div {
           vertical-align: middle;
         }
-
         .num {
-          margin-left:30px;
+          margin-left: 1rem;
           color: #5BEAFB;
-          font-size: 26px;
+          font-size: .9rem;
         }
-
         .lastNum {}
       }
     } 
   }
-
   .J_crewcase_tit{
-    display: flex;
-    justify-content: center;
-    margin-top: 3px;
-  } 
-
-	.main {
-      width: 800px;
-      height: 300px;
+    position: absolute;
+    top: 2.5rem;
+    right: 7.8rem;
+    font-size: .6rem;
+    color: #fff;
+  }
+  .crewcase {
+    position: absolute;
+    top: 1.5rem;
+    left: 0;
+    height: 9rem;
+    .main {
+      width: 23rem;
+      height: 12rem;
     }
-
-	
+  }
 }
 </style>

@@ -34,11 +34,31 @@ function checkCode (res) {
   // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
   if (res.status === 404) {
     console.log(res.msg)
+    alert("404，网络异常");
   }
   return res
 }
 
 const BS_projectBaseUrl = '';
+
+// 多个ajax请求同时发送
+
+/*axios.all([
+  axios.get('res/json/shangcheng/changsuo.json'),
+  axios.get('res/json/shangcheng/fenlei.json')
+])
+.then(axios.spread((cs, fl)=> {
+  // 上面两个请求都完成后，才执行这个回调方法
+  let cssd = cs.data,
+    fls = fl.data;
+  console.log(cssd)
+  if(cssd.code == '0000'){
+    this.search.cs = cssd.data
+  }
+  if(fls.code == '0000'){
+    this.search.fl = fls.data
+  }
+}));*/
 
 export default {
   post (url, data) {

@@ -7,28 +7,24 @@
           <div class="tit">
             入住企业数量
           </div>
-          <div class="statistics">
-          	<div class="num">
-	            {{ruzhushu.num}}
-	          </div>
-	          <div class="lastNum">
-	            <span>{{ruzhushu.last}}</span>
-	            <i class="arrow up"></i>
-	          </div>
+        	<div class="num">
+            {{ruzhushu.num}}
+          </div>
+          <div class="lastNum">
+            <span>{{ruzhushu.last}}</span>
+            <i class="arrow " :class="ruzhushu.arrow"></i>
           </div>
         </li>
         <li class="zui-flex">
           <div class="tit">
-            本月新增入驻企业数量
+            本月新增企业
           </div>
-          <div class="statistics">
-          	<div class="num">
-		          {{enterOrg.num}}
-		        </div>
-	          <div class="lastNum">
-	            <span>{{enterOrg.last}}</span>
-	            <i class="arrow down"></i>
-	          </div>
+        	<div class="num">
+	          {{enterOrg.num}}
+	        </div>
+          <div class="lastNum">
+            <span>{{enterOrg.last}}</span>
+            <i class="arrow " :class="enterOrg.arrow"></i>
           </div>
         </li>
       </ul>
@@ -40,28 +36,24 @@
           <div class="tit">
             访客人数
           </div>
-          <div class="statistics">
-          	<div class="num">
-	            {{fangke.num}}
-	          </div>
-	          <div class="lastNum">
-	            <span>{{fangke.last}}</span>
-	            <i class="arrow up"></i>
-	          </div>
+        	<div class="num">
+            {{fangke.num}}
+          </div>
+          <div class="lastNum">
+            <span>{{fangke.last}}</span>
+            <i class="arrow " :class="fangke.arrow"></i>
           </div>
         </li>
         <li class="zui-flex">
           <div class="tit">
-            本月新增入驻人数
+            本月新增访客
           </div>
-          <div class="statistics">
-          	<div class="num">
-	            {{enterPerson.num}}
-	          </div>
-	          <div class="lastNum">
-	            <span>{{enterPerson.last}}</span>
-	            <i class="arrow down"></i>
-	          </div>
+        	<div class="num">
+            {{enterPerson.num}}
+          </div>
+          <div class="lastNum">
+            <span>{{enterPerson.last}}</span>
+            <i class="arrow " :class="enterPerson.arrow"></i>
           </div>
         </li>
       </ul>
@@ -129,6 +121,36 @@ export default {
         this.fangke = this.clientdata.data.fangke;
         this.enterOrg = this.clientdata.data.enterOrg;
         this.enterPerson = this.clientdata.data.enterPerson;
+
+        this.ruzhushu.num = parseInt(this.ruzhushu.num, 10) || 0;
+        this.ruzhushu.last = parseInt(this.ruzhushu.last, 10) || 0;
+        this.fangke.num = parseInt(this.fangke.num, 10) || 0;
+        this.fangke.last = parseInt(this.fangke.last, 10) || 0;
+        this.enterOrg.num = parseInt(this.enterOrg.num, 10) || 0;
+        this.enterOrg.last = parseInt(this.enterOrg.last, 10) || 0;
+        this.enterPerson.num = parseInt(this.enterPerson.num, 10) || 0;
+        this.enterPerson.last = parseInt(this.enterPerson.last, 10) || 0;
+
+        if(this.ruzhushu.num > this.ruzhushu.last){
+          this.ruzhushu.arrow = 'up'
+        }else if(this.ruzhushu.num < this.ruzhushu.last){
+          this.ruzhushu.arrow = 'down'
+        }
+        if(this.fangke.num > this.fangke.last){
+          this.fangke.arrow = 'up'
+        }else if(this.fangke.num < this.fangke.last){
+          this.fangke.arrow = 'down'
+        }
+        if(this.enterOrg.num > this.enterOrg.last){
+          this.enterOrg.arrow = 'up'
+        }else if(this.enterOrg.num < this.enterOrg.last){
+          this.enterOrg.arrow = 'down'
+        }
+        if(this.enterPerson.num > this.enterPerson.last){
+          this.enterPerson.arrow = 'up'
+        }else if(this.enterPerson.num < this.enterPerson.last){
+          this.enterPerson.arrow = 'down'
+        }
       }
     }
   }
@@ -147,33 +169,30 @@ $base_colo: #7bb9dc;
     font-size: 13px;
     color: #8e9096;
   }
-
   ul {
     li {
       position: relative;
-      padding-left: 20px;
-      height: 60px;
-      font-size: 17px;
+      padding-left: .7rem;
+      height: 1.5rem;
+      font-size: .6rem;
       color: $base_colo;
       justify-content: space-between;
       align-items: baseline;
-
       &:before {
         position: absolute;
         left: 0;
-        top: 9px;
+        top: .4rem;
         content: "";
-        width: 13px;
-        height: 13px;
-        border-radius: 13px;
+        width: .4rem;
+        height: .4rem;
+        border-radius: .4rem;
         background: #8FD3FA;
       }
-
       div {
         vertical-align: middle;
       }
-      .tit{
-      	width: 200px;
+      .tit {
+        min-width: 3.8rem;
       }
       .statistics{
       	flex: 1;
@@ -181,41 +200,33 @@ $base_colo: #7bb9dc;
 		    justify-content: space-between;
 		    align-items: flex-end;
       }
-
       .num {
         color: #5BEAFB;
-        font-size: 26px;
+        font-size: .9rem;
       }
-
-      .lastNum {}
     }
   }  
-
 	.left{
-		width: 350px;
+		width: 46%;
 		box-sizing: border-box;
     padding-top: 30px;
     position: relative;
 	}
-
 	.right{
-		width: 350px;
+		width: 46%;
 		box-sizing: border-box;
     padding-top: 30px;
     position: relative;
 	}
-
 	.arrow {
 	  width: 13px;
 	  height: 17px;
 	  display: inline-block;
 	  margin-left: 3px;
-
 	  &.up {
 	    background: url(../../static/up.png) 0 0 no-repeat;
 	    background-size: contain;
 	  }
-
 	  &.down {
 	    background: url(../../static/down.png) 0 0 no-repeat;
 	    background-size: contain;

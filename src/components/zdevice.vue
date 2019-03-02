@@ -90,8 +90,7 @@
     <h3 class="J_zenergy_tit">本月能耗情况</h3>
     <div class="zui-flex zenergy">
       <div>电量<span>{{zdevice.benyuenenghao.dian || 0}}</span>度</div>
-      <div>冷水量<span>{{zdevice.benyuenenghao.shui || 0}}</span>吨</div>
-      <div>热水量<span>{{zdevice.benyuenenghao.reshui || 0}}</span>吨</div>
+      <div>水量<span>{{zdevice.benyuenenghao.shui || 0}}</span>吨</div>
     </div>
 
     <h4 class="energyTit">日水电监控（近30日）</h4>
